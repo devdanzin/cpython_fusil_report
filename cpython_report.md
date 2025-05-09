@@ -101,18 +101,23 @@ with "type-crash" label) and 2% of all issues (including features requests,
 bugs and invalid issues) reported in the CPython issue tracker during the 
 period covered by this report.
 
-Hits and new issues don't appear at a steady pace. Instead, there are
-long periods of no or nearly no new findings, followed by rapid
+Hits and new issues don't seem to appear at a steady pace. Apparently,
+there are long periods of no or nearly no new findings, followed by rapid
 accumulation of new results when new features are added to fusil, or
 when new CPython versions and/or configurations are added to the fuzzing
 pool. Repeated hits usually stop being found when the underlying issue
 is fixed in CPython, hence the high number of hits recorded. In special
-cases, supressions for specific bugs are added, also stopping repeated
+cases, suppressions for specific bugs are added, also stopping repeated
 hits for them.
 
 _Graph: bugs filled by date (day? week? bar graph? with line of rolling average bugs per... 3 or 4 weeks?) annotated with dates of new features/configurations?_
+![issues_by_week.png](issues_by_week.png)
 
-Analysis of the temporal pattern of issue creation. 
+The temporal pattern of issue creation shows that the highest number of
+issues were found when CPython was in a "fusil-naive" state, where no
+fuzzing with this tool had happened for over a decade.
+
+_Analyze dates of new features/configurations and correlate with number of issues found._ 
 
 _Table: Issue number x Kind, Configuration, Python version, Status, number of PRs_
 
@@ -191,12 +196,15 @@ effort like the one presented here. New features in fusil can justify such
 a campaign, while the pace of accumulation of new issues in CPython doesn't
 seem to necessitate continuous monitoring.
 
-
+Cultural fit? Depending on Core Devs opinions
 
 -------------
 ## Apendix
 
 ### Findings
+
+Issue titles were collected at the time of writing the report and thus can
+in some cases be more descriptive than the original titles.
 
 The "Python versions" field reports the tags used in CPython's issue 
 tracker, which will under-represent older versions as those tags get
@@ -322,7 +330,7 @@ get_cfunc_from_callable (callable=0x0, self_arg=0x7ffff7bff710, missing=0x555555
 
 ----------
 
-#### 3- []() - 
+#### 3- [126221](https://github.com/python/cpython/issues/126221) - `sre_constants._makecodes` segfaults in JIT builds
 
 ```python
 
@@ -349,7 +357,1249 @@ get_cfunc_from_callable (callable=0x0, self_arg=0x7ffff7bff710, missing=0x555555
 
 ----------
 
-#### 4- []() - 
+#### 4- [126223](https://github.com/python/cpython/issues/126223) - `SystemError` caused by `_interpreters.create()` with invalid unicode argument
+
+```python
+
+```
+
+- Issue Number:
+- Date filled:
+- Kind:
+- Configuration:
+- Python versions:
+- Status:
+- PRs (author): 
+  - []() ()
+
+<details><summary>Backtrace/error message:</summary>
+<p>
+
+
+```shell
+
+```  
+</p>
+</details> 
+
+----------
+
+#### 5- [126312](https://github.com/python/cpython/issues/126312) - GC aborts in debug no-gil build
+
+```python
+
+```
+
+- Issue Number:
+- Date filled:
+- Kind:
+- Configuration:
+- Python versions:
+- Status:
+- PRs (author): 
+  - []() ()
+
+<details><summary>Backtrace/error message:</summary>
+<p>
+
+
+```shell
+
+```  
+</p>
+</details> 
+
+----------
+
+#### 6- [126313](https://github.com/python/cpython/issues/126313) - `curses.napms()` aborts with a `SystemError`
+
+```python
+
+```
+
+- Issue Number:
+- Date filled:
+- Kind:
+- Configuration:
+- Python versions:
+- Status:
+- PRs (author): 
+  - []() ()
+
+<details><summary>Backtrace/error message:</summary>
+<p>
+
+
+```shell
+
+```  
+</p>
+</details> 
+
+----------
+
+#### 7- [126314](https://github.com/python/cpython/issues/126314) - Running `tracemalloc` in threads segfaults on no-gil
+
+```python
+
+```
+
+- Issue Number:
+- Date filled:
+- Kind:
+- Configuration:
+- Python versions:
+- Status:
+- PRs (author): 
+  - []() ()
+
+<details><summary>Backtrace/error message:</summary>
+<p>
+
+
+```shell
+
+```  
+</p>
+</details> 
+
+----------
+
+#### 8- [126315](https://github.com/python/cpython/issues/126315) - `tracemalloc` aborts when run from threads in no-gil
+
+```python
+
+```
+
+- Issue Number:
+- Date filled:
+- Kind:
+- Configuration:
+- Python versions:
+- Status:
+- PRs (author): 
+  - []() ()
+
+<details><summary>Backtrace/error message:</summary>
+<p>
+
+
+```shell
+
+```  
+</p>
+</details> 
+
+----------
+
+#### 9- [126316](https://github.com/python/cpython/issues/126316) - `grp` is not thread safe
+
+```python
+
+```
+
+- Issue Number:
+- Date filled:
+- Kind:
+- Configuration:
+- Python versions:
+- Status:
+- PRs (author): 
+  - []() ()
+
+<details><summary>Backtrace/error message:</summary>
+<p>
+
+
+```shell
+
+```  
+</p>
+</details> 
+
+----------
+
+#### 10- []() - 
+
+```python
+
+```
+
+- Issue Number:
+- Date filled:
+- Kind:
+- Configuration:
+- Python versions:
+- Status:
+- PRs (author): 
+  - []() ()
+
+<details><summary>Backtrace/error message:</summary>
+<p>
+
+
+```shell
+
+```  
+</p>
+</details> 
+
+----------
+
+#### 11- []() - 
+
+```python
+
+```
+
+- Issue Number:
+- Date filled:
+- Kind:
+- Configuration:
+- Python versions:
+- Status:
+- PRs (author): 
+  - []() ()
+
+<details><summary>Backtrace/error message:</summary>
+<p>
+
+
+```shell
+
+```  
+</p>
+</details> 
+
+----------
+
+#### 12- []() - 
+
+```python
+
+```
+
+- Issue Number:
+- Date filled:
+- Kind:
+- Configuration:
+- Python versions:
+- Status:
+- PRs (author): 
+  - []() ()
+
+<details><summary>Backtrace/error message:</summary>
+<p>
+
+
+```shell
+
+```  
+</p>
+</details> 
+
+----------
+
+#### 13- []() - 
+
+```python
+
+```
+
+- Issue Number:
+- Date filled:
+- Kind:
+- Configuration:
+- Python versions:
+- Status:
+- PRs (author): 
+  - []() ()
+
+<details><summary>Backtrace/error message:</summary>
+<p>
+
+
+```shell
+
+```  
+</p>
+</details> 
+
+----------
+
+#### 14- []() - 
+
+```python
+
+```
+
+- Issue Number:
+- Date filled:
+- Kind:
+- Configuration:
+- Python versions:
+- Status:
+- PRs (author): 
+  - []() ()
+
+<details><summary>Backtrace/error message:</summary>
+<p>
+
+
+```shell
+
+```  
+</p>
+</details> 
+
+----------
+
+#### 15- []() - 
+
+```python
+
+```
+
+- Issue Number:
+- Date filled:
+- Kind:
+- Configuration:
+- Python versions:
+- Status:
+- PRs (author): 
+  - []() ()
+
+<details><summary>Backtrace/error message:</summary>
+<p>
+
+
+```shell
+
+```  
+</p>
+</details> 
+
+----------
+
+#### 16- []() - 
+
+```python
+
+```
+
+- Issue Number:
+- Date filled:
+- Kind:
+- Configuration:
+- Python versions:
+- Status:
+- PRs (author): 
+  - []() ()
+
+<details><summary>Backtrace/error message:</summary>
+<p>
+
+
+```shell
+
+```  
+</p>
+</details> 
+
+----------
+
+#### 17- []() - 
+
+```python
+
+```
+
+- Issue Number:
+- Date filled:
+- Kind:
+- Configuration:
+- Python versions:
+- Status:
+- PRs (author): 
+  - []() ()
+
+<details><summary>Backtrace/error message:</summary>
+<p>
+
+
+```shell
+
+```  
+</p>
+</details> 
+
+----------
+
+#### 18- []() - 
+
+```python
+
+```
+
+- Issue Number:
+- Date filled:
+- Kind:
+- Configuration:
+- Python versions:
+- Status:
+- PRs (author): 
+  - []() ()
+
+<details><summary>Backtrace/error message:</summary>
+<p>
+
+
+```shell
+
+```  
+</p>
+</details> 
+
+----------
+
+#### 19- []() - 
+
+```python
+
+```
+
+- Issue Number:
+- Date filled:
+- Kind:
+- Configuration:
+- Python versions:
+- Status:
+- PRs (author): 
+  - []() ()
+
+<details><summary>Backtrace/error message:</summary>
+<p>
+
+
+```shell
+
+```  
+</p>
+</details> 
+
+----------
+
+#### 20- []() - 
+
+```python
+
+```
+
+- Issue Number:
+- Date filled:
+- Kind:
+- Configuration:
+- Python versions:
+- Status:
+- PRs (author): 
+  - []() ()
+
+<details><summary>Backtrace/error message:</summary>
+<p>
+
+
+```shell
+
+```  
+</p>
+</details> 
+
+----------
+
+#### 21- []() - 
+
+```python
+
+```
+
+- Issue Number:
+- Date filled:
+- Kind:
+- Configuration:
+- Python versions:
+- Status:
+- PRs (author): 
+  - []() ()
+
+<details><summary>Backtrace/error message:</summary>
+<p>
+
+
+```shell
+
+```  
+</p>
+</details> 
+
+----------
+
+#### 22- []() - 
+
+```python
+
+```
+
+- Issue Number:
+- Date filled:
+- Kind:
+- Configuration:
+- Python versions:
+- Status:
+- PRs (author): 
+  - []() ()
+
+<details><summary>Backtrace/error message:</summary>
+<p>
+
+
+```shell
+
+```  
+</p>
+</details> 
+
+----------
+
+#### 23- []() - 
+
+```python
+
+```
+
+- Issue Number:
+- Date filled:
+- Kind:
+- Configuration:
+- Python versions:
+- Status:
+- PRs (author): 
+  - []() ()
+
+<details><summary>Backtrace/error message:</summary>
+<p>
+
+
+```shell
+
+```  
+</p>
+</details> 
+
+----------
+
+#### 24- []() - 
+
+```python
+
+```
+
+- Issue Number:
+- Date filled:
+- Kind:
+- Configuration:
+- Python versions:
+- Status:
+- PRs (author): 
+  - []() ()
+
+<details><summary>Backtrace/error message:</summary>
+<p>
+
+
+```shell
+
+```  
+</p>
+</details> 
+
+----------
+
+#### 25- []() - 
+
+```python
+
+```
+
+- Issue Number:
+- Date filled:
+- Kind:
+- Configuration:
+- Python versions:
+- Status:
+- PRs (author): 
+  - []() ()
+
+<details><summary>Backtrace/error message:</summary>
+<p>
+
+
+```shell
+
+```  
+</p>
+</details> 
+
+----------
+
+#### 26- []() - 
+
+```python
+
+```
+
+- Issue Number:
+- Date filled:
+- Kind:
+- Configuration:
+- Python versions:
+- Status:
+- PRs (author): 
+  - []() ()
+
+<details><summary>Backtrace/error message:</summary>
+<p>
+
+
+```shell
+
+```  
+</p>
+</details> 
+
+----------
+
+#### 27- []() - 
+
+```python
+
+```
+
+- Issue Number:
+- Date filled:
+- Kind:
+- Configuration:
+- Python versions:
+- Status:
+- PRs (author): 
+  - []() ()
+
+<details><summary>Backtrace/error message:</summary>
+<p>
+
+
+```shell
+
+```  
+</p>
+</details> 
+
+----------
+
+#### 28- []() - 
+
+```python
+
+```
+
+- Issue Number:
+- Date filled:
+- Kind:
+- Configuration:
+- Python versions:
+- Status:
+- PRs (author): 
+  - []() ()
+
+<details><summary>Backtrace/error message:</summary>
+<p>
+
+
+```shell
+
+```  
+</p>
+</details> 
+
+----------
+
+#### 29- []() - 
+
+```python
+
+```
+
+- Issue Number:
+- Date filled:
+- Kind:
+- Configuration:
+- Python versions:
+- Status:
+- PRs (author): 
+  - []() ()
+
+<details><summary>Backtrace/error message:</summary>
+<p>
+
+
+```shell
+
+```  
+</p>
+</details> 
+
+----------
+
+#### 30- []() - 
+
+```python
+
+```
+
+- Issue Number:
+- Date filled:
+- Kind:
+- Configuration:
+- Python versions:
+- Status:
+- PRs (author): 
+  - []() ()
+
+<details><summary>Backtrace/error message:</summary>
+<p>
+
+
+```shell
+
+```  
+</p>
+</details> 
+
+----------
+
+#### 31- []() - 
+
+```python
+
+```
+
+- Issue Number:
+- Date filled:
+- Kind:
+- Configuration:
+- Python versions:
+- Status:
+- PRs (author): 
+  - []() ()
+
+<details><summary>Backtrace/error message:</summary>
+<p>
+
+
+```shell
+
+```  
+</p>
+</details> 
+
+----------
+
+#### 32- []() - 
+
+```python
+
+```
+
+- Issue Number:
+- Date filled:
+- Kind:
+- Configuration:
+- Python versions:
+- Status:
+- PRs (author): 
+  - []() ()
+
+<details><summary>Backtrace/error message:</summary>
+<p>
+
+
+```shell
+
+```  
+</p>
+</details> 
+
+----------
+
+#### 33- []() - 
+
+```python
+
+```
+
+- Issue Number:
+- Date filled:
+- Kind:
+- Configuration:
+- Python versions:
+- Status:
+- PRs (author): 
+  - []() ()
+
+<details><summary>Backtrace/error message:</summary>
+<p>
+
+
+```shell
+
+```  
+</p>
+</details> 
+
+----------
+
+#### 34- []() - 
+
+```python
+
+```
+
+- Issue Number:
+- Date filled:
+- Kind:
+- Configuration:
+- Python versions:
+- Status:
+- PRs (author): 
+  - []() ()
+
+<details><summary>Backtrace/error message:</summary>
+<p>
+
+
+```shell
+
+```  
+</p>
+</details> 
+
+----------
+
+#### - []() - 
+
+```python
+
+```
+
+- Issue Number:
+- Date filled:
+- Kind:
+- Configuration:
+- Python versions:
+- Status:
+- PRs (author): 
+  - []() ()
+
+<details><summary>Backtrace/error message:</summary>
+<p>
+
+
+```shell
+
+```  
+</p>
+</details> 
+
+----------
+
+#### - []() - 
+
+```python
+
+```
+
+- Issue Number:
+- Date filled:
+- Kind:
+- Configuration:
+- Python versions:
+- Status:
+- PRs (author): 
+  - []() ()
+
+<details><summary>Backtrace/error message:</summary>
+<p>
+
+
+```shell
+
+```  
+</p>
+</details> 
+
+----------
+
+#### - []() - 
+
+```python
+
+```
+
+- Issue Number:
+- Date filled:
+- Kind:
+- Configuration:
+- Python versions:
+- Status:
+- PRs (author): 
+  - []() ()
+
+<details><summary>Backtrace/error message:</summary>
+<p>
+
+
+```shell
+
+```  
+</p>
+</details> 
+
+----------
+
+#### - []() - 
+
+```python
+
+```
+
+- Issue Number:
+- Date filled:
+- Kind:
+- Configuration:
+- Python versions:
+- Status:
+- PRs (author): 
+  - []() ()
+
+<details><summary>Backtrace/error message:</summary>
+<p>
+
+
+```shell
+
+```  
+</p>
+</details> 
+
+----------
+
+#### - []() - 
+
+```python
+
+```
+
+- Issue Number:
+- Date filled:
+- Kind:
+- Configuration:
+- Python versions:
+- Status:
+- PRs (author): 
+  - []() ()
+
+<details><summary>Backtrace/error message:</summary>
+<p>
+
+
+```shell
+
+```  
+</p>
+</details> 
+
+----------
+
+#### - []() - 
+
+```python
+
+```
+
+- Issue Number:
+- Date filled:
+- Kind:
+- Configuration:
+- Python versions:
+- Status:
+- PRs (author): 
+  - []() ()
+
+<details><summary>Backtrace/error message:</summary>
+<p>
+
+
+```shell
+
+```  
+</p>
+</details> 
+
+----------
+
+#### - []() - 
+
+```python
+
+```
+
+- Issue Number:
+- Date filled:
+- Kind:
+- Configuration:
+- Python versions:
+- Status:
+- PRs (author): 
+  - []() ()
+
+<details><summary>Backtrace/error message:</summary>
+<p>
+
+
+```shell
+
+```  
+</p>
+</details> 
+
+----------
+
+#### - []() - 
+
+```python
+
+```
+
+- Issue Number:
+- Date filled:
+- Kind:
+- Configuration:
+- Python versions:
+- Status:
+- PRs (author): 
+  - []() ()
+
+<details><summary>Backtrace/error message:</summary>
+<p>
+
+
+```shell
+
+```  
+</p>
+</details> 
+
+----------
+
+#### - []() - 
+
+```python
+
+```
+
+- Issue Number:
+- Date filled:
+- Kind:
+- Configuration:
+- Python versions:
+- Status:
+- PRs (author): 
+  - []() ()
+
+<details><summary>Backtrace/error message:</summary>
+<p>
+
+
+```shell
+
+```  
+</p>
+</details> 
+
+----------
+
+#### - []() - 
+
+```python
+
+```
+
+- Issue Number:
+- Date filled:
+- Kind:
+- Configuration:
+- Python versions:
+- Status:
+- PRs (author): 
+  - []() ()
+
+<details><summary>Backtrace/error message:</summary>
+<p>
+
+
+```shell
+
+```  
+</p>
+</details> 
+
+----------
+
+#### - []() - 
+
+```python
+
+```
+
+- Issue Number:
+- Date filled:
+- Kind:
+- Configuration:
+- Python versions:
+- Status:
+- PRs (author): 
+  - []() ()
+
+<details><summary>Backtrace/error message:</summary>
+<p>
+
+
+```shell
+
+```  
+</p>
+</details> 
+
+----------
+
+#### - []() - 
+
+```python
+
+```
+
+- Issue Number:
+- Date filled:
+- Kind:
+- Configuration:
+- Python versions:
+- Status:
+- PRs (author): 
+  - []() ()
+
+<details><summary>Backtrace/error message:</summary>
+<p>
+
+
+```shell
+
+```  
+</p>
+</details> 
+
+----------
+
+#### - []() - 
+
+```python
+
+```
+
+- Issue Number:
+- Date filled:
+- Kind:
+- Configuration:
+- Python versions:
+- Status:
+- PRs (author): 
+  - []() ()
+
+<details><summary>Backtrace/error message:</summary>
+<p>
+
+
+```shell
+
+```  
+</p>
+</details> 
+
+----------
+
+#### - []() - 
+
+```python
+
+```
+
+- Issue Number:
+- Date filled:
+- Kind:
+- Configuration:
+- Python versions:
+- Status:
+- PRs (author): 
+  - []() ()
+
+<details><summary>Backtrace/error message:</summary>
+<p>
+
+
+```shell
+
+```  
+</p>
+</details> 
+
+----------
+
+#### - []() - 
+
+```python
+
+```
+
+- Issue Number:
+- Date filled:
+- Kind:
+- Configuration:
+- Python versions:
+- Status:
+- PRs (author): 
+  - []() ()
+
+<details><summary>Backtrace/error message:</summary>
+<p>
+
+
+```shell
+
+```  
+</p>
+</details> 
+
+----------
+
+#### - []() - 
 
 ```python
 

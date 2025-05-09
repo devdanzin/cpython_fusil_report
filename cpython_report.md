@@ -4,20 +4,20 @@
 
 This report presents the issues found by fuzzing [CPython](https://github.com/python/cpython)
 with [fusil](https://github.com/devdanzin/fusil), a tool created by
-[Victor Stinner](https://github.com/vstinner) and updated and used by 
-[Daniel Diniz](https://github.com/devdanzin) for this fuzzing campaign. 
+[Victor Stinner](https://github.com/vstinner) and updated and used by
+[Daniel Diniz](https://github.com/devdanzin) for this fuzzing campaign.
 
 ### Goals
 
 The primary goal of this fuzzing campaign was to uncover defects, improve
-stability, and enhance the overall robustness of CPython, particularly 
+stability, and enhance the overall robustness of CPython, particularly
 focusing on new features and diverse configurations. A secondary goal was
 to explore ways to improve fusil to be more effective in attaining the
 primary goal.
 
 ### Context on fusil
 
-While fusil is in fact a "multi-agent Python library used to write 
+While fusil is in fact a "multi-agent Python library used to write
 fuzzing programs", in this report the name will be used as shorthand to
 refer to the Python fuzzer written by Stinner and enhanced by Diniz, based
 on the library.
@@ -31,21 +31,21 @@ Since Stinner's last version, new features have been added to fusil by
 Diniz. These features include running the generated code in parallel
 threads, testing class instances in addition to classes and functions,
 and using new interesting objects and values as inputs, all of which
-found new crashes. Other new features, like running the code 
+found new crashes. Other new features, like running the code
 asynchronously or mangling objects by replacing some of their attributes,
 haven't found any issues.
 
 ## Fuzzing environment and procedures
 
 Fuzzing has started in late October 2024 and is still ongoing as of early
-May 2025, meaning this report covers a period of approximately 6 months. 
-It has been conducted on a free AWS EC2 instance, a free AWS LightSail 
+May 2025, meaning this report covers a period of approximately 6 months.
+It has been conducted on a free AWS EC2 instance, a free AWS LightSail
 instance (for 3 months), 3 free Oracle Cloud instances (2 x64, 1 ARM), a
 personal desktop computer and a personal laptop.
 
-Each fusil instance corresponds to a long-running fuzzer process that 
+Each fusil instance corresponds to a long-running fuzzer process that
 creates the code, spawns fuzzing processes, manages sessions and collects
-hits, and an ephemeral code execution process at a time. Since each 
+hits, and an ephemeral code execution process at a time. Since each
 instance consists of two processes running in parallel, most of them were
 assigned two CPU cores when possible.
 
@@ -53,7 +53,7 @@ Fusil was installed from git and many different revisions have been used
 along the fuzzing period, as no recent releases are available and new
 features have been constantly added.
 
-- Concurrent fuzzing instances: 4 to 10 
+- Concurrent fuzzing instances: 4 to 10
 - Fusil versions: many different revisions
 - CPython versions: 3.12, 3.13, 3.14, main
 - CPython configurations: debug, release, optimized, GILful, free-threaded,
@@ -61,13 +61,13 @@ JITted, ASAN-enabled
 
 A hit is defined as a fuzzing session where either the process ends
 abnormally (a segmentation fault, an abort etc.) or a keyword indicating
-abnormal conditions is matched in the output, e.g. "SystemError", 
+abnormal conditions is matched in the output, e.g. "SystemError",
 "Fatal Python error". Many false positives, especially in the beginning
 of the fuzzing campaign, were recorded as hits. These became rarer as
 keywords were tightened and known problematic modules were skipped.
 
 After running the fuzzer and collecting hits in the form of long Python
-source files (>15k lines per file) together with the output of their 
+source files (>15k lines per file) together with the output of their
 execution, each hit is manually classified as new or duplicate. Manual
 reduction of new hits and collection of corresponding backtraces is then
 usually performed. In a few instances, there was usage of automatic test
@@ -91,14 +91,14 @@ the following estimates of resources used, hits and issues found are
 presented instead:
 
 - Fuzzing time: > 25.000 hours (sum of all instances)
-- Fuzzing sessions: > 1.000.000 
+- Fuzzing sessions: > 1.000.000
 - Hits: > 50.000
 - Issues filled: 52 (X valid, Y closed, Z open)
 - Resulting PRs: XX (Y open, Z closed)
 
 The 52 issues filled correspond roughly to 30% of all the crashes (issues
 with "type-crash" label) and 2% of all issues (including features requests,
-bugs and invalid issues) reported in the CPython issue tracker during the 
+bugs and invalid issues) reported in the CPython issue tracker during the
 period covered by this report.
 
 Hits and new issues don't seem to appear at a steady pace. Apparently,
@@ -117,7 +117,7 @@ The temporal pattern of issue creation shows that the highest number of
 issues were found when CPython was in a "fusil-naive" state, where no
 fuzzing with this tool had happened for over a decade.
 
-_Analyze dates of new features/configurations and correlate with number of issues found._ 
+_Analyze dates of new features/configurations and correlate with number of issues found._
 
 _Table: Issue number x Kind, Configuration, Python version, Status, number of PRs_
 
@@ -155,7 +155,7 @@ In total, X developers created PRs to fix these issues.
 ## Impact
 
 In the CPython project, developers don't assign prioritiy or severity
-levels to issues. One of the issues found, #131998, was considered 
+levels to issues. One of the issues found, #131998, was considered
 relevant enough to be classified as a release blocker.
 
 _Issues that were considered important?_
@@ -167,9 +167,9 @@ Here input by core devs would be important, on positive and negative points:
 - are the findings valuable?
 - Is fusil/this fuzzing effort helping make CPython better?
 - Is the constant filling of crashes disruptive of the normal development flow?
-- Is the lack of deep analysis and diagnostics when the issues are filed 
+- Is the lack of deep analysis and diagnostics when the issues are filed
 something that hinders core devs efforts?
-- Would you like to see more issues found with fusil being created? 
+- Would you like to see more issues found with fusil being created?
 - Would you prefer that issues only be filed when they have been
 diagnosed/analyzed?
 ```
@@ -206,7 +206,7 @@ Cultural fit? Depending on Core Devs opinions
 Issue titles were collected at the time of writing the report and thus can
 in some cases be more descriptive than the original titles.
 
-The "Python versions" field reports the tags used in CPython's issue 
+The "Python versions" field reports the tags used in CPython's issue
 tracker, which will under-represent older versions as those tags get
 removed or aren't added as versions leave the maintainance window.
 
@@ -217,7 +217,7 @@ status (open, merged, closed without merging etc.).
 #### 1- [126219](https://github.com/python/cpython/issues/126219) - `tkinter.Tk` segfault with invalid `className`
 
 ```python
-import  _tkinter 
+import  _tkinter
 _tkinter.create(None, '', '\U0010FFFF', None)
 
 # OR
@@ -261,9 +261,9 @@ tkinter.Tk(screenName=None, baseName='', className='\U0010FFFF')
 #9  0x000055555567ba55 in _PyObject_VectorcallTstate (tstate=0x555555cbbc70 <_PyRuntime+329232>,
     callable=<built-in method create of module object at remote 0x7ffff7ab9eb0>, args=0x7ffff7fb0080,
     nargsf=9223372036854775812, kwnames=0x0) at ./Include/internal/pycore_call.h:167
-```  
+```
 </p>
-</details> 
+</details>
 
 ----------
 
@@ -324,9 +324,9 @@ get_cfunc_from_callable (callable=0x0, self_arg=0x7ffff7bff710, missing=0x555555
 #9  0x00005555559251f4 in run_eval_code_obj (tstate=tstate@entry=0x555555cbbc70 <_PyRuntime+329232>,
     co=co@entry=0x7ffff7a58630, globals=globals@entry=0x7ffff7a55df0, locals=locals@entry=0x7ffff7a55df0)
     at Python/pythonrun.c:1338
-```  
+```
 </p>
-</details> 
+</details>
 
 ----------
 
@@ -342,7 +342,7 @@ get_cfunc_from_callable (callable=0x0, self_arg=0x7ffff7bff710, missing=0x555555
 - Configuration:
 - Python versions:
 - Status:
-- PRs (author): 
+- PRs (author):
   - []() ()
 
 <details><summary>Backtrace/error message:</summary>
@@ -351,9 +351,9 @@ get_cfunc_from_callable (callable=0x0, self_arg=0x7ffff7bff710, missing=0x555555
 
 ```shell
 
-```  
+```
 </p>
-</details> 
+</details>
 
 ----------
 
@@ -369,7 +369,7 @@ get_cfunc_from_callable (callable=0x0, self_arg=0x7ffff7bff710, missing=0x555555
 - Configuration:
 - Python versions:
 - Status:
-- PRs (author): 
+- PRs (author):
   - []() ()
 
 <details><summary>Backtrace/error message:</summary>
@@ -378,9 +378,9 @@ get_cfunc_from_callable (callable=0x0, self_arg=0x7ffff7bff710, missing=0x555555
 
 ```shell
 
-```  
+```
 </p>
-</details> 
+</details>
 
 ----------
 
@@ -396,7 +396,7 @@ get_cfunc_from_callable (callable=0x0, self_arg=0x7ffff7bff710, missing=0x555555
 - Configuration:
 - Python versions:
 - Status:
-- PRs (author): 
+- PRs (author):
   - []() ()
 
 <details><summary>Backtrace/error message:</summary>
@@ -405,9 +405,9 @@ get_cfunc_from_callable (callable=0x0, self_arg=0x7ffff7bff710, missing=0x555555
 
 ```shell
 
-```  
+```
 </p>
-</details> 
+</details>
 
 ----------
 
@@ -423,7 +423,7 @@ get_cfunc_from_callable (callable=0x0, self_arg=0x7ffff7bff710, missing=0x555555
 - Configuration:
 - Python versions:
 - Status:
-- PRs (author): 
+- PRs (author):
   - []() ()
 
 <details><summary>Backtrace/error message:</summary>
@@ -432,9 +432,9 @@ get_cfunc_from_callable (callable=0x0, self_arg=0x7ffff7bff710, missing=0x555555
 
 ```shell
 
-```  
+```
 </p>
-</details> 
+</details>
 
 ----------
 
@@ -450,7 +450,7 @@ get_cfunc_from_callable (callable=0x0, self_arg=0x7ffff7bff710, missing=0x555555
 - Configuration:
 - Python versions:
 - Status:
-- PRs (author): 
+- PRs (author):
   - []() ()
 
 <details><summary>Backtrace/error message:</summary>
@@ -459,9 +459,9 @@ get_cfunc_from_callable (callable=0x0, self_arg=0x7ffff7bff710, missing=0x555555
 
 ```shell
 
-```  
+```
 </p>
-</details> 
+</details>
 
 ----------
 
@@ -477,7 +477,7 @@ get_cfunc_from_callable (callable=0x0, self_arg=0x7ffff7bff710, missing=0x555555
 - Configuration:
 - Python versions:
 - Status:
-- PRs (author): 
+- PRs (author):
   - []() ()
 
 <details><summary>Backtrace/error message:</summary>
@@ -486,9 +486,9 @@ get_cfunc_from_callable (callable=0x0, self_arg=0x7ffff7bff710, missing=0x555555
 
 ```shell
 
-```  
+```
 </p>
-</details> 
+</details>
 
 ----------
 
@@ -504,7 +504,7 @@ get_cfunc_from_callable (callable=0x0, self_arg=0x7ffff7bff710, missing=0x555555
 - Configuration:
 - Python versions:
 - Status:
-- PRs (author): 
+- PRs (author):
   - []() ()
 
 <details><summary>Backtrace/error message:</summary>
@@ -513,13 +513,13 @@ get_cfunc_from_callable (callable=0x0, self_arg=0x7ffff7bff710, missing=0x555555
 
 ```shell
 
-```  
+```
 </p>
-</details> 
+</details>
 
 ----------
 
-#### 10- []() - 
+#### 10- []() -
 
 ```python
 
@@ -531,7 +531,7 @@ get_cfunc_from_callable (callable=0x0, self_arg=0x7ffff7bff710, missing=0x555555
 - Configuration:
 - Python versions:
 - Status:
-- PRs (author): 
+- PRs (author):
   - []() ()
 
 <details><summary>Backtrace/error message:</summary>
@@ -540,13 +540,13 @@ get_cfunc_from_callable (callable=0x0, self_arg=0x7ffff7bff710, missing=0x555555
 
 ```shell
 
-```  
+```
 </p>
-</details> 
+</details>
 
 ----------
 
-#### 11- []() - 
+#### 11- []() -
 
 ```python
 
@@ -558,7 +558,7 @@ get_cfunc_from_callable (callable=0x0, self_arg=0x7ffff7bff710, missing=0x555555
 - Configuration:
 - Python versions:
 - Status:
-- PRs (author): 
+- PRs (author):
   - []() ()
 
 <details><summary>Backtrace/error message:</summary>
@@ -567,13 +567,13 @@ get_cfunc_from_callable (callable=0x0, self_arg=0x7ffff7bff710, missing=0x555555
 
 ```shell
 
-```  
+```
 </p>
-</details> 
+</details>
 
 ----------
 
-#### 12- []() - 
+#### 12- []() -
 
 ```python
 
@@ -585,7 +585,7 @@ get_cfunc_from_callable (callable=0x0, self_arg=0x7ffff7bff710, missing=0x555555
 - Configuration:
 - Python versions:
 - Status:
-- PRs (author): 
+- PRs (author):
   - []() ()
 
 <details><summary>Backtrace/error message:</summary>
@@ -594,13 +594,13 @@ get_cfunc_from_callable (callable=0x0, self_arg=0x7ffff7bff710, missing=0x555555
 
 ```shell
 
-```  
+```
 </p>
-</details> 
+</details>
 
 ----------
 
-#### 13- []() - 
+#### 13- []() -
 
 ```python
 
@@ -612,7 +612,7 @@ get_cfunc_from_callable (callable=0x0, self_arg=0x7ffff7bff710, missing=0x555555
 - Configuration:
 - Python versions:
 - Status:
-- PRs (author): 
+- PRs (author):
   - []() ()
 
 <details><summary>Backtrace/error message:</summary>
@@ -621,13 +621,13 @@ get_cfunc_from_callable (callable=0x0, self_arg=0x7ffff7bff710, missing=0x555555
 
 ```shell
 
-```  
+```
 </p>
-</details> 
+</details>
 
 ----------
 
-#### 14- []() - 
+#### 14- []() -
 
 ```python
 
@@ -639,7 +639,7 @@ get_cfunc_from_callable (callable=0x0, self_arg=0x7ffff7bff710, missing=0x555555
 - Configuration:
 - Python versions:
 - Status:
-- PRs (author): 
+- PRs (author):
   - []() ()
 
 <details><summary>Backtrace/error message:</summary>
@@ -648,13 +648,13 @@ get_cfunc_from_callable (callable=0x0, self_arg=0x7ffff7bff710, missing=0x555555
 
 ```shell
 
-```  
+```
 </p>
-</details> 
+</details>
 
 ----------
 
-#### 15- []() - 
+#### 15- []() -
 
 ```python
 
@@ -666,7 +666,7 @@ get_cfunc_from_callable (callable=0x0, self_arg=0x7ffff7bff710, missing=0x555555
 - Configuration:
 - Python versions:
 - Status:
-- PRs (author): 
+- PRs (author):
   - []() ()
 
 <details><summary>Backtrace/error message:</summary>
@@ -675,13 +675,13 @@ get_cfunc_from_callable (callable=0x0, self_arg=0x7ffff7bff710, missing=0x555555
 
 ```shell
 
-```  
+```
 </p>
-</details> 
+</details>
 
 ----------
 
-#### 16- []() - 
+#### 16- []() -
 
 ```python
 
@@ -693,7 +693,7 @@ get_cfunc_from_callable (callable=0x0, self_arg=0x7ffff7bff710, missing=0x555555
 - Configuration:
 - Python versions:
 - Status:
-- PRs (author): 
+- PRs (author):
   - []() ()
 
 <details><summary>Backtrace/error message:</summary>
@@ -702,13 +702,13 @@ get_cfunc_from_callable (callable=0x0, self_arg=0x7ffff7bff710, missing=0x555555
 
 ```shell
 
-```  
+```
 </p>
-</details> 
+</details>
 
 ----------
 
-#### 17- []() - 
+#### 17- []() -
 
 ```python
 
@@ -720,7 +720,7 @@ get_cfunc_from_callable (callable=0x0, self_arg=0x7ffff7bff710, missing=0x555555
 - Configuration:
 - Python versions:
 - Status:
-- PRs (author): 
+- PRs (author):
   - []() ()
 
 <details><summary>Backtrace/error message:</summary>
@@ -729,13 +729,13 @@ get_cfunc_from_callable (callable=0x0, self_arg=0x7ffff7bff710, missing=0x555555
 
 ```shell
 
-```  
+```
 </p>
-</details> 
+</details>
 
 ----------
 
-#### 18- []() - 
+#### 18- []() -
 
 ```python
 
@@ -747,7 +747,7 @@ get_cfunc_from_callable (callable=0x0, self_arg=0x7ffff7bff710, missing=0x555555
 - Configuration:
 - Python versions:
 - Status:
-- PRs (author): 
+- PRs (author):
   - []() ()
 
 <details><summary>Backtrace/error message:</summary>
@@ -756,13 +756,13 @@ get_cfunc_from_callable (callable=0x0, self_arg=0x7ffff7bff710, missing=0x555555
 
 ```shell
 
-```  
+```
 </p>
-</details> 
+</details>
 
 ----------
 
-#### 19- []() - 
+#### 19- []() -
 
 ```python
 
@@ -774,7 +774,7 @@ get_cfunc_from_callable (callable=0x0, self_arg=0x7ffff7bff710, missing=0x555555
 - Configuration:
 - Python versions:
 - Status:
-- PRs (author): 
+- PRs (author):
   - []() ()
 
 <details><summary>Backtrace/error message:</summary>
@@ -783,13 +783,13 @@ get_cfunc_from_callable (callable=0x0, self_arg=0x7ffff7bff710, missing=0x555555
 
 ```shell
 
-```  
+```
 </p>
-</details> 
+</details>
 
 ----------
 
-#### 20- []() - 
+#### 20- []() -
 
 ```python
 
@@ -801,7 +801,7 @@ get_cfunc_from_callable (callable=0x0, self_arg=0x7ffff7bff710, missing=0x555555
 - Configuration:
 - Python versions:
 - Status:
-- PRs (author): 
+- PRs (author):
   - []() ()
 
 <details><summary>Backtrace/error message:</summary>
@@ -810,13 +810,13 @@ get_cfunc_from_callable (callable=0x0, self_arg=0x7ffff7bff710, missing=0x555555
 
 ```shell
 
-```  
+```
 </p>
-</details> 
+</details>
 
 ----------
 
-#### 21- []() - 
+#### 21- []() -
 
 ```python
 
@@ -828,7 +828,7 @@ get_cfunc_from_callable (callable=0x0, self_arg=0x7ffff7bff710, missing=0x555555
 - Configuration:
 - Python versions:
 - Status:
-- PRs (author): 
+- PRs (author):
   - []() ()
 
 <details><summary>Backtrace/error message:</summary>
@@ -837,13 +837,13 @@ get_cfunc_from_callable (callable=0x0, self_arg=0x7ffff7bff710, missing=0x555555
 
 ```shell
 
-```  
+```
 </p>
-</details> 
+</details>
 
 ----------
 
-#### 22- []() - 
+#### 22- []() -
 
 ```python
 
@@ -855,7 +855,7 @@ get_cfunc_from_callable (callable=0x0, self_arg=0x7ffff7bff710, missing=0x555555
 - Configuration:
 - Python versions:
 - Status:
-- PRs (author): 
+- PRs (author):
   - []() ()
 
 <details><summary>Backtrace/error message:</summary>
@@ -864,13 +864,13 @@ get_cfunc_from_callable (callable=0x0, self_arg=0x7ffff7bff710, missing=0x555555
 
 ```shell
 
-```  
+```
 </p>
-</details> 
+</details>
 
 ----------
 
-#### 23- []() - 
+#### 23- []() -
 
 ```python
 
@@ -882,7 +882,7 @@ get_cfunc_from_callable (callable=0x0, self_arg=0x7ffff7bff710, missing=0x555555
 - Configuration:
 - Python versions:
 - Status:
-- PRs (author): 
+- PRs (author):
   - []() ()
 
 <details><summary>Backtrace/error message:</summary>
@@ -891,13 +891,13 @@ get_cfunc_from_callable (callable=0x0, self_arg=0x7ffff7bff710, missing=0x555555
 
 ```shell
 
-```  
+```
 </p>
-</details> 
+</details>
 
 ----------
 
-#### 24- []() - 
+#### 24- []() -
 
 ```python
 
@@ -909,7 +909,7 @@ get_cfunc_from_callable (callable=0x0, self_arg=0x7ffff7bff710, missing=0x555555
 - Configuration:
 - Python versions:
 - Status:
-- PRs (author): 
+- PRs (author):
   - []() ()
 
 <details><summary>Backtrace/error message:</summary>
@@ -918,13 +918,13 @@ get_cfunc_from_callable (callable=0x0, self_arg=0x7ffff7bff710, missing=0x555555
 
 ```shell
 
-```  
+```
 </p>
-</details> 
+</details>
 
 ----------
 
-#### 25- []() - 
+#### 25- []() -
 
 ```python
 
@@ -936,7 +936,7 @@ get_cfunc_from_callable (callable=0x0, self_arg=0x7ffff7bff710, missing=0x555555
 - Configuration:
 - Python versions:
 - Status:
-- PRs (author): 
+- PRs (author):
   - []() ()
 
 <details><summary>Backtrace/error message:</summary>
@@ -945,13 +945,13 @@ get_cfunc_from_callable (callable=0x0, self_arg=0x7ffff7bff710, missing=0x555555
 
 ```shell
 
-```  
+```
 </p>
-</details> 
+</details>
 
 ----------
 
-#### 26- []() - 
+#### 26- []() -
 
 ```python
 
@@ -963,7 +963,7 @@ get_cfunc_from_callable (callable=0x0, self_arg=0x7ffff7bff710, missing=0x555555
 - Configuration:
 - Python versions:
 - Status:
-- PRs (author): 
+- PRs (author):
   - []() ()
 
 <details><summary>Backtrace/error message:</summary>
@@ -972,13 +972,13 @@ get_cfunc_from_callable (callable=0x0, self_arg=0x7ffff7bff710, missing=0x555555
 
 ```shell
 
-```  
+```
 </p>
-</details> 
+</details>
 
 ----------
 
-#### 27- []() - 
+#### 27- []() -
 
 ```python
 
@@ -990,7 +990,7 @@ get_cfunc_from_callable (callable=0x0, self_arg=0x7ffff7bff710, missing=0x555555
 - Configuration:
 - Python versions:
 - Status:
-- PRs (author): 
+- PRs (author):
   - []() ()
 
 <details><summary>Backtrace/error message:</summary>
@@ -999,13 +999,13 @@ get_cfunc_from_callable (callable=0x0, self_arg=0x7ffff7bff710, missing=0x555555
 
 ```shell
 
-```  
+```
 </p>
-</details> 
+</details>
 
 ----------
 
-#### 28- []() - 
+#### 28- []() -
 
 ```python
 
@@ -1017,7 +1017,7 @@ get_cfunc_from_callable (callable=0x0, self_arg=0x7ffff7bff710, missing=0x555555
 - Configuration:
 - Python versions:
 - Status:
-- PRs (author): 
+- PRs (author):
   - []() ()
 
 <details><summary>Backtrace/error message:</summary>
@@ -1026,13 +1026,13 @@ get_cfunc_from_callable (callable=0x0, self_arg=0x7ffff7bff710, missing=0x555555
 
 ```shell
 
-```  
+```
 </p>
-</details> 
+</details>
 
 ----------
 
-#### 29- []() - 
+#### 29- []() -
 
 ```python
 
@@ -1044,7 +1044,7 @@ get_cfunc_from_callable (callable=0x0, self_arg=0x7ffff7bff710, missing=0x555555
 - Configuration:
 - Python versions:
 - Status:
-- PRs (author): 
+- PRs (author):
   - []() ()
 
 <details><summary>Backtrace/error message:</summary>
@@ -1053,13 +1053,13 @@ get_cfunc_from_callable (callable=0x0, self_arg=0x7ffff7bff710, missing=0x555555
 
 ```shell
 
-```  
+```
 </p>
-</details> 
+</details>
 
 ----------
 
-#### 30- []() - 
+#### 30- []() -
 
 ```python
 
@@ -1071,7 +1071,7 @@ get_cfunc_from_callable (callable=0x0, self_arg=0x7ffff7bff710, missing=0x555555
 - Configuration:
 - Python versions:
 - Status:
-- PRs (author): 
+- PRs (author):
   - []() ()
 
 <details><summary>Backtrace/error message:</summary>
@@ -1080,13 +1080,13 @@ get_cfunc_from_callable (callable=0x0, self_arg=0x7ffff7bff710, missing=0x555555
 
 ```shell
 
-```  
+```
 </p>
-</details> 
+</details>
 
 ----------
 
-#### 31- []() - 
+#### 31- []() -
 
 ```python
 
@@ -1098,7 +1098,7 @@ get_cfunc_from_callable (callable=0x0, self_arg=0x7ffff7bff710, missing=0x555555
 - Configuration:
 - Python versions:
 - Status:
-- PRs (author): 
+- PRs (author):
   - []() ()
 
 <details><summary>Backtrace/error message:</summary>
@@ -1107,13 +1107,13 @@ get_cfunc_from_callable (callable=0x0, self_arg=0x7ffff7bff710, missing=0x555555
 
 ```shell
 
-```  
+```
 </p>
-</details> 
+</details>
 
 ----------
 
-#### 32- []() - 
+#### 32- []() -
 
 ```python
 
@@ -1125,7 +1125,7 @@ get_cfunc_from_callable (callable=0x0, self_arg=0x7ffff7bff710, missing=0x555555
 - Configuration:
 - Python versions:
 - Status:
-- PRs (author): 
+- PRs (author):
   - []() ()
 
 <details><summary>Backtrace/error message:</summary>
@@ -1134,13 +1134,13 @@ get_cfunc_from_callable (callable=0x0, self_arg=0x7ffff7bff710, missing=0x555555
 
 ```shell
 
-```  
+```
 </p>
-</details> 
+</details>
 
 ----------
 
-#### 33- []() - 
+#### 33- []() -
 
 ```python
 
@@ -1152,7 +1152,7 @@ get_cfunc_from_callable (callable=0x0, self_arg=0x7ffff7bff710, missing=0x555555
 - Configuration:
 - Python versions:
 - Status:
-- PRs (author): 
+- PRs (author):
   - []() ()
 
 <details><summary>Backtrace/error message:</summary>
@@ -1161,13 +1161,13 @@ get_cfunc_from_callable (callable=0x0, self_arg=0x7ffff7bff710, missing=0x555555
 
 ```shell
 
-```  
+```
 </p>
-</details> 
+</details>
 
 ----------
 
-#### 34- []() - 
+#### 34- []() -
 
 ```python
 
@@ -1179,7 +1179,7 @@ get_cfunc_from_callable (callable=0x0, self_arg=0x7ffff7bff710, missing=0x555555
 - Configuration:
 - Python versions:
 - Status:
-- PRs (author): 
+- PRs (author):
   - []() ()
 
 <details><summary>Backtrace/error message:</summary>
@@ -1188,13 +1188,13 @@ get_cfunc_from_callable (callable=0x0, self_arg=0x7ffff7bff710, missing=0x555555
 
 ```shell
 
-```  
+```
 </p>
-</details> 
+</details>
 
 ----------
 
-#### - []() - 
+#### - []() -
 
 ```python
 
@@ -1206,7 +1206,7 @@ get_cfunc_from_callable (callable=0x0, self_arg=0x7ffff7bff710, missing=0x555555
 - Configuration:
 - Python versions:
 - Status:
-- PRs (author): 
+- PRs (author):
   - []() ()
 
 <details><summary>Backtrace/error message:</summary>
@@ -1215,13 +1215,13 @@ get_cfunc_from_callable (callable=0x0, self_arg=0x7ffff7bff710, missing=0x555555
 
 ```shell
 
-```  
+```
 </p>
-</details> 
+</details>
 
 ----------
 
-#### - []() - 
+#### - []() -
 
 ```python
 
@@ -1233,7 +1233,7 @@ get_cfunc_from_callable (callable=0x0, self_arg=0x7ffff7bff710, missing=0x555555
 - Configuration:
 - Python versions:
 - Status:
-- PRs (author): 
+- PRs (author):
   - []() ()
 
 <details><summary>Backtrace/error message:</summary>
@@ -1242,13 +1242,13 @@ get_cfunc_from_callable (callable=0x0, self_arg=0x7ffff7bff710, missing=0x555555
 
 ```shell
 
-```  
+```
 </p>
-</details> 
+</details>
 
 ----------
 
-#### - []() - 
+#### - []() -
 
 ```python
 
@@ -1260,7 +1260,7 @@ get_cfunc_from_callable (callable=0x0, self_arg=0x7ffff7bff710, missing=0x555555
 - Configuration:
 - Python versions:
 - Status:
-- PRs (author): 
+- PRs (author):
   - []() ()
 
 <details><summary>Backtrace/error message:</summary>
@@ -1269,13 +1269,13 @@ get_cfunc_from_callable (callable=0x0, self_arg=0x7ffff7bff710, missing=0x555555
 
 ```shell
 
-```  
+```
 </p>
-</details> 
+</details>
 
 ----------
 
-#### - []() - 
+#### - []() -
 
 ```python
 
@@ -1287,7 +1287,7 @@ get_cfunc_from_callable (callable=0x0, self_arg=0x7ffff7bff710, missing=0x555555
 - Configuration:
 - Python versions:
 - Status:
-- PRs (author): 
+- PRs (author):
   - []() ()
 
 <details><summary>Backtrace/error message:</summary>
@@ -1296,13 +1296,13 @@ get_cfunc_from_callable (callable=0x0, self_arg=0x7ffff7bff710, missing=0x555555
 
 ```shell
 
-```  
+```
 </p>
-</details> 
+</details>
 
 ----------
 
-#### - []() - 
+#### - []() -
 
 ```python
 
@@ -1314,7 +1314,7 @@ get_cfunc_from_callable (callable=0x0, self_arg=0x7ffff7bff710, missing=0x555555
 - Configuration:
 - Python versions:
 - Status:
-- PRs (author): 
+- PRs (author):
   - []() ()
 
 <details><summary>Backtrace/error message:</summary>
@@ -1323,13 +1323,13 @@ get_cfunc_from_callable (callable=0x0, self_arg=0x7ffff7bff710, missing=0x555555
 
 ```shell
 
-```  
+```
 </p>
-</details> 
+</details>
 
 ----------
 
-#### - []() - 
+#### - []() -
 
 ```python
 
@@ -1341,7 +1341,7 @@ get_cfunc_from_callable (callable=0x0, self_arg=0x7ffff7bff710, missing=0x555555
 - Configuration:
 - Python versions:
 - Status:
-- PRs (author): 
+- PRs (author):
   - []() ()
 
 <details><summary>Backtrace/error message:</summary>
@@ -1350,13 +1350,13 @@ get_cfunc_from_callable (callable=0x0, self_arg=0x7ffff7bff710, missing=0x555555
 
 ```shell
 
-```  
+```
 </p>
-</details> 
+</details>
 
 ----------
 
-#### - []() - 
+#### - []() -
 
 ```python
 
@@ -1368,7 +1368,7 @@ get_cfunc_from_callable (callable=0x0, self_arg=0x7ffff7bff710, missing=0x555555
 - Configuration:
 - Python versions:
 - Status:
-- PRs (author): 
+- PRs (author):
   - []() ()
 
 <details><summary>Backtrace/error message:</summary>
@@ -1377,13 +1377,13 @@ get_cfunc_from_callable (callable=0x0, self_arg=0x7ffff7bff710, missing=0x555555
 
 ```shell
 
-```  
+```
 </p>
-</details> 
+</details>
 
 ----------
 
-#### - []() - 
+#### - []() -
 
 ```python
 
@@ -1395,7 +1395,7 @@ get_cfunc_from_callable (callable=0x0, self_arg=0x7ffff7bff710, missing=0x555555
 - Configuration:
 - Python versions:
 - Status:
-- PRs (author): 
+- PRs (author):
   - []() ()
 
 <details><summary>Backtrace/error message:</summary>
@@ -1404,13 +1404,13 @@ get_cfunc_from_callable (callable=0x0, self_arg=0x7ffff7bff710, missing=0x555555
 
 ```shell
 
-```  
+```
 </p>
-</details> 
+</details>
 
 ----------
 
-#### - []() - 
+#### - []() -
 
 ```python
 
@@ -1422,7 +1422,7 @@ get_cfunc_from_callable (callable=0x0, self_arg=0x7ffff7bff710, missing=0x555555
 - Configuration:
 - Python versions:
 - Status:
-- PRs (author): 
+- PRs (author):
   - []() ()
 
 <details><summary>Backtrace/error message:</summary>
@@ -1431,13 +1431,13 @@ get_cfunc_from_callable (callable=0x0, self_arg=0x7ffff7bff710, missing=0x555555
 
 ```shell
 
-```  
+```
 </p>
-</details> 
+</details>
 
 ----------
 
-#### - []() - 
+#### - []() -
 
 ```python
 
@@ -1449,7 +1449,7 @@ get_cfunc_from_callable (callable=0x0, self_arg=0x7ffff7bff710, missing=0x555555
 - Configuration:
 - Python versions:
 - Status:
-- PRs (author): 
+- PRs (author):
   - []() ()
 
 <details><summary>Backtrace/error message:</summary>
@@ -1458,13 +1458,13 @@ get_cfunc_from_callable (callable=0x0, self_arg=0x7ffff7bff710, missing=0x555555
 
 ```shell
 
-```  
+```
 </p>
-</details> 
+</details>
 
 ----------
 
-#### - []() - 
+#### - []() -
 
 ```python
 
@@ -1476,7 +1476,7 @@ get_cfunc_from_callable (callable=0x0, self_arg=0x7ffff7bff710, missing=0x555555
 - Configuration:
 - Python versions:
 - Status:
-- PRs (author): 
+- PRs (author):
   - []() ()
 
 <details><summary>Backtrace/error message:</summary>
@@ -1485,13 +1485,13 @@ get_cfunc_from_callable (callable=0x0, self_arg=0x7ffff7bff710, missing=0x555555
 
 ```shell
 
-```  
+```
 </p>
-</details> 
+</details>
 
 ----------
 
-#### - []() - 
+#### - []() -
 
 ```python
 
@@ -1503,7 +1503,7 @@ get_cfunc_from_callable (callable=0x0, self_arg=0x7ffff7bff710, missing=0x555555
 - Configuration:
 - Python versions:
 - Status:
-- PRs (author): 
+- PRs (author):
   - []() ()
 
 <details><summary>Backtrace/error message:</summary>
@@ -1512,13 +1512,13 @@ get_cfunc_from_callable (callable=0x0, self_arg=0x7ffff7bff710, missing=0x555555
 
 ```shell
 
-```  
+```
 </p>
-</details> 
+</details>
 
 ----------
 
-#### - []() - 
+#### - []() -
 
 ```python
 
@@ -1530,7 +1530,7 @@ get_cfunc_from_callable (callable=0x0, self_arg=0x7ffff7bff710, missing=0x555555
 - Configuration:
 - Python versions:
 - Status:
-- PRs (author): 
+- PRs (author):
   - []() ()
 
 <details><summary>Backtrace/error message:</summary>
@@ -1539,13 +1539,13 @@ get_cfunc_from_callable (callable=0x0, self_arg=0x7ffff7bff710, missing=0x555555
 
 ```shell
 
-```  
+```
 </p>
-</details> 
+</details>
 
 ----------
 
-#### - []() - 
+#### - []() -
 
 ```python
 
@@ -1557,7 +1557,7 @@ get_cfunc_from_callable (callable=0x0, self_arg=0x7ffff7bff710, missing=0x555555
 - Configuration:
 - Python versions:
 - Status:
-- PRs (author): 
+- PRs (author):
   - []() ()
 
 <details><summary>Backtrace/error message:</summary>
@@ -1566,13 +1566,13 @@ get_cfunc_from_callable (callable=0x0, self_arg=0x7ffff7bff710, missing=0x555555
 
 ```shell
 
-```  
+```
 </p>
-</details> 
+</details>
 
 ----------
 
-#### - []() - 
+#### - []() -
 
 ```python
 
@@ -1584,7 +1584,7 @@ get_cfunc_from_callable (callable=0x0, self_arg=0x7ffff7bff710, missing=0x555555
 - Configuration:
 - Python versions:
 - Status:
-- PRs (author): 
+- PRs (author):
   - []() ()
 
 <details><summary>Backtrace/error message:</summary>
@@ -1593,13 +1593,13 @@ get_cfunc_from_callable (callable=0x0, self_arg=0x7ffff7bff710, missing=0x555555
 
 ```shell
 
-```  
+```
 </p>
-</details> 
+</details>
 
 ----------
 
-#### - []() - 
+#### - []() -
 
 ```python
 
@@ -1611,7 +1611,7 @@ get_cfunc_from_callable (callable=0x0, self_arg=0x7ffff7bff710, missing=0x555555
 - Configuration:
 - Python versions:
 - Status:
-- PRs (author): 
+- PRs (author):
   - []() ()
 
 <details><summary>Backtrace/error message:</summary>
@@ -1620,13 +1620,13 @@ get_cfunc_from_callable (callable=0x0, self_arg=0x7ffff7bff710, missing=0x555555
 
 ```shell
 
-```  
+```
 </p>
-</details> 
+</details>
 
 ----------
 
-#### - []() - 
+#### - []() -
 
 ```python
 
@@ -1638,7 +1638,7 @@ get_cfunc_from_callable (callable=0x0, self_arg=0x7ffff7bff710, missing=0x555555
 - Configuration:
 - Python versions:
 - Status:
-- PRs (author): 
+- PRs (author):
   - []() ()
 
 <details><summary>Backtrace/error message:</summary>
@@ -1647,13 +1647,13 @@ get_cfunc_from_callable (callable=0x0, self_arg=0x7ffff7bff710, missing=0x555555
 
 ```shell
 
-```  
+```
 </p>
-</details> 
+</details>
 
 ----------
 
-#### - []() - 
+#### - []() -
 
 ```python
 
@@ -1665,7 +1665,7 @@ get_cfunc_from_callable (callable=0x0, self_arg=0x7ffff7bff710, missing=0x555555
 - Configuration:
 - Python versions:
 - Status:
-- PRs (author): 
+- PRs (author):
   - []() ()
 
 <details><summary>Backtrace/error message:</summary>
@@ -1674,13 +1674,13 @@ get_cfunc_from_callable (callable=0x0, self_arg=0x7ffff7bff710, missing=0x555555
 
 ```shell
 
-```  
+```
 </p>
-</details> 
+</details>
 
 ----------
 
-#### - []() - 
+#### - []() -
 
 ```python
 
@@ -1692,7 +1692,7 @@ get_cfunc_from_callable (callable=0x0, self_arg=0x7ffff7bff710, missing=0x555555
 - Configuration:
 - Python versions:
 - Status:
-- PRs (author): 
+- PRs (author):
   - []() ()
 
 <details><summary>Backtrace/error message:</summary>
@@ -1701,13 +1701,13 @@ get_cfunc_from_callable (callable=0x0, self_arg=0x7ffff7bff710, missing=0x555555
 
 ```shell
 
-```  
+```
 </p>
-</details> 
+</details>
 
 ----------
 
-#### - []() - 
+#### - []() -
 
 ```python
 
@@ -1719,7 +1719,7 @@ get_cfunc_from_callable (callable=0x0, self_arg=0x7ffff7bff710, missing=0x555555
 - Configuration:
 - Python versions:
 - Status:
-- PRs (author): 
+- PRs (author):
   - []() ()
 
 <details><summary>Backtrace/error message:</summary>
@@ -1728,8 +1728,8 @@ get_cfunc_from_callable (callable=0x0, self_arg=0x7ffff7bff710, missing=0x555555
 
 ```shell
 
-```  
+```
 </p>
-</details> 
+</details>
 
 ----------

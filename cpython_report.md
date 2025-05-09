@@ -15,6 +15,11 @@ focusing on new features and diverse configurations. A secondary goal was
 to explore ways to improve fusil to be more effective in attaining the
 primary goal.
 
+This report intends to present the campaign, analyzing its results
+quantitatively and qualitatively, issue-finding patterns, and relevance to
+the CPython project. Complementarily, an assessment of the format and
+procedures of the campaign should allow improvements to future efforts.
+
 ### Context on fusil
 
 While fusil is in fact a "multi-agent Python library used to write
@@ -179,16 +184,10 @@ _in diagnosing and fixing issues, and another about their opinions as listed abo
 
 ## Conclusions
 
-Fuzzing CPython with fusil has proved it to be a valuable tool for
-identifying and reducing software defects in that project. This means that
-the primary goal of the fuzzing campaign was achieved?attained?, with
-relevant contributions made to CPython's robustness.
-
-The original design of fusil's Python fuzzer makes it well-suited for
-fuzzing CPython, finding both deep, relevant bugs as well as shallow, low
-value crashes. Newly added features also allowed finding both kinds of
-issues, achieving the secondary goal of exploring ways to improve fusil
-to better excercize CPython's code paths in pursuit of crashes.
+The results indicate that running a fuzzing tool with fusil's features
+can be fruitful in a project like CPython. Not only a significant number
+of crashes were uncovered, but also important issues were revealed by
+identifying some of these crashes.
 
 The temporal pattern of bug finding may indicate that short periodic
 fuzzing campaings would have a better cost/benefit than a continuous
@@ -196,7 +195,21 @@ effort like the one presented here. New features in fusil can justify such
 a campaign, while the pace of accumulation of new issues in CPython doesn't
 seem to necessitate continuous monitoring.
 
-Cultural fit? Depending on Core Devs opinions
+Cultural fit? Depending on Core Devs opinions. Contrast with low interest
+in some other projects.
+
+The original design of fusil's Python fuzzer makes it well-suited for
+fuzzing CPython, finding both deep, relevant bugs as well as shallow, low
+value crashes. Newly added features also allowed finding both kinds of
+issues, achieving the secondary goal of exploring ways to improve fusil
+to better excercize CPython's code paths in pursuit of crashes.
+
+Fuzzing CPython with fusil has proved it to be a valuable tool for
+identifying and reducing software defects in that project. This means that
+the primary goal of the fuzzing campaign was achieved, with relevant
+contributions made to CPython's robustness.
+
+
 
 -------------
 ## Apendix

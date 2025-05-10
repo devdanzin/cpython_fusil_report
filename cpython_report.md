@@ -32,6 +32,12 @@ random and/or interesting arguments, then monitoring the execution and
 output of each source file. It usually finds crashes resulting from the
 processing of invalid objects and unexpected call patterns.
 
+This campaign isn't the first time fusil has been used to fuzz CPython:
+in the period of XXXX to YYYY, Stinner reported X issues, while Diniz
+reported Y issues. Z of these ZZ issues were considered release blockers
+at the time. There was then a hiatus in fusil development from 2015
+(version 1.5, published by Stinner) to 2024.
+
 Since Stinner's last version, new features have been added to fusil by
 Diniz. These features include running the generated code in parallel
 threads, testing class instances in addition to classes and functions,
@@ -120,7 +126,8 @@ _Graph: bugs filled by date (day? week? bar graph? with line of rolling average 
 
 The temporal pattern of issue creation shows that the highest number of
 issues were found when CPython was in a "fusil-naive" state, where no
-fuzzing with this tool had happened for over a decade.
+fuzzing with this tool had happened for over a decade. This corresponds
+to the XXX issues found from October 30 to December XX 2024.
 
 _Analyze dates of new features/configurations and correlate with number of issues found._
 
@@ -163,11 +170,11 @@ In the CPython project, developers don't assign prioritiy or severity
 levels to issues. One of the issues found, #131998, was considered
 relevant enough to be classified as a release blocker.
 
+```
 _Issues that were considered important?_
 _Issues that were considered trivial?_
 _Duplicate issues (some with better MREs)?_
 
-```
 Here input by core devs would be important, on positive and negative points:
 - are the findings valuable?
 - Is fusil/this fuzzing effort helping make CPython better?
@@ -177,10 +184,10 @@ something that hinders core devs efforts?
 - Would you like to see more issues found with fusil being created?
 - Would you prefer that issues only be filed when they have been
 diagnosed/analyzed?
-```
 
-_Maybe run a poll in discuss.python.org to collect number of developers involved_
-_in diagnosing and fixing issues, and another about their opinions as listed above?_
+Maybe run a poll in discuss.python.org to collect number of developers involved
+in diagnosing and fixing issues, and another about their opinions as listed above?
+```
 
 ## Conclusions
 
@@ -195,8 +202,14 @@ effort like the one presented here. New features in fusil can justify such
 a campaign, while the pace of accumulation of new issues in CPython doesn't
 seem to necessitate continuous monitoring.
 
-Cultural fit? Depending on Core Devs opinions. Contrast with low interest
-in some other projects.
+```
+Cultural fit? Depending on Core Devs opinions. If there is a large number of
+devs participating in fixing these issues, highligt that. If the general
+opinion is that fusil brought value to CPython, hightlight that.
+
+Contrast with low interest in some other projects, like polars and numpy,
+and cite that SciPy had a great response to issues found.
+```
 
 The original design of fusil's Python fuzzer makes it well-suited for
 fuzzing CPython, finding both deep, relevant bugs as well as shallow, low
@@ -208,7 +221,6 @@ Fuzzing CPython with fusil has proved it to be a valuable tool for
 identifying and reducing software defects in that project. This means that
 the primary goal of the fuzzing campaign was achieved, with relevant
 contributions made to CPython's robustness.
-
 
 
 -------------

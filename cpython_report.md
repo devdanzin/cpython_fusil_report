@@ -647,7 +647,7 @@ for obj in alive:
 
 - Issue Number: 126315
 - Date filed: 01/11/2024
-- Date closed: 
+- Date closed:
 - Kind: Abort
 - Configuration: Free-Threaded
 - Python versions: 3.13, 3.14
@@ -1295,7 +1295,7 @@ for x in range(100):
 
 - Issue Number: 126884
 - Date filed: 15/11/2024
-- Date closed: 
+- Date closed:
 - Kind: Segmentation Fault
 - Configuration: Free-Threaded
 - Python versions: 3.13, 3.14
@@ -1363,7 +1363,7 @@ for x in range(100):
 - Python versions: 3.13, 3.14
 - Status: Closed-Completed
 - PRs (author):
-  - [131208](https://github.com/python/cpython/pull/131208) (@tom-pytel) 
+  - [131208](https://github.com/python/cpython/pull/131208) (@tom-pytel)
 
 <details><summary>Backtrace/error message:</summary>
 <p>
@@ -1557,26 +1557,26 @@ _interpreters.set___main___attrs(1, {"\x00": 1}, restrict=True)
     at ./Modules/_interpretersmodule.c:836
 #6  0x00005555556c1565 in cfunction_call (func=func@entry=0x20000966830, args=args@entry=0x20000943850, kwargs=kwargs@entry=0x20000736eb0)
     at Objects/methodobject.c:551
-#7  0x000055555566987f in _PyObject_MakeTpCall (tstate=tstate@entry=0x555555c39510 <_PyRuntime+360208>, callable=callable@entry=0x20000966830, 
+#7  0x000055555566987f in _PyObject_MakeTpCall (tstate=tstate@entry=0x555555c39510 <_PyRuntime+360208>, callable=callable@entry=0x20000966830,
     args=args@entry=0x7fffffffe3c8, nargs=<optimized out>, keywords=keywords@entry=0x2000057e700) at Objects/call.c:242
-#8  0x0000555555669ada in _PyObject_VectorcallTstate (tstate=0x555555c39510 <_PyRuntime+360208>, callable=callable@entry=0x20000966830, 
+#8  0x0000555555669ada in _PyObject_VectorcallTstate (tstate=0x555555c39510 <_PyRuntime+360208>, callable=callable@entry=0x20000966830,
     args=args@entry=0x7fffffffe3c8, nargsf=<optimized out>, kwnames=kwnames@entry=0x2000057e700) at ./Include/internal/pycore_call.h:165
-#9  0x0000555555669b30 in PyObject_Vectorcall (callable=callable@entry=0x20000966830, args=args@entry=0x7fffffffe3c8, nargsf=<optimized out>, 
+#9  0x0000555555669b30 in PyObject_Vectorcall (callable=callable@entry=0x20000966830, args=args@entry=0x7fffffffe3c8, nargsf=<optimized out>,
     kwnames=kwnames@entry=0x2000057e700) at Objects/call.c:327
 #10 0x00005555557adebb in _PyEval_EvalFrameDefault (tstate=<optimized out>, frame=0x7ffff7e6a0a0, throwflag=<optimized out>) at Python/generated_cases.c.h:1982
 #11 0x00005555557c755c in _PyEval_EvalFrame (tstate=tstate@entry=0x555555c39510 <_PyRuntime+360208>, frame=<optimized out>, throwflag=throwflag@entry=0)
     at ./Include/internal/pycore_ceval.h:116
-#12 0x00005555557c766a in _PyEval_Vector (tstate=tstate@entry=0x555555c39510 <_PyRuntime+360208>, func=func@entry=0x200007b3490, locals=locals@entry=0x20000737870, 
+#12 0x00005555557c766a in _PyEval_Vector (tstate=tstate@entry=0x555555c39510 <_PyRuntime+360208>, func=func@entry=0x200007b3490, locals=locals@entry=0x20000737870,
     args=args@entry=0x0, argcount=argcount@entry=0, kwnames=kwnames@entry=0x0) at Python/ceval.c:1898
 #13 0x00005555557c7739 in PyEval_EvalCode (co=co@entry=0x200003a3f10, globals=globals@entry=0x20000737870, locals=locals@entry=0x20000737870) at Python/ceval.c:659
-#14 0x000055555588bac3 in run_eval_code_obj (tstate=tstate@entry=0x555555c39510 <_PyRuntime+360208>, co=co@entry=0x200003a3f10, globals=globals@entry=0x20000737870, 
+#14 0x000055555588bac3 in run_eval_code_obj (tstate=tstate@entry=0x555555c39510 <_PyRuntime+360208>, co=co@entry=0x200003a3f10, globals=globals@entry=0x20000737870,
     locals=locals@entry=0x20000737870) at Python/pythonrun.c:1338
-#15 0x000055555588bca3 in run_mod (mod=mod@entry=0x200007e42b0, filename=filename@entry=0x20000a462f0, globals=globals@entry=0x20000737870, 
+#15 0x000055555588bca3 in run_mod (mod=mod@entry=0x200007e42b0, filename=filename@entry=0x20000a462f0, globals=globals@entry=0x20000737870,
     locals=locals@entry=0x20000737870, flags=flags@entry=0x7fffffffe720, arena=arena@entry=0x200000508b0, interactive_src=0x200002338f0, generate_new_source=0)
     at Python/pythonrun.c:1423
 #16 0x000055555588c6ad in _PyRun_StringFlagsWithName (
-    str=str@entry=0x200002341e0 "import concurrent.futures.interpreter; w = concurrent.futures.interpreter.WorkerContext(0, {'\\x00': ''}).initialize()\n", 
-    name=name@entry=0x20000a462f0, start=start@entry=257, globals=globals@entry=0x20000737870, locals=locals@entry=0x20000737870, flags=flags@entry=0x7fffffffe720, 
+    str=str@entry=0x200002341e0 "import concurrent.futures.interpreter; w = concurrent.futures.interpreter.WorkerContext(0, {'\\x00': ''}).initialize()\n",
+    name=name@entry=0x20000a462f0, start=start@entry=257, globals=globals@entry=0x20000737870, locals=locals@entry=0x20000737870, flags=flags@entry=0x7fffffffe720,
     generate_new_source=0) at Python/pythonrun.c:1222
 ```
 </p>
@@ -1786,7 +1786,7 @@ _interpreters.exec(0, "1", {"\uFD7C\u5124\u7B91\u92E9\u1850\u39AA\u0DF2\uD82A\u2
 #1  0x00007ffff79db822 in _run_in_interpreter (p_excinfo=0x7fffffffd820, flags=1,
     shareables=0x7ffff7a186c0, codestrlen=<optimized out>, codestr=0x555555aceff8 <_PyRuntime+76888> "1",
     interp=0x555555ad1f18 <_PyRuntime+88952>) at ./Modules/_interpretersmodule.c:463
-]#2  _interp_exec (interp=interp@entry=0x555555ad1f18 <_PyRuntime+88952>, code_arg=<optimized out>,
+#2  _interp_exec (interp=interp@entry=0x555555ad1f18 <_PyRuntime+88952>, code_arg=<optimized out>,
     shared_arg=0x7ffff7a186c0, p_excinfo=p_excinfo@entry=0x7fffffffd820, self=<optimized out>)
     at ./Modules/_interpretersmodule.c:955
 #3  0x00007ffff79db9b0 in interp_exec (self=<optimized out>, args=<optimized out>, kwds=<optimized out>)
@@ -1817,25 +1817,30 @@ _interpreters.exec(0, "1", {"\uFD7C\u5124\u7B91\u92E9\u1850\u39AA\u0DF2\uD82A\u2
 #### 30- [127208](https://github.com/python/cpython/issues/127208) - `ExtensionFileLoader.load_module` aborts when initialized with a path containing null-bytes
 
 ```python
+import _frozen_importlib_external
 
+_frozen_importlib_external.ExtensionFileLoader("a", "\x00").load_module(None)
 ```
 
 - Issue Number: 127208
 - Date filed: 24/11/2024
 - Date closed: 29/11/2024
 - Kind: Abort
-- Configuration:
-- Python versions: 3.12;3.13;3.14
-- Status: closed
+- Configuration: Debug
+- Python versions: 3.12, 3.13, 3.14
+- Status: Closed-Completed
 - PRs (author):
-  - []() ()
+  - [127400](https://github.com/python/cpython/pull/127400) (@vstinner)
+  - [127418](https://github.com/python/cpython/pull/127418) (@vstinner)
+  - [127419](https://github.com/python/cpython/pull/127419) (@vstinner)
 
 <details><summary>Backtrace/error message:</summary>
 <p>
 
 
 ```shell
-
+python: Python/import.c:939: hashtable_key_from_2_strings: Assertion `strlen(key) == size - 1' failed.
+Aborted
 ```
 </p>
 </details>
@@ -1843,28 +1848,31 @@ _interpreters.exec(0, "1", {"\uFD7C\u5124\u7B91\u92E9\u1850\u39AA\u0DF2\uD82A\u2
 ----------
 
 
-#### 31- [127234](https://github.com/python/cpython/issues/127234) - Assertion failures from `_interpchannels._register_end_types` 
+#### 31- [127234](https://github.com/python/cpython/issues/127234) - Assertion failures from `_interpchannels._register_end_types`
 
 ```python
+import _interpchannels
 
+_interpchannels._register_end_types(int, int)
 ```
 
 - Issue Number: 127234
 - Date filed: 24/11/2024
-- Date closed: 
+- Date closed:
 - Kind: Abort
-- Configuration:
-- Python versions: 3.13;3.14
-- Status: open
+- Configuration: Debug
+- Python versions: 3.13, 3.14
+- Status: Open
 - PRs (author):
-  - []() ()
+  - None yet
 
 <details><summary>Backtrace/error message:</summary>
 <p>
 
 
 ```shell
-
+python: Python/crossinterp_data_lookup.h:271: _PyXIData_RegisterClass: Assertion `matched->getdata == getdata' failed.
+Aborted
 ```
 </p>
 </details>
@@ -1875,15 +1883,25 @@ _interpreters.exec(0, "1", {"\uFD7C\u5124\u7B91\u92E9\u1850\u39AA\u0DF2\uD82A\u2
 #### 32- [127235](https://github.com/python/cpython/issues/127235) - Failed assertion in `Python/legacy_tracing.c:431` on a free-threading build
 
 ```python
+import threading
 
+def errback(*args, **kw):
+    raise ValueError('error')
+
+for x in range(200):
+    threading._start_joinable_thread(errback)
+    try:
+        threading.setprofile_all_threads("")
+    except:
+        pass
 ```
 
 - Issue Number: 127235
 - Date filed: 24/11/2024
-- Date closed: 
+- Date closed:
 - Kind: Abort
-- Configuration:
-- Python versions: 
+- Configuration: Free-Threaded
+- Python versions:
 - Status: open
 - PRs (author):
   - []() ()
@@ -1893,7 +1911,8 @@ _interpreters.exec(0, "1", {"\uFD7C\u5124\u7B91\u92E9\u1850\u39AA\u0DF2\uD82A\u2
 
 
 ```shell
-
+python: Python/legacy_tracing.c:431: is_tstate_valid: Assertion `!_PyMem_IsPtrFreed(tstate)' failed.
+Aborted
 ```
 </p>
 </details>
@@ -1904,25 +1923,31 @@ _interpreters.exec(0, "1", {"\uFD7C\u5124\u7B91\u92E9\u1850\u39AA\u0DF2\uD82A\u2
 #### 33- [127316](https://github.com/python/cpython/issues/127316) - [FreeThreading] object_set_class() fails with an assertion error in _PyCriticalSection_AssertHeld()
 
 ```python
+import threading
 
+obj = threading._DummyThread()
+res = obj.__reduce__()
+res = obj._after_fork(1)
 ```
 
 - Issue Number: 127316
 - Date filed: 27/11/2024
 - Date closed: 29/11/2024
 - Kind: Abort
-- Configuration:
-- Python versions: 
-- Status: closed
+- Configuration: Free-Threaded
+- Python versions: 3.13, 3.14
+- Status: Closed-Completed
 - PRs (author):
-  - []() ()
+  - [127399](https://github.com/python/cpython/pull/127399) (@kumaraditya303)
+  - [127422](https://github.com/python/cpython/pull/127422) (@kumaraditya303)
 
 <details><summary>Backtrace/error message:</summary>
 <p>
 
 
 ```shell
-
+python: ./Include/internal/pycore_critical_section.h:222: _PyCriticalSection_AssertHeld: Assertion `cs != NULL && cs->_cs_mutex == mutex' failed.
+Aborted (core dumped)
 ```
 </p>
 </details>
@@ -1931,27 +1956,32 @@ _interpreters.exec(0, "1", {"\uFD7C\u5124\u7B91\u92E9\u1850\u39AA\u0DF2\uD82A\u2
 
 
 #### 34- [127603](https://github.com/python/cpython/issues/127603) - Abort from `GenericAlias.__sizeof__`: `ob->ob_type != &PyLong_Type`
+This issue was fixed in a PR (#127605) for another issue.
 
 ```python
+from types import GenericAlias
 
+g = GenericAlias(BaseException, Exception)
+g.__sizeof__(1)
 ```
 
 - Issue Number: 127603
 - Date filed: 04/12/2024
 - Date closed: 11/12/2024
 - Kind: Abort
-- Configuration:
+- Configuration: Debug
 - Python versions: 3.12
-- Status: closed
+- Status: Closed-Completed
 - PRs (author):
-  - []() ()
+  - [127605](https://github.com/python/cpython/pull/127605) (@markshannon)
 
 <details><summary>Backtrace/error message:</summary>
 <p>
 
 
 ```shell
-
+python: ./Include/object.h:231: Py_SIZE: Assertion `ob->ob_type != &PyLong_Type' failed.
+Aborted
 ```
 </p>
 </details>
@@ -1962,25 +1992,34 @@ _interpreters.exec(0, "1", {"\uFD7C\u5124\u7B91\u92E9\u1850\u39AA\u0DF2\uD82A\u2
 #### 35- [127836](https://github.com/python/cpython/issues/127836) - Assertion failure on finalization with `_lsprof` and `asyncio` in 3.12
 
 ```python
+import asyncio
+import _lsprof
 
+obj = _lsprof.Profiler()
+obj.enable()
+obj._pystart_callback(lambda: 0, 0)
+obj = None  # Required
+
+loop = asyncio.get_event_loop()
 ```
 
 - Issue Number: 127836
 - Date filed: 11/12/2024
 - Date closed: 23/02/2025
 - Kind: Abort
-- Configuration:
+- Configuration: Debug
 - Python versions: 3.12
-- Status: closed
+- Status: Closed-Not-Planned
 - PRs (author):
-  - []() ()
+  - None
 
 <details><summary>Backtrace/error message:</summary>
 <p>
 
 
 ```shell
-
+python: Python/instrumentation.c:958: call_instrumentation_vector: Assertion `instrumentation_cross_checks(tstate->interp, code)' failed.
+Aborted
 ```
 </p>
 </details>
@@ -1991,25 +2030,69 @@ _interpreters.exec(0, "1", {"\uFD7C\u5124\u7B91\u92E9\u1850\u39AA\u0DF2\uD82A\u2
 #### 36- [127870](https://github.com/python/cpython/issues/127870) - Segfaults in ctypes _as_parameter_ handling when called with `MagicMock`
 
 ```python
+from unittest.mock import MagicMock
+import _pyrepl._minimal_curses
 
+obj = _pyrepl._minimal_curses.tparm(MagicMock(), 0, 0, 0, 0, 0, 0, 0)
+obj = _pyrepl._minimal_curses.setupterm(MagicMock(), 0)
+obj = _pyrepl._minimal_curses.tigetstr(MagicMock())
 ```
 
 - Issue Number: 127870
 - Date filed: 12/12/2024
 - Date closed: 13/12/2024
 - Kind: Segmentation Fault
-- Configuration:
-- Python versions: 
-- Status: closed
+- Configuration: Release
+- Python versions: 3.12, 3.13, 3.14
+- Status: Closed-Completed
 - PRs (author):
-  - []() ()
+  - [127872](https://github.com/python/cpython/pull/127872) (@vstinner)
+  - [127917](https://github.com/python/cpython/pull/127917) (@vstinner)
+  - [127918](https://github.com/python/cpython/pull/127918) (@vstinner)
 
 <details><summary>Backtrace/error message:</summary>
 <p>
 
 
 ```shell
-
+#0  0x00005555556b04e6 in compare_unicode_unicode (mp=0x0, dk=0x55556ce6f460, ep0=0x55556ce6f500, ix=38, key=0x7ffff73ae860, hash=5657245593745306375)
+    at Objects/dictobject.c:1136
+#1  0x00005555556af1cb in do_lookup (mp=mp@entry=0x0, dk=dk@entry=0x55556ce6f460, key=key@entry=0x7ffff73ae860, hash=hash@entry=5657245593745306375,
+    check_lookup=check_lookup@entry=0x5555556b04da <compare_unicode_unicode>) at Objects/dictobject.c:1066
+#2  0x00005555556af242 in unicodekeys_lookup_unicode (dk=dk@entry=0x55556ce6f460, key=key@entry=0x7ffff73ae860, hash=hash@entry=5657245593745306375)
+    at Objects/dictobject.c:1151
+#3  0x00005555556b3c99 in _Py_dict_lookup (mp=0x7fffbe6a3c50, key=key@entry=0x7ffff73ae860, hash=hash@entry=5657245593745306375,
+    value_addr=value_addr@entry=0x7fffff7ff0f0) at Objects/dictobject.c:1265
+#4  0x00005555556b4746 in _PyDict_GetItemRef_KnownHash (op=<optimized out>, key=key@entry=0x7ffff73ae860, hash=hash@entry=5657245593745306375,
+    result=result@entry=0x7fffff7ff130) at Objects/dictobject.c:2317
+#5  0x00005555556ff874 in find_name_in_mro (type=type@entry=0x55556ce6cca0, name=name@entry=0x7ffff73ae860, error=error@entry=0x7fffff7ff194)
+    at Objects/typeobject.c:5108
+#6  0x00005555556ffa3c in _PyType_LookupRef (type=type@entry=0x55556ce6cca0, name=name@entry=0x7ffff73ae860) at Objects/typeobject.c:5260
+#7  0x00005555556ca8b8 in _PyObject_GenericSetAttrWithDict (obj=obj@entry=0x7fffbe6b9920, name=0x7ffff73ae860, value=0x555555ae8100 <_Py_NoneStruct>,
+    dict=dict@entry=0x0) at Objects/object.c:1773
+#8  0x00005555556cab5f in PyObject_GenericSetAttr (obj=obj@entry=0x7fffbe6b9920, name=<optimized out>, value=<optimized out>) at Objects/object.c:1849
+#9  0x00005555556f541e in wrap_setattr (self=0x7fffbe6b9920, args=<optimized out>, wrapped=0x5555556cab4d <PyObject_GenericSetAttr>) at Objects/typeobject.c:8792
+#10 0x000055555567ee41 in wrapperdescr_raw_call (descr=descr@entry=0x7ffff7b002f0, self=self@entry=0x7fffbe6b9920, args=args@entry=0x7fffc5b5bd90,
+    kwds=kwds@entry=0x0) at Objects/descrobject.c:531
+#11 0x000055555567f2c5 in wrapperdescr_call (_descr=_descr@entry=0x7ffff7b002f0, args=0x7fffc5b5bd90, args@entry=0x7fffc5a48c50, kwds=kwds@entry=0x0)
+    at Objects/descrobject.c:569
+#12 0x0000555555672a51 in _PyObject_MakeTpCall (tstate=tstate@entry=0x555555b564c0 <_PyRuntime+299040>, callable=callable@entry=0x7ffff7b002f0,
+    args=args@entry=0x7ffff7e29850, nargs=<optimized out>, keywords=keywords@entry=0x0) at Objects/call.c:242
+#13 0x0000555555672c91 in _PyObject_VectorcallTstate (tstate=0x555555b564c0 <_PyRuntime+299040>, callable=callable@entry=0x7ffff7b002f0,
+    args=args@entry=0x7ffff7e29850, nargsf=<optimized out>, kwnames=kwnames@entry=0x0) at ./Include/internal/pycore_call.h:166
+#14 0x0000555555672ce7 in PyObject_Vectorcall (callable=callable@entry=0x7ffff7b002f0, args=args@entry=0x7ffff7e29850, nargsf=<optimized out>,
+    kwnames=kwnames@entry=0x0) at Objects/call.c:327
+#15 0x00005555557a293c in _PyEval_EvalFrameDefault (tstate=0x555555b564c0 <_PyRuntime+299040>, frame=0x7ffff7e297c8, throwflag=0) at Python/generated_cases.c.h:1839
+#16 0x00005555557b0957 in _PyEval_EvalFrame (tstate=tstate@entry=0x555555b564c0 <_PyRuntime+299040>, frame=<optimized out>, throwflag=throwflag@entry=0)
+    at ./Include/internal/pycore_ceval.h:119
+#17 0x00005555557b0a76 in _PyEval_Vector (tstate=0x555555b564c0 <_PyRuntime+299040>, func=0x7ffff6a893d0, locals=locals@entry=0x0, args=0x7fffff7ff650, argcount=3,
+    kwnames=0x0) at Python/ceval.c:1807
+#18 0x00005555556728a2 in _PyFunction_Vectorcall (func=<optimized out>, stack=<optimized out>, nargsf=<optimized out>, kwnames=<optimized out>) at Objects/call.c:413
+#19 0x00005555556f4c21 in _PyObject_VectorcallTstate (tstate=0x555555b564c0 <_PyRuntime+299040>, callable=0x7ffff6a893d0, args=0x7fffff7ff650, nargsf=3,
+    kwnames=kwnames@entry=0x0) at ./Include/internal/pycore_call.h:168
+#20 0x00005555556f4cd8 in vectorcall_unbound (tstate=<optimized out>, unbound=<optimized out>, func=<optimized out>, args=<optimized out>, nargs=<optimized out>)
+    at Objects/typeobject.c:2566
+#21 0x0000555555700c61 in vectorcall_method (name=<optimized out>, args=args@entry=0x7fffff7ff650, nargs=nargs@entry=3) at Objects/typeobject.c:2597
 ```
 </p>
 </details>
@@ -2020,25 +2103,28 @@ _interpreters.exec(0, "1", {"\uFD7C\u5124\u7B91\u92E9\u1850\u39AA\u0DF2\uD82A\u2
 #### 37- [129573](https://github.com/python/cpython/issues/129573) - Failed assertion in `_PyUnicode_Equal` from `calculate_suggestions` with non-string candidate
 
 ```python
-
+import runpy
+runpy._run_module_code("A", {0: ""}, "")
 ```
 
 - Issue Number: 129573
 - Date filed: 02/02/2025
-- Date closed: 
+- Date closed:
 - Kind: Abort
-- Configuration:
-- Python versions: 3.12;3.13;3.14
-- Status: open
+- Configuration: Debug
+- Python versions: 3.12, 3.13, 3.14
+- Status: Open
 - PRs (author):
-  - []() ()
+  - [129574](https://github.com/python/cpython/pull/129574) (@devdanzin)
+  - [130997](https://github.com/python/cpython/pull/130997) (@devdanzin)
 
 <details><summary>Backtrace/error message:</summary>
 <p>
 
 
 ```shell
-
+python: Objects/unicodeobject.c:10799: _PyUnicode_Equal: Assertion `PyUnicode_Check(str2)' failed.
+Aborted (core dumped)
 ```
 </p>
 </details>
@@ -2049,25 +2135,31 @@ _interpreters.exec(0, "1", {"\uFD7C\u5124\u7B91\u92E9\u1850\u39AA\u0DF2\uD82A\u2
 #### 38- [129766](https://github.com/python/cpython/issues/129766) - Fatal Python error from `warnings._release_lock()`
 
 ```python
-
+import warnings
+warnings._release_lock()
 ```
 
 - Issue Number: 129766
 - Date filed: 07/02/2025
 - Date closed: 07/02/2025
-- Kind: Fatal Python Error
-- Configuration:
-- Python versions: 
-- Status: closed
+- Kind: Abort
+- Configuration: Debug
+- Python versions: 3.14
+- Status: Closed-Completed
 - PRs (author):
-  - []() ()
+  - [129771](https://github.com/python/cpython/pull/129771) (@sobolevn)
 
 <details><summary>Backtrace/error message:</summary>
 <p>
 
 
 ```shell
+Fatal Python error: _PyRecursiveMutex_Unlock: unlocking a recursive mutex that is not owned by the current thread
+Python runtime state: initialized
 
+Current thread 0x0000718eb9295740 (most recent call first):
+  File "<string>", line 1 in <module>
+Aborted (core dumped)
 ```
 </p>
 </details>
@@ -2076,27 +2168,46 @@ _interpreters.exec(0, "1", {"\uFD7C\u5124\u7B91\u92E9\u1850\u39AA\u0DF2\uD82A\u2
 
 
 #### 39- [131580](https://github.com/python/cpython/issues/131580) - Faulthandler segfaults when called from threads
+Closed in favor of #116008.
 
 ```python
+import faulthandler
+from threading import Thread
 
+for x in range(20):
+    Thread(target=faulthandler.dump_traceback_later, args=(1e-10,)).start()
 ```
 
 - Issue Number: 131580
 - Date filed: 22/03/2025
 - Date closed: 25/03/2025
 - Kind: Segmentation Fault
-- Configuration:
-- Python versions: 
-- Status: closed
+- Configuration: Free-Threaded
+- Python versions: 3.14
+- Status: Closed-Completed
 - PRs (author):
-  - []() ()
+  - None
 
 <details><summary>Backtrace/error message:</summary>
 <p>
 
 
 ```shell
-
+#0  _PyFrame_GetCode (f=0xfffff7fea1f0) at ./Include/internal/pycore_frame.h:94
+#1  dump_frame (fd=fd@entry=2, frame=frame@entry=0xfffff7fea1f0)
+    at Python/traceback.c:914
+#2  0x000000000076254c in dump_traceback (fd=fd@entry=2,
+    tstate=tstate@entry=0xaeb528 <_PyRuntime+329832>,
+    write_header=write_header@entry=0) at Python/traceback.c:1007
+#3  0x0000000000762710 in _Py_DumpTracebackThreads (fd=2,
+    interp=<optimized out>, current_tstate=current_tstate@entry=0x0)
+    at Python/traceback.c:1114
+#4  0x00000000007773b4 in faulthandler_thread (unused=unused@entry=0x0)
+    at ./Modules/faulthandler.c:631
+#5  0x000000000075e77c in pythread_wrapper (arg=<optimized out>)
+    at Python/thread_pthread.h:242
+#6  0x0000fffff7def188 in start_thread () from /lib64/libc.so.6
+#7  0x0000fffff7e5971c in thread_start () from /lib64/libc.so.6
 ```
 </p>
 </details>
@@ -2105,27 +2216,68 @@ _interpreters.exec(0, "1", {"\uFD7C\u5124\u7B91\u92E9\u1850\u39AA\u0DF2\uD82A\u2
 
 
 #### 40- [131998](https://github.com/python/cpython/issues/131998) - The interpreter crashes when specializing bound method calls on unbound objects
+A release blocker.
 
 ```python
+import glob
 
+for x in range(3):
+    str_globber = glob._StringGlobber(None, None)
+str_globber.selector(set())
+
+try:
+    str_globber.selector([True, True, False])
+except:
+    pass
+
+globber_base = glob._GlobberBase(0, 0, 0, 0)
+globber_base.selector(list)
 ```
 
 - Issue Number: 131998
 - Date filed: 02/04/2025
 - Date closed: 08/04/2025
 - Kind: Segmentation Fault
-- Configuration:
-- Python versions: 3.13;3.14
-- Status: closed
+- Configuration: Release
+- Python versions: 3.13, 3.14
+- Status: Closed-Completed
 - PRs (author):
-  - []() ()
+  - [132000](https://github.com/python/cpython/pull/132000) (@ZeroIntensity)
+  - [132262](https://github.com/python/cpython/pull/132262) (@ZeroIntensity, @sobolevn, @vstinner, @markshannon)
 
 <details><summary>Backtrace/error message:</summary>
 <p>
 
 
 ```shell
-
+Program received signal SIGSEGV, Segmentation fault.
+_PyEval_EvalFrameDefault (tstate=tstate@entry=0x555555c6b558 <_PyRuntime+330424>, frame=0x7ffff7fb00a0, frame@entry=0x7ffff7fb0020, throwflag=throwflag@entry=0) at ./Include/object.h:270
+270             return ob->ob_type;
+(gdb) bt
+#0  _PyEval_EvalFrameDefault (tstate=tstate@entry=0x555555c6b558 <_PyRuntime+330424>, frame=0x7ffff7fb00a0,
+    frame@entry=0x7ffff7fb0020, throwflag=throwflag@entry=0) at ./Include/object.h:270
+#1  0x000055555585db58 in _PyEval_EvalFrame (throwflag=0, frame=0x7ffff7fb0020, tstate=0x555555c6b558 <_PyRuntime+330424>)
+    at ./Include/internal/pycore_ceval.h:119
+#2  _PyEval_Vector (tstate=tstate@entry=0x555555c6b558 <_PyRuntime+330424>, func=func@entry=0x7ffff7a91b50,
+    locals=locals@entry={'__name__': '__main__', '__doc__': None, '__package__': None, '__loader__': <SourceFileLoader(name='__main__', path='/home/fusil/runs/python-12/glob-cpu_load-invalid_mem_access-0x0000000000000008/source2.py') at remote 0x7ffff7a95b90>, '__spec__': None, '__builtins__': <module at remote 0x7ffff7befef0>, '__file__': '/home/fusil/runs/python-12/glob-cpu_load-invalid_mem_access-0x0000000000000008/source2.py', '__cached__': None, 'glob': <module at remote 0x7ffff7ad0170>, 'x': 2, 'str_globber': <_StringGlobber(sep=None, case_sensitive=None, case_pedantic=False, recursive=False) at remote 0x7ffff78ef630>, 'globber_base': <_GlobberBase(case_pedantic=0, case_sensitive=0, recursive=0, sep=0) at remote 0x7ffff7a7e6e0>}, args=args@entry=0x0, argcount=argcount@entry=0,
+    kwnames=kwnames@entry=0x0) at Python/ceval.c:1908
+#3  0x000055555585dc57 in PyEval_EvalCode (co=co@entry=<code at remote 0x7ffff7b5db60>,
+    globals=globals@entry={'__name__': '__main__', '__doc__': None, '__package__': None, '__loader__': <SourceFileLoader(name='__main__', path='/home/fusil/runs/python-12/glob-cpu_load-invalid_mem_access-0x0000000000000008/source2.py') at remote 0x7ffff7a95b90>, '__spec__': None, '__builtins__': <module at remote 0x7ffff7befef0>, '__file__': '/home/fusil/runs/python-12/glob-cpu_load-invalid_mem_access-0x0000000000000008/source2.py', '__cached__': None, 'glob': <module at remote 0x7ffff7ad0170>, 'x': 2, 'str_globber': <_StringGlobber(sep=None, case_sensitive=None, case_pedantic=False, recursive=False) at remote 0x7ffff78ef630>, 'globber_base': <_GlobberBase(case_pedantic=0, case_sensitive=0, recursive=0, sep=0) at remote 0x7ffff7a7e6e0>},
+    locals=locals@entry={'__name__': '__main__', '__doc__': None, '__package__': None, '__loader__': <SourceFileLoader(name='__main__', path='/home/fusil/runs/python-12/glob-cpu_load-invalid_mem_access-0x0000000000000008/source2.py') at remote 0x7ffff7a95b90>, '__spec__': None, '__builtins__': <module at remote 0x7ffff7befef0>, '__file__': '/home/fusil/runs/python-12/glob-cpu_load-invalid_mem_access-0x0000000000000008/source2.py', '__cached__': None, 'glob': <module at remote 0x7ffff7ad0170>, 'x': 2, 'str_globber': <_StringGlobber(sep=None, case_sensitive=None, case_pedantic=False, recursive=False) at remote 0x7ffff78ef630>, 'globber_base': <_GlobberBase(case_pedantic=0, case_sensitive=0, recursive=0, sep=0) at remote 0x7ffff7a7e6e0>}) at Python/ceval.c:836
+#4  0x00005555558eb82e in run_eval_code_obj (tstate=tstate@entry=0x555555c6b558 <_PyRuntime+330424>, co=co@entry=0x7ffff7b5db60,
+    globals=globals@entry={'__name__': '__main__', '__doc__': None, '__package__': None, '__loader__': <SourceFileLoader(name='__main__', path='/home/fusil/runs/python-12/glob-cpu_load-invalid_mem_access-0x0000000000000008/source2.py') at remote 0x7ffff7a95b90>, '__spec__': None, '__builtins__': <module at remote 0x7ffff7befef0>, '__file__': '/home/fusil/runs/python-12/glob-cpu_load-invalid_mem_access-0x0000000000000008/source2.py', '__cached__': None, 'glob': <module at remote 0x7ffff7ad0170>, 'x': 2, 'str_globber': <_StringGlobber(sep=None, case_sensitive=None, case_pedantic=False, recursive=False) at remote 0x7ffff78ef630>, 'globber_base': <_GlobberBase(case_pedantic=0, case_sensitive=0, recursive=0, sep=0) at remote 0x7ffff7a7e6e0>},
+    locals=locals@entry={'__name__': '__main__', '__doc__': None, '__package__': None, '__loader__': <SourceFileLoader(name='__main__', path='/home/fusil/runs/python-12/glob-cpu_load-invalid_mem_access-0x0000000000000008/source2.py') at remote 0x7ffff7a95b90>, '__spec__': None, '__builtins__': <module at remote 0x7ffff7befef0>, '__file__': '/home/fusil/runs/python-12/glob-cpu_load-invalid_mem_access-0x0000000000000008/source2.py', '__cached__': None, 'glob': <module at remote 0x7ffff7ad0170>, 'x': 2, 'str_globber': <_StringGlobber(sep=None, case_sensitive=None, case_pedantic=False, recursive=False) at remote 0x7ffff78ef630>, 'globber_base': <_GlobberBase(case_pedantic=0, case_sensitive=0, recursive=0, sep=0) at remote 0x7ffff7a7e6e0>}) at Python/pythonrun.c:1365
+#5  0x00005555558ec92e in run_mod (mod=mod@entry=0x555555e0e230, filename=filename@entry='/home/fusil/runs/python-12/glob-cpu_load-invalid_mem_access-0x0000000000000008/source2.py', globals=globals@entry={'__name__': '__main__', '__doc__': None, '__package__': None, '__loader__': <SourceFileLoader(name='__main__', path='/home/fusil/runs/python-12/glob-cpu_load-invalid_mem_access-0x0000000000000008/source2.py') at remote 0x7ffff7a95b90>, '__spec__': None, '__builtins__': <module at remote 0x7ffff7befef0>, '__file__': '/home/fusil/runs/python-12/glob-cpu_load-invalid_mem_access-0x0000000000000008/source2.py', '__cached__': None, 'glob': <module at remote 0x7ffff7ad0170>, 'x': 2, 'str_globber': <_StringGlobber(sep=None, case_sensitive=None, case_pedantic=False, recursive=False) at remote 0x7ffff78ef630>, 'globber_base': <_GlobberBase(case_pedantic=0, case_sensitive=0, recursive=0, sep=0) at remote 0x7ffff7a7e6e0>}, locals=locals@entry={'__name__': '__main__', '__doc__': None, '__package__': None, '__loader__': <SourceFileLoader(name='__main__', path='/home/fusil/runs/python-12/glob-cpu_load-invalid_mem_access-0x0000000000000008/source2.py') at remote 0x7ffff7a95b90>, '__spec__': None, '__builtins__': <module at remote 0x7ffff7befef0>, '__file__': '/home/fusil/runs/python-12/glob-cpu_load-invalid_mem_access-0x0000000000000008/source2.py', '__cached__': None, 'glob': <module at remote 0x7ffff7ad0170>, 'x': 2, 'str_globber': <_StringGlobber(sep=None, case_sensitive=None, case_pedantic=False, recursive=False) at remote 0x7ffff78ef630>, 'globber_base': <_GlobberBase(case_pedantic=0, case_sensitive=0, recursive=0, sep=0) at remote 0x7ffff7a7e6e0>}, flags=flags@entry=0x7fffffffdb68, arena=arena@entry=0x7ffff7ab3f40, interactive_src=0x0, generate_new_source=0) at Python/pythonrun.c:1436
+#6  0x00005555558eccdb in pyrun_file (fp=fp@entry=0x555555df2410, filename=filename@entry='/home/fusil/runs/python-12/glob-cpu_load-invalid_mem_access-0x0000000000000008/source2.py', start=start@entry=257, globals=globals@entry={'__name__': '__main__', '__doc__': None, '__package__': None, '__loader__': <SourceFileLoader(name='__main__', path='/home/fusil/runs/python-12/glob-cpu_load-invalid_mem_access-0x0000000000000008/source2.py') at remote 0x7ffff7a95b90>, '__spec__': None, '__builtins__': <module at remote 0x7ffff7befef0>, '__file__': '/home/fusil/runs/python-12/glob-cpu_load-invalid_mem_access-0x0000000000000008/source2.py', '__cached__': None, 'glob': <module at remote 0x7ffff7ad0170>, 'x': 2, 'str_globber': <_StringGlobber(sep=None, case_sensitive=None, case_pedantic=False, recursive=False) at remote 0x7ffff78ef630>, 'globber_base': <_GlobberBase(case_pedantic=0, case_sensitive=0, recursive=0, sep=0) at remote 0x7ffff7a7e6e0>}, locals=locals@entry={'__name__': '__main__', '__doc__': None, '__package__': None, '__loader__': <SourceFileLoader(name='__main__', path='/home/fusil/runs/python-12/glob-cpu_load-invalid_mem_access-0x0000000000000008/source2.py') at remote 0x7ffff7a95b90>, '__spec__': None, '__builtins__': <module at remote 0x7ffff7befef0>, '__file__': '/home/fusil/runs/python-12/glob-cpu_load-invalid_mem_access-0x0000000000000008/source2.py', '__cached__': None, 'glob': <module at remote 0x7ffff7ad0170>, 'x': 2, 'str_globber': <_StringGlobber(sep=None, case_sensitive=None, case_pedantic=False, recursive=False) at remote 0x7ffff78ef630>, 'globber_base': <_GlobberBase(case_pedantic=0, case_sensitive=0, recursive=0, sep=0) at remote 0x7ffff7a7e6e0>}, closeit=closeit@entry=1, flags=0x7fffffffdb68) at Python/pythonrun.c:1293
+#7  0x00005555558eeff1 in _PyRun_SimpleFileObject (fp=fp@entry=0x555555df2410, filename=filename@entry='/home/fusil/runs/python-12/glob-cpu_load-invalid_mem_access-0x0000000000000008/source2.py', closeit=closeit@entry=1, flags=flags@entry=0x7fffffffdb68) at Python/pythonrun.c:521
+#8  0x00005555558ef2ba in _PyRun_AnyFileObject (fp=fp@entry=0x555555df2410, filename=filename@entry='/home/fusil/runs/python-12/glob-cpu_load-invalid_mem_access-0x0000000000000008/source2.py', closeit=closeit@entry=1, flags=flags@entry=0x7fffffffdb68) at Python/pythonrun.c:81
+#9  0x000055555591ebd4 in pymain_run_file_obj (program_name=program_name@entry='/home/danzin/projects/cpython/python', filename=filename@entry='/home/fusil/runs/python-12/glob-cpu_load-invalid_mem_access-0x0000000000000008/source2.py', skip_source_first_line=0) at Modules/main.c:396
+#10 0x000055555591ef72 in pymain_run_file (config=config@entry=0x555555c36688 <_PyRuntime+113640>) at Modules/main.c:415
+#11 0x000055555592050d in pymain_run_python (exitcode=exitcode@entry=0x7fffffffdcf4) at Modules/main.c:680
+#12 0x000055555592056e in Py_RunMain () at Modules/main.c:761
+#13 0x00005555559205e5 in pymain_main (args=args@entry=0x7fffffffdd50) at Modules/main.c:791
+#14 0x00005555559206a8 in Py_BytesMain (argc=<optimized out>, argv=<optimized out>) at Modules/main.c:815
+#15 0x00005555555d7926 in main (argc=<optimized out>, argv=<optimized out>) at ./Programs/python.c:15
 ```
 </p>
 </details>
@@ -2136,25 +2288,58 @@ _interpreters.exec(0, "1", {"\uFD7C\u5124\u7B91\u92E9\u1850\u39AA\u0DF2\uD82A\u2
 #### 41- [132002](https://github.com/python/cpython/issues/132002) - Segfault deallocating a `ContextVar` built with `str` subclass
 
 ```python
+from _contextvars import ContextVar
 
+class weird_str(str):
+    def __eq__(self, other):
+        pass
+
+ContextVar(weird_str())
 ```
 
 - Issue Number: 132002
 - Date filed: 02/04/2025
 - Date closed: 02/04/2025
 - Kind: Segmentation Fault
-- Configuration:
-- Python versions: 3.12;3.13;3.14
-- Status: closed
+- Configuration: Release
+- Python versions: 3.12, 3.13, 3.14
+- Status: Closed-Completed
 - PRs (author):
-  - []() ()
+  - [132003](https://github.com/python/cpython/pull/132003) (@sobolevn)
+  - [132007](https://github.com/python/cpython/pull/132007) (@sobolevn)
+  - [132008](https://github.com/python/cpython/pull/132008) (@sobolevn)
 
 <details><summary>Backtrace/error message:</summary>
 <p>
 
 
 ```shell
-
+Program received signal SIGSEGV, Segmentation fault.
+contextvar_tp_clear (op=op@entry=<_contextvars.ContextVar at remote 0x7ffff7ac7150>) at Python/context.c:935
+935         Py_CLEAR(self->var_name);
+(gdb) bt
+#0  contextvar_tp_clear (op=op@entry=<_contextvars.ContextVar at remote 0x7ffff7ac7150>) at Python/context.c:935
+#1  0x000055555587e395 in contextvar_tp_dealloc (self=<_contextvars.ContextVar at remote 0x7ffff7ac7150>) at Python/context.c:958
+#2  0x00005555556ffa08 in _Py_Dealloc (op=op@entry=<_contextvars.ContextVar at remote 0x7ffff7ac7150>) at Objects/object.c:3021
+#3  0x000055555587e672 in Py_DECREF (op=<_contextvars.ContextVar at remote 0x7ffff7ac7150>, lineno=883,
+    filename=0x555555a49efe "Python/context.c") at ./Include/refcount.h:416
+#4  contextvar_new (name=<weird_str() at remote 0x7ffff7bc7260>, def=0x0) at Python/context.c:883
+#5  0x000055555587e6fe in contextvar_tp_new (type=<optimized out>, args=<optimized out>, kwds=<optimized out>)
+    at Python/context.c:928
+#6  0x000055555574692f in type_call (self=<type at remote 0x555555bff380>, args=(<weird_str() at remote 0x7ffff7bc7260>,), kwds=0x0)
+    at Objects/typeobject.c:2244
+#7  0x000055555567b9a7 in _PyObject_MakeTpCall (tstate=tstate@entry=0x555555c69558 <_PyRuntime+330424>,
+    callable=callable@entry=<type at remote 0x555555bff380>, args=args@entry=0x7fffffffd7c8, nargs=<optimized out>,
+    keywords=keywords@entry=0x0) at Objects/call.c:242
+#8  0x000055555567bdc8 in _PyObject_VectorcallTstate (tstate=0x555555c69558 <_PyRuntime+330424>,
+    callable=<type at remote 0x555555bff380>, args=0x7fffffffd7c8, nargsf=<optimized out>, kwnames=0x0)
+    at ./Include/internal/pycore_call.h:167
+#9  0x000055555567bdf4 in PyObject_Vectorcall (callable=callable@entry=<type at remote 0x555555bff380>,
+    args=args@entry=0x7fffffffd7c8, nargsf=<optimized out>, kwnames=kwnames@entry=0x0) at Objects/call.c:327
+#10 0x000055555582f4c0 in _PyEval_EvalFrameDefault (tstate=tstate@entry=0x555555c69558 <_PyRuntime+330424>,
+    frame=frame@entry=0x7ffff7fb0020, throwflag=throwflag@entry=0) at Python/generated_cases.c.h:1366
+#11 0x000055555585cd69 in _PyEval_EvalFrame (throwflag=0, frame=0x7ffff7fb0020, tstate=0x555555c69558 <_PyRuntime+330424>)
+    at ./Include/internal/pycore_ceval.h:119
 ```
 </p>
 </details>
@@ -2165,25 +2350,65 @@ _interpreters.exec(0, "1", {"\uFD7C\u5124\u7B91\u92E9\u1850\u39AA\u0DF2\uD82A\u2
 #### 42- [132011](https://github.com/python/cpython/issues/132011) - Failed assertion in `_PyEval_EvalFrameDefault`: `self_o != NULL`
 
 ```python
+l = []
 
+def lappend(l, x, y):
+    l.append((x, y))
+
+try:
+    for x in range(3):
+        lappend(l, None, None)
+except:
+    pass
+
+lappend(list, None, None)
 ```
 
 - Issue Number: 132011
 - Date filed: 02/04/2025
 - Date closed: 06/04/2025
 - Kind: Abort
-- Configuration:
-- Python versions: 
-- Status: closed
+- Configuration: Debug
+- Python versions: 3.13, 3.14
+- Status: Closed-Completed
 - PRs (author):
-  - []() ()
+  - [132018](https://github.com/python/cpython/pull/132018) (@sobolevn)
+  - [132161](https://github.com/python/cpython/pull/132161) (@sobolevn)
 
 <details><summary>Backtrace/error message:</summary>
 <p>
 
 
 ```shell
+python: Python/generated_cases.c.h:3345: _PyEval_EvalFrameDefault: Assertion `self_o != NULL' failed.
 
+Program received signal SIGABRT, Aborted.
+__pthread_kill_implementation (no_tid=0, signo=6, threadid=140737350580032) at ./nptl/pthread_kill.c:44
+44      ./nptl/pthread_kill.c: No such file or directory.
+(gdb) bt
+#0  __pthread_kill_implementation (no_tid=0, signo=6, threadid=140737350580032) at ./nptl/pthread_kill.c:44
+#1  __pthread_kill_internal (signo=6, threadid=140737350580032) at ./nptl/pthread_kill.c:78
+#2  __GI___pthread_kill (threadid=140737350580032, signo=signo@entry=6) at ./nptl/pthread_kill.c:89
+#3  0x00007ffff7ce0476 in __GI_raise (sig=sig@entry=6) at ../sysdeps/posix/raise.c:26
+#4  0x00007ffff7cc67f3 in __GI_abort () at ./stdlib/abort.c:79
+#5  0x00007ffff7cc671b in __assert_fail_base (fmt=0x7ffff7e7b130 "%s%s%s:%u: %s%sAssertion `%s' failed.\n%n",
+    assertion=0x555555a43bc6 "self_o != NULL", file=0x555555a43993 "Python/generated_cases.c.h", line=3345,
+    function=<optimized out>) at ./assert/assert.c:94
+#6  0x00007ffff7cd7e96 in __GI___assert_fail (assertion=assertion@entry=0x555555a43bc6 "self_o != NULL",
+    file=file@entry=0x555555a43993 "Python/generated_cases.c.h", line=line@entry=3345,
+    function=function@entry=0x555555a44980 <__PRETTY_FUNCTION__.81> "_PyEval_EvalFrameDefault") at ./assert/assert.c:103
+#7  0x0000555555837189 in _PyEval_EvalFrameDefault (tstate=tstate@entry=0x555555c6b558 <_PyRuntime+330424>, frame=0x7ffff7fb00a0,
+    frame@entry=0x7ffff7fb0020, throwflag=throwflag@entry=0) at Python/generated_cases.c.h:3345
+#8  0x000055555585db58 in _PyEval_EvalFrame (throwflag=0, frame=0x7ffff7fb0020, tstate=0x555555c6b558 <_PyRuntime+330424>)
+    at ./Include/internal/pycore_ceval.h:119
+#9  _PyEval_Vector (tstate=tstate@entry=0x555555c6b558 <_PyRuntime+330424>, func=func@entry=0x7ffff7a8db50,
+    locals=locals@entry={'__name__': '__main__', '__doc__': None, '__package__': None, '__loader__': <SourceFileLoader(name='__main__', path='/home/fusil/runs/python-12/difflib-abort-assertion/source2.py') at remote 0x7ffff7a95b90>, '__spec__': None, '__builtins__': <module at remote 0x7ffff7befef0>, '__file__': '/home/fusil/runs/python-12/difflib-abort-assertion/source2.py', '__cached__': None, 'difflib': <module at remote 0x7ffff7acc110>, 'obj': <HtmlDiff(_charjunk=None, _linejunk=None, _tabsize=None, _wrapcolumn=None) at remote 0x7ffff7a7be40>, 'x': 2}, args=args@entry=0x0, argcount=argcount@entry=0, kwnames=kwnames@entry=0x0) at Python/ceval.c:1908
+#10 0x000055555585dc57 in PyEval_EvalCode (co=co@entry=<code at remote 0x7ffff7bce400>,
+    globals=globals@entry={'__name__': '__main__', '__doc__': None, '__package__': None, '__loader__': <SourceFileLoader(name='__main__', path='/home/fusil/runs/python-12/difflib-abort-assertion/source2.py') at remote 0x7ffff7a95b90>, '__spec__': None, '__builtins__': <module at remote 0x7ffff7befef0>, '__file__': '/home/fusil/runs/python-12/difflib-abort-assertion/source2.py', '__cached__': None, 'difflib': <module at remote 0x7ffff7acc110>, 'obj': <HtmlDiff(_charjunk=None, _linejunk=None, _tabsize=None, _wrapcolumn=None) at remote 0x7ffff7a7be40>, 'x': 2},
+    locals=locals@entry={'__name__': '__main__', '__doc__': None, '__package__': None, '__loader__': <SourceFileLoader(name='__main__', path='/home/fusil/runs/python-12/difflib-abort-assertion/source2.py') at remote 0x7ffff7a95b90>, '__spec__': None, '__builtins__': <module at remote 0x7ffff7befef0>, '__file__': '/home/fusil/runs/python-12/difflib-abort-assertion/source2.py', '__cached__': None, 'difflib': <module at remote 0x7ffff7acc110>, 'obj': <HtmlDiff(_charjunk=None, _linejunk=None, _tabsize=None, _wrapcolumn=None) at remote 0x7ffff7a7be40>, 'x': 2}) at Python/ceval.c:836
+#11 0x00005555558eb82e in run_eval_code_obj (tstate=tstate@entry=0x555555c6b558 <_PyRuntime+330424>, co=co@entry=0x7ffff7bce400,
+    globals=globals@entry={'__name__': '__main__', '__doc__': None, '__package__': None, '__loader__': <SourceFileLoader(name='__main__', path='/home/fusil/runs/python-12/difflib-abort-assertion/source2.py') at remote 0x7ffff7a95b90>, '__spec__': None, '__builtins__': <module at remote 0x7ffff7befef0>, '__file__': '/home/fusil/runs/python-12/difflib-abort-assertion/source2.py', '__cached__': None, 'difflib': <module at remote 0x7ffff7acc110>, 'obj': <HtmlDiff(_charjunk=None, _linejunk=None, _tabsize=None, _wrapcolumn=None) at remote 0x7ffff7a7be40>, 'x': 2},
+    locals=locals@entry={'__name__': '__main__', '__doc__': None, '__package__': None, '__loader__': <SourceFileLoader(name='__main__', path='/home/fusil/runs/python-12/difflib-abort-assertion/source2.py') at remote 0x7ffff7a95b90>, '__spec__': None, '__builtins__': <module at remote 0x7ffff7befef0>, '__file__': '/home/fusil/runs/python-12/difflib-abort-assertion/source2.py', '__cached__': None, 'difflib': <module at remote 0x7ffff7acc110>, 'obj': <HtmlDiff(_charjunk=None, _linejunk=None, _tabsize=None, _wrapcolumn=None) at remote 0x7ffff7a7be40>, 'x': 2}) at Python/pythonrun.c:1365
 ```
 </p>
 </details>
@@ -2194,25 +2419,32 @@ _interpreters.exec(0, "1", {"\uFD7C\u5124\u7B91\u92E9\u1850\u39AA\u0DF2\uD82A\u2
 #### 43- [132171](https://github.com/python/cpython/issues/132171) - Assertion failure calling `_interpreters.run_string` with a string subclass instance
 
 ```python
+import _interpreters
 
+class weird_str(str): pass
+
+_interpreters.create()
+_interpreters.run_string(1, weird_str('1'))
 ```
 
 - Issue Number: 132171
 - Date filed: 06/04/2025
 - Date closed: 07/04/2025
 - Kind: Abort
-- Configuration:
-- Python versions: 
-- Status: closed
+- Configuration: Debug
+- Python versions: 3.13, 3.14
+- Status: Closed-Completed
 - PRs (author):
-  - []() ()
+  - [132173](https://github.com/python/cpython/pull/132173) (@sobolevn)
+  - [132219](https://github.com/python/cpython/pull/132219) (@sobolevn)
 
 <details><summary>Backtrace/error message:</summary>
 <p>
 
 
 ```shell
-
+python: ./Modules/_interpretersmodule.c:333: get_code_str: Assertion `PyUnicode_CheckExact(arg) && (check_code_str((PyUnicodeObject *)arg) == NULL)' failed.
+Aborted (core dumped)
 ```
 </p>
 </details>
@@ -2223,25 +2455,29 @@ _interpreters.exec(0, "1", {"\uFD7C\u5124\u7B91\u92E9\u1850\u39AA\u0DF2\uD82A\u2
 #### 44- [132176](https://github.com/python/cpython/issues/132176) - Abort when using a tuple subclass instance as the `bases` parameter for `type`
 
 ```python
+class weird_tuple(tuple): pass
 
+c = type("c", weird_tuple((str,)), {})
 ```
 
 - Issue Number: 132176
 - Date filed: 06/04/2025
 - Date closed: 15/04/2025
 - Kind: Abort
-- Configuration:
-- Python versions: 
-- Status: closed
+- Configuration: Debug
+- Python versions: 3.13, 3.14
+- Status: Closed-Completed
 - PRs (author):
-  - []() ()
+  - [132212](https://github.com/python/cpython/pull/132212) (@sobolevn)
+  - [132548](https://github.com/python/cpython/pull/132548) (@sobolevn)
 
 <details><summary>Backtrace/error message:</summary>
 <p>
 
 
 ```shell
-
+python: Objects/typeobject.c:500: set_tp_bases: Assertion `PyTuple_CheckExact(bases)' failed.
+Aborted (core dumped)
 ```
 </p>
 </details>
@@ -2252,25 +2488,48 @@ _interpreters.exec(0, "1", {"\uFD7C\u5124\u7B91\u92E9\u1850\u39AA\u0DF2\uD82A\u2
 #### 45- [132250](https://github.com/python/cpython/issues/132250) - `_ccall_callback` method of `_lsprof.Profiler` causes Fatal Python error
 
 ```python
+import _lsprof
 
+prof = _lsprof.Profiler()
+prof.enable()
+
+def mismatch(first, second):
+    first.find(second())
+
+mismatch(bytes, str)
+# mismatch(str, bytes)
+# mismatch(str, list)
 ```
 
 - Issue Number: 132250
 - Date filed: 08/04/2025
 - Date closed: 08/04/2025
-- Kind: Fatal Python Error
-- Configuration:
-- Python versions: 
-- Status: closed
+- Kind: Abort
+- Configuration: Debug
+- Python versions: 3.13, 3.14
+- Status: Closed-Completed
 - PRs (author):
-  - []() ()
+  - [132251](https://github.com/python/cpython/pull/132251) (@gaogaotiantian)
+  - [132281](https://github.com/python/cpython/pull/132281) (@gaogaotiantian)
 
 <details><summary>Backtrace/error message:</summary>
 <p>
 
 
 ```shell
+Fatal Python error: _Py_CheckFunctionResult: a function returned a result with an exception set
+Python runtime state: initialized
+TypeError: descriptor 'find' for 'bytes' objects doesn't apply to a 'str' object
 
+The above exception was the direct cause of the following exception:
+
+SystemError: <built-in method _ccall_callback of _lsprof.Profiler object at 0x20000922f10> returned a result with an exception set
+
+Stack (most recent call first):
+  File "/mnt/c/Users/ddini/crashers/main/cProfile-fatal_python_error-abort/source2.py", line 7 in mismatch
+  File "/mnt/c/Users/ddini/crashers/main/cProfile-fatal_python_error-abort/source2.py", line 9 in <module>
+
+Program received signal SIGABRT, Aborted.
 ```
 </p>
 </details>
@@ -2281,25 +2540,57 @@ _interpreters.exec(0, "1", {"\uFD7C\u5124\u7B91\u92E9\u1850\u39AA\u0DF2\uD82A\u2
 #### 46- [132296](https://github.com/python/cpython/issues/132296) - Concurrent deallocation of threads while calling `PyEval_SetTrace`
 
 ```python
+import threading
 
+threading._start_joinable_thread(lambda: None)
+threading._start_joinable_thread(lambda: None)
+threading._start_joinable_thread(lambda: None)
+threading._start_joinable_thread(lambda: None)
+for x in range(100):
+    try:
+        threading.settrace_all_threads(())
+    except Exception:
+        pass
 ```
 
 - Issue Number: 132296
 - Date filed: 09/04/2025
-- Date closed: 
-- Kind: 
-- Configuration:
-- Python versions: 
-- Status: open
+- Date closed:
+- Kind: Segmentation Fault
+- Configuration: Free-Threaded
+- Python versions: 3.14
+- Status: Open
 - PRs (author):
-  - []() ()
+  - [132298](https://github.com/python/cpython/pull/132298) (@ZeroIntensity)
 
 <details><summary>Backtrace/error message:</summary>
 <p>
 
 
 ```shell
-
+Thread 1 "python" received signal SIGSEGV, Segmentation fault.
+0x000055555594b3fb in setup_tracing (tstate=tstate@entry=0x555555e29760, func=func@entry=0x5555559984b0 <trace_trampoline>, arg=arg@entry=(), old_traceobj=old_traceobj@entry=0x7fffffffd380) at Python/legacy_tracing.c:588
+588         tstate->interp->sys_tracing_threads += delta;
+(gdb) bt
+#0  0x000055555594b3fb in setup_tracing (tstate=tstate@entry=0x555555e29760, func=func@entry=0x5555559984b0 <trace_trampoline>,
+    arg=arg@entry=(), old_traceobj=old_traceobj@entry=0x7fffffffd380) at Python/legacy_tracing.c:588
+#1  0x000055555594c141 in _PyEval_SetTrace (tstate=tstate@entry=0x555555e29760, func=func@entry=0x5555559984b0 <trace_trampoline>,
+    arg=arg@entry=()) at Python/legacy_tracing.c:610
+#2  0x000055555584cd32 in PyEval_SetTraceAllThreads (func=0x5555559984b0 <trace_trampoline>, arg=()) at Python/ceval.c:2473
+#3  0x000055555599698e in sys__settraceallthreads (module=<optimized out>, arg=<optimized out>) at ./Python/sysmodule.c:1187
+#4  0x00005555557110b6 in cfunction_vectorcall_O (
+    func=<built-in method _settraceallthreads of module object at remote 0x20000259930>, args=<optimized out>,
+    nargsf=<optimized out>, kwnames=<optimized out>) at Objects/methodobject.c:537
+#5  0x00005555556817dd in _PyObject_VectorcallTstate (tstate=0x555555d8a858 <_PyRuntime+361432>,
+    callable=<built-in method _settraceallthreads of module object at remote 0x20000259930>, args=0x7fffffffd708,
+    nargsf=9223372036854775809, kwnames=0x0) at ./Include/internal/pycore_call.h:169
+#6  0x00005555556818fc in PyObject_Vectorcall (
+    callable=callable@entry=<built-in method _settraceallthreads of module object at remote 0x20000259930>,
+    args=args@entry=0x7fffffffd708, nargsf=<optimized out>, kwnames=kwnames@entry=0x0) at Objects/call.c:327
+#7  0x000055555585575c in _PyEval_EvalFrameDefault (tstate=tstate@entry=0x555555d8a858 <_PyRuntime+361432>, frame=0x7ffff7fb0098,
+    frame@entry=0x7ffff7fb0020, throwflag=throwflag@entry=0) at Python/generated_cases.c.h:1434
+#8  0x0000555555888b6d in _PyEval_EvalFrame (throwflag=0, frame=0x7ffff7fb0020, tstate=0x555555d8a858 <_PyRuntime+361432>)
+    at ./Include/internal/pycore_ceval.h:119
 ```
 </p>
 </details>
@@ -2310,25 +2601,51 @@ _interpreters.exec(0, "1", {"\uFD7C\u5124\u7B91\u92E9\u1850\u39AA\u0DF2\uD82A\u2
 #### 47- [132386](https://github.com/python/cpython/issues/132386) - Segfault or failed assertion (`obj != NULL`) in `PyStackRef_FromPyObjectSteal`
 
 ```python
+class WeirdDict(dict): pass
 
+ns = {}
+exec("def __create_fn__():\n return a", WeirdDict({None: None}), ns)
+ns['__create_fn__']()
 ```
 
 - Issue Number: 132386
 - Date filed: 11/04/2025
 - Date closed: 11/04/2025
 - Kind: Segmentation Fault
-- Configuration:
-- Python versions: 
-- Status: closed
+- Configuration: Release
+- Python versions: 3.14
+- Status: Closed
 - PRs (author):
-  - []() ()
+  - [132412](https://github.com/python/cpython/pull/132412) (@tomasr8)
 
 <details><summary>Backtrace/error message:</summary>
 <p>
 
 
 ```shell
-
+Program received signal SIGSEGV, Segmentation fault.
+_PyEval_LoadGlobalStackRef (globals=<optimized out>, builtins=<optimized out>, name=0x555555aeace0 <_PyRuntime+80128>, writeto=0x7ffff7fb00f8) at Python/ceval.c:3317
+3317            *writeto = PyStackRef_FromPyObjectSteal(res);
+(gdb) bt
+#0  _PyEval_LoadGlobalStackRef (globals=<optimized out>, builtins=<optimized out>,
+    name=0x555555aeace0 <_PyRuntime+80128>, writeto=0x7ffff7fb00f8) at Python/ceval.c:3317
+#1  0x00005555555e22f2 in _PyEval_EvalFrameDefault (tstate=0x555555b24178 <_PyRuntime+314776>,
+    frame=<optimized out>, throwflag=<optimized out>) at Python/generated_cases.c.h:9073
+#2  0x00005555557ab807 in _PyEval_EvalFrame (throwflag=0, frame=0x7ffff7fb0020,
+    tstate=0x555555b24178 <_PyRuntime+314776>) at ./Include/internal/pycore_ceval.h:119
+#3  _PyEval_Vector (args=0x0, argcount=0, kwnames=0x0, locals=0x7ffff7a4d240, func=0x7ffff7a50f60,
+    tstate=0x555555b24178 <_PyRuntime+314776>) at Python/ceval.c:1913
+#4  PyEval_EvalCode (co=co@entry=0x7ffff7bf5920, globals=globals@entry=0x7ffff7a4d240,
+    locals=locals@entry=0x7ffff7a4d240) at Python/ceval.c:829
+#5  0x000055555581f3bc in run_eval_code_obj (locals=0x7ffff7a4d240, globals=0x7ffff7a4d240,
+    co=0x7ffff7bf5920, tstate=0x555555b24178 <_PyRuntime+314776>) at Python/pythonrun.c:1365
+#6  run_mod (mod=<optimized out>, filename=filename@entry=0x7ffff7a066b0,
+    globals=globals@entry=0x7ffff7a4d240, locals=locals@entry=0x7ffff7a4d240,
+    flags=flags@entry=0x7fffffffdc18, arena=arena@entry=0x7ffff7b5e210, interactive_src=0x0,
+    generate_new_source=0) at Python/pythonrun.c:1436
+#7  0x0000555555821456 in pyrun_file (flags=0x7fffffffdc18, closeit=1, locals=0x7ffff7a4d240,
+    globals=0x7ffff7a4d240, start=257, filename=0x7ffff7a066b0, fp=0x555555b97510)
+    at Python/pythonrun.c:1293
 ```
 </p>
 </details>
@@ -2339,25 +2656,44 @@ _interpreters.exec(0, "1", {"\uFD7C\u5124\u7B91\u92E9\u1850\u39AA\u0DF2\uD82A\u2
 #### 48- [132461](https://github.com/python/cpython/issues/132461) - Abort from calling `OrderedDict.setdefault` with an invalid value
 
 ```python
+from abc import ABCMeta
+from random import randint
 
+large_num = 2**64
+class WeirdBase(ABCMeta):
+  def __hash__(self):
+    return randint(0, large_num)
+
+
+class weird_bytes(bytes, metaclass=WeirdBase):
+    pass
+
+from collections import OrderedDict
+
+obj = OrderedDict()
+
+for x in range(100):
+    obj.setdefault(weird_bytes, None)
 ```
 
 - Issue Number: 132461
 - Date filed: 13/04/2025
-- Date closed: 
+- Date closed:
 - Kind: Abort
-- Configuration:
-- Python versions: 
-- Status: open
+- Configuration: Debug
+- Python versions: 3.14
+- Status: Open
 - PRs (author):
-  - []() ()
+  - [132462](https://github.com/python/cpython/pull/132462) (@dura0ok)
 
 <details><summary>Backtrace/error message:</summary>
 <p>
 
 
 ```shell
+python: Objects/odictobject.c:1036: OrderedDict_setdefault_impl: Assertion `_odict_find_node(self, key) == NULL' failed.
 
+Program received signal SIGABRT, Aborted.
 ```
 </p>
 </details>
@@ -2368,25 +2704,105 @@ _interpreters.exec(0, "1", {"\uFD7C\u5124\u7B91\u92E9\u1850\u39AA\u0DF2\uD82A\u2
 #### 49- [132551](https://github.com/python/cpython/issues/132551) - Segfault/abort from calling `BytesIO` `unshare_buffer` in threads on a free-threaded build
 
 ```python
+from io import BytesIO
+from threading import Thread
+from time import sleep
 
+
+def call_getbuffer(obj: BytesIO) -> None:
+    obj.getvalue()
+    obj.getbuffer()
+    obj.getbuffer()
+    sleep(0.001)
+    obj.getbuffer()
+    obj.getbuffer()
+    obj.getbuffer()
+    sleep(0.006)
+    obj.getbuffer()
+    obj.getvalue()
+
+for x in range(100):
+    alive = []
+
+    obj = BytesIO()
+    for x in range(50):
+        alive.append(Thread(target=call_getbuffer, args=(obj,)))
+        alive.append(Thread(target=call_getbuffer, args=(obj,)))
+        alive.append(Thread(target=call_getbuffer, args=(obj,)))
+
+    alive.append(Thread(target=obj.__exit__, args=(None, None, None)))
+    alive.append(Thread(target=call_getbuffer, args=(obj,)))
+    alive.append(Thread(target=call_getbuffer, args=(obj,)))
+    alive.append(Thread(target=call_getbuffer, args=(obj,)))
+
+    for t in alive:
+        t.start()
+    for t in alive:
+        t.join()
 ```
 
 - Issue Number: 132551
 - Date filed: 15/04/2025
 - Date closed: 08/05/2025
 - Kind: Segmentation Fault
-- Configuration:
-- Python versions: 3.13;3.14
-- Status: closed
+- Configuration: Free-Threaded
+- Python versions: 3.13, 3.14
+- Status: Closed-Completed
 - PRs (author):
-  - []() ()
+  - [132616](https://github.com/python/cpython/pull/132616) (@tom-pytel)
 
 <details><summary>Backtrace/error message:</summary>
 <p>
 
 
 ```shell
+Thread 613 "Thread-612 (cal" received signal SIGSEGV, Segmentation fault.
 
+bytesiobuf_getbuffer (op=0x48ec60f00f0, view=0x48ec61101b0, flags=284) at ./Modules/_io/bytesio.c:1090
+1090        if (b->exports == 0 && SHARED_BUF(b)) {
+
+#0  bytesiobuf_getbuffer (op=0x48ec60f00f0, view=0x48ec61101b0, flags=284) at ./Modules/_io/bytesio.c:1090
+#1  0x00005555556c6519 in _PyManagedBuffer_FromObject (flags=284, base=0x48ec60f00f0)
+    at Objects/memoryobject.c:97
+#2  PyMemoryView_FromObjectAndFlags (flags=284, v=0x48ec60f00f0) at Objects/memoryobject.c:813
+#3  PyMemoryView_FromObject (v=v@entry=0x48ec60f00f0) at Objects/memoryobject.c:856
+#4  0x00005555558b98bf in _io_BytesIO_getbuffer_impl (cls=<optimized out>, self=0x48ebe9f8020)
+    at ./Modules/_io/bytesio.c:337
+#5  _io_BytesIO_getbuffer (self=0x48ebe9f8020, cls=<optimized out>, args=<optimized out>,
+    nargs=<optimized out>, kwnames=<optimized out>) at ./Modules/_io/clinic/bytesio.c.h:103
+#6  0x0000555555652cb7 in _PyObject_VectorcallTstate (kwnames=<optimized out>, nargsf=<optimized out>,
+    args=<optimized out>, callable=0x48ebe3e6ae0, tstate=0x555555c0bb70)
+    at ./Include/internal/pycore_call.h:169
+#7  PyObject_Vectorcall (callable=0x48ebe3e6ae0, args=<optimized out>, nargsf=<optimized out>,
+    kwnames=<optimized out>) at Objects/call.c:327
+#8  0x00005555555e9486 in _PyEval_EvalFrameDefault (tstate=<optimized out>, frame=<optimized out>,
+    throwflag=<optimized out>) at Python/generated_cases.c.h:3850
+#9  0x00005555557d01de in _PyEval_EvalFrame (throwflag=0, frame=<optimized out>, tstate=0x555555c0bb70)
+    at ./Include/internal/pycore_ceval.h:119
+#10 _PyEval_Vector (tstate=0x555555c0bb70, func=0x48ebe713f00, locals=0x0, args=0x7fff85791958,
+    argcount=<optimized out>, kwnames=<optimized out>) at Python/ceval.c:1913
+#11 0x0000555555656b23 in _PyObject_VectorcallTstate (kwnames=0x0, nargsf=1, args=0x7fff85791958,
+    callable=0x48ebe713f00, tstate=0x555555c0bb70) at ./Include/internal/pycore_call.h:169
+#12 method_vectorcall (method=<optimized out>, args=0x7fff85791c68, nargsf=<optimized out>, kwnames=0x0)
+    at Objects/classobject.c:72
+#13 0x00005555557eeac6 in _PyObject_VectorcallTstate (kwnames=0x0, nargsf=0, args=0x7fff85791c68,
+    callable=0x48ec60d0100, tstate=0x555555c0bb70) at ./Include/internal/pycore_call.h:169
+#14 context_run (self=0x48ebea12fc0, args=<optimized out>, nargs=<optimized out>, kwnames=<optimized out>)
+    at Python/context.c:728
+#15 0x00005555555ee959 in _PyEval_EvalFrameDefault (tstate=<optimized out>, frame=<optimized out>,
+    throwflag=<optimized out>) at Python/generated_cases.c.h:3521
+#16 0x00005555557d01de in _PyEval_EvalFrame (throwflag=0, frame=<optimized out>, tstate=0x555555c0bb70)
+    at ./Include/internal/pycore_ceval.h:119
+#17 _PyEval_Vector (tstate=0x555555c0bb70, func=0x48ebe713fc0, locals=0x0, args=0x7fff85791da8,
+    argcount=<optimized out>, kwnames=<optimized out>) at Python/ceval.c:1913
+#18 0x0000555555656b23 in _PyObject_VectorcallTstate (kwnames=0x0, nargsf=1, args=0x7fff85791da8,
+    callable=0x48ebe713fc0, tstate=0x555555c0bb70) at ./Include/internal/pycore_call.h:169
+#19 method_vectorcall (method=<optimized out>, args=0x555555b41890 <_PyRuntime+114512>,
+    nargsf=<optimized out>, kwnames=0x0) at Objects/classobject.c:72
+#20 0x00005555558f0221 in thread_run (boot_raw=0x555555c07040) at ./Modules/_threadmodule.c:353
+#21 0x000055555586c03b in pythread_wrapper (arg=<optimized out>) at Python/thread_pthread.h:242
+#22 0x00007ffff7d32ac3 in start_thread (arg=<optimized out>) at ./nptl/pthread_create.c:442
+#23 0x00007ffff7dc4850 in clone3 () at ../sysdeps/unix/sysv/linux/x86_64/clone3.S:81
 ```
 </p>
 </details>
@@ -2397,25 +2813,86 @@ _interpreters.exec(0, "1", {"\uFD7C\u5124\u7B91\u92E9\u1850\u39AA\u0DF2\uD82A\u2
 #### 50- [132707](https://github.com/python/cpython/issues/132707) - Segfault in free-threaded build from interaction of nested list/tuple repr
 
 ```python
+import sys
 
+# Not sure what this weird_cls dance is doing, but it seems necessary somehow
+class weird_cls(int): pass
+weird_instances = {"weird_int_empty": weird_cls()}
+weird_classes = {"weird_int": weird_cls}
+weird_instances["weird_int_10**default_max_str_digits+1"] = weird_classes["weird_int"](10 ** (sys.int_info.default_max_str_digits + 1))
+
+import gc
+from threading import Thread
+from time import sleep
+
+def stress_list():
+    sleep(0.1)
+    target.append(None)
+    repr(gc.get_objects())
+    target.append(None)
+
+for x in range(40):
+    target = []
+    alive = []
+    for x in range(15):
+        alive.append(Thread(target=stress_list, args=()))
+    for t in alive:
+        t.start()
+    gc.collect()
 ```
 
 - Issue Number: 132707
 - Date filed: 18/04/2025
 - Date closed: 18/04/2025
 - Kind: Segmentation Fault
-- Configuration:
-- Python versions: 
-- Status: closed
+- Configuration: Free-Threaded
+- Python versions: 3.14
+- Status: Closed-Not-Planned
 - PRs (author):
-  - []() ()
+  - None
 
 <details><summary>Backtrace/error message:</summary>
 <p>
 
 
 ```shell
+Thread 82 "Thread-81 (stre" received signal SIGSEGV, Segmentation fault.
+[Switching to Thread 0x7fff8c0ac640 (LWP 3996396)]
+0x0000555555cc0686 in _Py_TYPE (ob=0x0) at ./Include/object.h:270
+270             return ob->ob_type;
 
+#0  0x0000555555cc0686 in _Py_TYPE (ob=0x0) at ./Include/object.h:270
+#1  PyUnicodeWriter_WriteRepr (writer=writer@entry=0x7fff4a090850, obj=0x0)
+    at Objects/unicodeobject.c:13947
+#2  0x0000555555bfaebb in tuple_repr (self=(<str_ascii_iterator at remote 0x7fff440f0a60>, 0x0))
+    at Objects/tupleobject.c:271
+#3  0x0000555555b8949a in PyObject_Repr (v=(<str_ascii_iterator at remote 0x7fff440f0a60>, 0x0))
+    at Objects/object.c:776
+#4  0x0000555555cc06a1 in PyUnicodeWriter_WriteRepr (writer=writer@entry=0x7fff4a0907f0, obj=0x0)
+    at Objects/unicodeobject.c:13951
+#5  0x0000555555aeba03 in list_repr_impl (v=0x7fff4a0c1d50) at Objects/listobject.c:606
+#6  list_repr (
+    self=[<Name(id='self', ctx=<Load at remote 0x7fffb63421e0>, lineno=1, col_offset=18, end_lineno=1, end_col_offset=22) at remote 0x7fff44450620>, <Attribute(value=<...>, attr='run', ctx=<...>, lineno=1, col_offset=18, end_lineno=1, end_col_offset=26) at remote 0x7fff444505c0>, <Name(id='self', ctx=<...>, lineno=1, col_offset=0, end_lineno=1, end_col_offset=4) at remote 0x7fff44450560>, <Attribute(value=<...>, attr='_context', ctx=<...>, lineno=1, col_offset=0, end_lineno=1, end_col_offset=13) at remote 0x7fff44450500>, <Attribute(value=<...>, attr='run', ctx=<...>, lineno=1, col_offset=0, end_lineno=1, end_col_offset=17) at remote 0x7fff444504a0>, <Call(func=<...>, args=[<...>], keywords=[], lineno=1, col_offset=0, end_lineno=1, end_col_offset=27) at remote 0x7fff44450440>, <Expr(value=<...>, lineno=1, col_offset=0, end_lineno=1, end_col_offset=27) at remote 0x7fff444503e0>, <Module(body=[<...>], type_ignores=[]) at remote 0x7fff44450380>, <suppress(_exceptions=(<type at remote 0x555556550d00>, <type at remote 0x55...(truncated)) at Objects/listobject.c:633
+#7  0x0000555555b8949a in PyObject_Repr (
+    v=[<Name(id='self', ctx=<Load at remote 0x7fffb63421e0>, lineno=1, col_offset=18, end_lineno=1, end_col_offset=22) at remote 0x7fff44450620>, <Attribute(value=<...>, attr='run', ctx=<...>, lineno=1, col_offset=18, end_lineno=1, end_col_offset=26) at remote 0x7fff444505c0>, <Name(id='self', ctx=<...>, lineno=1, col_offset=0, end_lineno=1, end_col_offset=4) at remote 0x7fff44450560>, <Attribute(value=<...>, attr='_context', ctx=<...>, lineno=1, col_offset=0, end_lineno=1, end_col_offset=13) at remote 0x7fff44450500>, <Attribute(valu--Type <RET> for more, q to quit, c to continue without paging--c
+e=<...>, attr='run', ctx=<...>, lineno=1, col_offset=0, end_lineno=1, end_col_offset=17) at remote 0x7fff444504a0>, <Call(func=<...>, args=[<...>], keywords=[], lineno=1, col_offset=0, end_lineno=1, end_col_offset=27) at remote 0x7fff44450440>, <Expr(value=<...>, lineno=1, col_offset=0, end_lineno=1, end_col_offset=27) at remote 0x7fff444503e0>, <Module(body=[<...>], type_ignores=[]) at remote 0x7fff44450380>, <suppress(_exceptions=(<type at remote 0x555556550d00>, <type at remote 0x55...(truncated)) at Objects/object.c:776
+#8  0x0000555555e07abf in _PyEval_EvalFrameDefault (tstate=<optimized out>, frame=<optimized out>, throwflag=<optimized out>) at Python/generated_cases.c.h:2306
+#9  0x0000555555ddcf53 in _PyEval_EvalFrame (tstate=0x52900037a210, frame=0x5290003c5328, throwflag=0) at ./Include/internal/pycore_ceval.h:119
+#10 _PyEval_Vector (tstate=0x52900037a210, func=0x7fffb4a9a110, locals=0x0, args=<optimized out>, argcount=1, kwnames=0x0) at Python/ceval.c:1917
+#11 0x0000555555a4f42b in _PyObject_VectorcallTstate (tstate=0x52900037a210, callable=<function at remote 0x7fffb4a9a110>, args=0x0, nargsf=0, nargsf@entry=1, kwnames=kwnames@entry=0x0) at ./Include/internal/pycore_call.h:169
+#12 0x0000555555a4ccbf in method_vectorcall (method=<optimized out>, args=<optimized out>, nargsf=<optimized out>, kwnames=<optimized out>) at Objects/classobject.c:72
+#13 0x0000555555e8005b in _PyObject_VectorcallTstate (tstate=0x52900037a210, callable=<method at remote 0x7fff4a0c0790>, args=0x7fff8c0ab6d8, nargsf=0, kwnames=0x0) at ./Include/internal/pycore_call.h:169
+#14 context_run (self=<_contextvars.Context at remote 0x7fffb4675a70>, args=<optimized out>, nargs=<optimized out>, kwnames=0x0) at Python/context.c:728
+#15 0x0000555555e0a3e7 in _PyEval_EvalFrameDefault (tstate=<optimized out>, frame=<optimized out>, throwflag=<optimized out>) at Python/generated_cases.c.h:3551
+#16 0x0000555555ddcf53 in _PyEval_EvalFrame (tstate=0x52900037a210, frame=0x5290003c5220, throwflag=0) at ./Include/internal/pycore_ceval.h:119
+#17 _PyEval_Vector (tstate=0x52900037a210, func=0x7fffb4a9a1f0, locals=0x0, args=<optimized out>, argcount=1, kwnames=0x0) at Python/ceval.c:1917
+#18 0x0000555555a4f42b in _PyObject_VectorcallTstate (tstate=0x52900037a210, callable=<function at remote 0x7fffb4a9a1f0>, args=0x0, nargsf=0, nargsf@entry=1, kwnames=kwnames@entry=0x0) at ./Include/internal/pycore_call.h:169
+#19 0x0000555555a4ccbf in method_vectorcall (method=<optimized out>, args=<optimized out>, nargsf=<optimized out>, kwnames=<optimized out>) at Objects/classobject.c:72
+#20 0x000055555612e2ee in thread_run (boot_raw=boot_raw@entry=0x507000006770) at ./Modules/_threadmodule.c:353
+#21 0x0000555555fe7a8d in pythread_wrapper (arg=<optimized out>) at Python/thread_pthread.h:242
+#22 0x000055555585cd47 in asan_thread_start(void*) ()
+#23 0x00007ffff7cfeac3 in start_thread (arg=<optimized out>) at ./nptl/pthread_create.c:442
+#24 0x00007ffff7d90850 in clone3 () at ../sysdeps/unix/sysv/linux/x86_64/clone3.S:81
 ```
 </p>
 </details>
@@ -2426,25 +2903,103 @@ _interpreters.exec(0, "1", {"\uFD7C\u5124\u7B91\u92E9\u1850\u39AA\u0DF2\uD82A\u2
 #### 51- [132713](https://github.com/python/cpython/issues/132713) - Segfault in `union_repr` from `list_repr_impl` in free-threaded build
 
 ```python
+import abc
+import builtins
+import collections.abc
+import itertools
+import types
+import typing
+from functools import reduce
+from operator import or_
 
+abc_types = [cls for cls in abc.__dict__.values() if isinstance(cls, type)]
+builtins_types = [cls for cls in builtins.__dict__.values() if isinstance(cls, type)]
+collections_abc_types = [cls for cls in collections.abc.__dict__.values() if isinstance(cls, type)]
+collections_types = [cls for cls in collections.__dict__.values() if isinstance(cls, type)]
+itertools_types = [cls for cls in itertools.__dict__.values() if isinstance(cls, type)]
+types_types = [cls for cls in types.__dict__.values() if isinstance(cls, type)]
+typing_types = [cls for cls in typing.__dict__.values() if isinstance(cls, type)]
+
+all_types = (abc_types + builtins_types + collections_abc_types + collections_types + itertools_types
+             + types_types + typing_types)
+all_types = [t for t in all_types if not issubclass(t, BaseException)]
+BIG_UNION = reduce(or_, all_types, int)
+
+from threading import Thread
+from time import sleep
+
+for x in range(100):
+    union_list = [int | BIG_UNION] * 17
+
+    def stress_list():
+        for x in range(3):
+            try:
+                union_list.pop()
+            except Exception:
+                pass
+            repr(union_list)
+            sleep(0.006)
+        union_list.__getitem__(None, None)
+
+    alive = []
+    for x in range(25):
+        alive.append(Thread(target=stress_list, args=()))
+
+    for t in alive:
+        t.start()
 ```
 
 - Issue Number: 132713
 - Date filed: 19/04/2025
 - Date closed: 23/04/2025
 - Kind: Segmentation Fault
-- Configuration:
-- Python versions: 3.13;3.14
-- Status: closed
+- Configuration: Free-Threaded
+- Python versions: 3.13, 3.14
+- Status: Closed-Completed
 - PRs (author):
-  - []() ()
+  - [132801](https://github.com/python/cpython/pull/132801) (@vstinner)
+  - [132802](https://github.com/python/cpython/pull/132802) (@vstinner)
+  - [132809](https://github.com/python/cpython/pull/132809) (@vstinner)
+  - [132811](https://github.com/python/cpython/pull/132811) (@vstinner)
+  - [132839](https://github.com/python/cpython/pull/132839) (@vstinner)
+  - [132899](https://github.com/python/cpython/pull/132899) (@vstinner)
 
 <details><summary>Backtrace/error message:</summary>
 <p>
 
 
 ```shell
+Thread 60 "Thread-59 (stre" received signal SIGSEGV, Segmentation fault.
 
+0x0000555555d21751 in _Py_TYPE (ob=<unknown at remote 0xdddddddddddddddd>) at ./Include/object.h:270
+270             return ob->ob_type;
+
+#0  0x0000555555d21751 in _Py_TYPE (ob=<unknown at remote 0xdddddddddddddddd>) at ./Include/object.h:270
+#1  union_repr (self=<optimized out>) at Objects/unionobject.c:296
+#2  0x0000555555b8949a in PyObject_Repr (v=<unknown at remote 0x7fffb48464b0>) at Objects/object.c:776
+#3  0x0000555555cc06a1 in PyUnicodeWriter_WriteRepr (writer=writer@entry=0x7fff660907f0,
+    obj=<unknown at remote 0x207c>) at Objects/unicodeobject.c:13951
+#4  0x0000555555aeba03 in list_repr_impl (v=0x7fffb4a8dc90) at Objects/listobject.c:606
+#5  list_repr (self=[]) at Objects/listobject.c:633
+#6  0x0000555555b8949a in PyObject_Repr (v=[]) at Objects/object.c:776
+#7  0x0000555555e07abf in _PyEval_EvalFrameDefault (tstate=<optimized out>, frame=<optimized out>,
+    throwflag=<optimized out>) at Python/generated_cases.c.h:2306
+#8  0x0000555555ddcf53 in _PyEval_EvalFrame (tstate=0x529000325210, frame=0x529000384328, throwflag=0)
+    at ./Include/internal/pycore_ceval.h:119
+#9  _PyEval_Vector (tstate=0x529000325210, func=0x7fffb4828dd0, locals=0x0, args=<optimized out>,
+    argcount=1, kwnames=0x0) at Python/ceval.c:1917
+#10 0x0000555555a4f42b in _PyObject_VectorcallTstate (tstate=0x529000325210,
+    callable=<function at remote 0x7fffb4828dd0>, args=0x207c, nargsf=3, nargsf@entry=1,
+    kwnames=<unknown at remote 0x7fff66090450>, kwnames@entry=0x0) at ./Include/internal/pycore_call.h:169
+#11 0x0000555555a4ccbf in method_vectorcall (method=<optimized out>, args=<optimized out>,
+    nargsf=<optimized out>, kwnames=<optimized out>) at Objects/classobject.c:72
+#12 0x0000555555e8005b in _PyObject_VectorcallTstate (tstate=0x529000325210,
+    callable=<method at remote 0x7fff660c0eb0>, args=0x7fff93df06d8, nargsf=0, kwnames=0x0)
+    at ./Include/internal/pycore_call.h:169
+#13 context_run (self=<_contextvars.Context at remote 0x7fffb4a8ebf0>, args=<optimized out>,
+    nargs=<optimized out>, kwnames=0x0) at Python/context.c:728
+#14 0x0000555555e0a3e7 in _PyEval_EvalFrameDefault (tstate=<optimized out>, frame=<optimized out>,
+    throwflag=<optimized out>) at Python/generated_cases.c.h:3551
 ```
 </p>
 </details>
@@ -2455,25 +3010,80 @@ _interpreters.exec(0, "1", {"\uFD7C\u5124\u7B91\u92E9\u1850\u39AA\u0DF2\uD82A\u2
 #### 52- [133441](https://github.com/python/cpython/issues/133441) - 3.13: Abort from failed assertion in `_PyEval_EvalFrameDefault`
 
 ```python
+import copy
 
+class Node:
+    def __init__(self):
+        self._parents = {}
+
+    def __getstate__(self):
+        return {'_parents': {}}
+
+    def __setstate__(self, data_dict):
+        self.__dict__ = data_dict
+        self._parents = {}
+
+    def call_copy(self):
+        copy.copy(super())
+
+class D(dict): pass
+
+obj = Node()
+obj.call_copy()
+obj.call_copy()
+obj.__setstate__(D())
 ```
 
 - Issue Number: 133441
 - Date filed: 05/05/2025
-- Date closed: 
+- Date closed:
 - Kind: Abort
-- Configuration:
+- Configuration: Debug
 - Python versions: 3.13
-- Status: open
+- Status: Open
 - PRs (author):
-  - []() ()
+  - [133446](https://github.com/python/cpython/pull/133446) (@vstinner)
 
 <details><summary>Backtrace/error message:</summary>
 <p>
 
 
 ```shell
+python: Python/generated_cases.c.h:5594: _PyEval_EvalFrameDefault: Assertion `PyDict_CheckExact((PyObject *)dict)' failed.
 
+#0  __pthread_kill_implementation (threadid=<optimized out>, signo=6, no_tid=0)
+    at ./nptl/pthread_kill.c:44
+#1  __pthread_kill_internal (threadid=<optimized out>, signo=6) at ./nptl/pthread_kill.c:78
+#2  __GI___pthread_kill (threadid=<optimized out>, signo=signo@entry=6)
+    at ./nptl/pthread_kill.c:89
+#3  0x00007ffff7c4519e in __GI_raise (sig=sig@entry=6) at ../sysdeps/posix/raise.c:26
+#4  0x00007ffff7c28902 in __GI_abort () at ./stdlib/abort.c:79
+#5  0x00007ffff7c2881e in __assert_fail_base (
+    fmt=0x7ffff7dde2a0 "%s%s%s:%u: %s%sAssertion `%s' failed.\n%n",
+    assertion=assertion@entry=0x55555590a6c0 "PyDict_CheckExact((PyObject *)dict)",
+    file=file@entry=0x5555558cbb1f "Python/generated_cases.c.h", line=line@entry=5594,
+    function=function@entry=0x555555964500 <__PRETTY_FUNCTION__.72> "_PyEval_EvalFrameDefault")
+    at ./assert/assert.c:96
+#6  0x00007ffff7c3b7c7 in __assert_fail (
+    assertion=assertion@entry=0x55555590a6c0 "PyDict_CheckExact((PyObject *)dict)",
+    file=file@entry=0x5555558cbb1f "Python/generated_cases.c.h", line=line@entry=5594,
+    function=function@entry=0x555555964500 <__PRETTY_FUNCTION__.72> "_PyEval_EvalFrameDefault")
+    at ./assert/assert.c:105
+#7  0x00005555557b1e76 in _PyEval_EvalFrameDefault (tstate=0x555555b604c0 <_PyRuntime+299040>,
+    frame=0x7ffff7fb0090, throwflag=0) at Python/generated_cases.c.h:5594
+#8  0x00005555557b4b05 in _PyEval_EvalFrame (
+    tstate=tstate@entry=0x555555b604c0 <_PyRuntime+299040>, frame=<optimized out>,
+    throwflag=throwflag@entry=0) at ./Include/internal/pycore_ceval.h:119
+#9  0x00005555557b4c34 in _PyEval_Vector (tstate=tstate@entry=0x555555b604c0 <_PyRuntime+299040>,
+    func=func@entry=0x7ffff74674d0, locals=locals@entry=0x7ffff7463d70, args=args@entry=0x0,
+    argcount=argcount@entry=0, kwnames=kwnames@entry=0x0) at Python/ceval.c:1816
+#10 0x00005555557b4cf7 in PyEval_EvalCode (co=co@entry=0x7ffff7566d40,
+    globals=globals@entry=0x7ffff7463d70, locals=locals@entry=0x7ffff7463d70)
+    at Python/ceval.c:604
+#11 0x00005555558225c5 in run_eval_code_obj (
+    tstate=tstate@entry=0x555555b604c0 <_PyRuntime+299040>, co=co@entry=0x7ffff7566d40,
+    globals=globals@entry=0x7ffff7463d70, locals=locals@entry=0x7ffff7463d70)
+    at Python/pythonrun.c:1381
 ```
 </p>
 </details>

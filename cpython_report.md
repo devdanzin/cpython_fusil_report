@@ -135,6 +135,60 @@ fuzzing with this tool had happened for a decade. This corresponds to the
 
 _Analyze dates of new features/configurations and correlate with number of issues found._
 
+| Issue Number |       Status       | Date filed | Date closed | Days open |        Kind        |   Configuration  | Python versions          | Component | Affected files |                   PRs                          | Number of PRs |                       PR authors                       |
+|--------------|--------------------|------------|-------------|-----------|--------------------|------------------|--------------------------|-----------|----------------|------------------------------------------------|---------------|--------------------------------------------------------|
+|    126219    | Open               | 30/10/2024 |             |           | Segmentation Fault | Release          | 3.12, 3.13, 3.14         |           |                |                                                |       0       |                                                        |
+|    126220    | Closed-Completed   | 31/10/2024 | 06/11/2024  |           | Segmentation Fault | Release          | 3.12, 3.13, 3.14         |           |                | 126233, 126271, 126310, 126311, 126402         |       5       | @sobolevn, @erlend-aasland                             |
+|    126221    | Closed-Not-Planned | 31/10/2024 | 31/10/2024  |           | Segmentation Fault | JIT              | 3.13, 3.14               |           |                | 126507                                         |       1       | @markshannon                                           |
+|    126223    | Closed-Completed   | 31/10/2024 | 31/10/2024  |           | Abort              | Debug            | 3.13, 3.14               |           |                | 126224, 126242                                 |       2       | @ZeroIntensity, @sobolevn, @picnixz                    |
+|    126312    | Closed-Completed   | 01/11/2024 | 15/11/2024  |           | Abort              | Free-Threaded    | 3.13, 3.14               |           |                | 126338, 126866                                 |       2       | @ZeroIntensity, @skirpichev                            |
+|    126313    | Closed-Completed   | 01/11/2024 | 04/11/2024  |           | Abort              | Debug            | 3.13, 3.14               |           |                | 126351, 126493                                 |       2       | @picnixz                                               |
+|    126314    | Closed-Completed   | 01/11/2024 | 14/03/2025  |           | Segmentation Fault | Free-Threaded    | 3.13, 3.14               |           |                |                                                |       0       |                                                        |
+|    126315    | Open               | 01/11/2024 |             |           | Abort              | Free-Threaded    | 3.13, 3.14               |           |                |                                                |       0       |                                                        |
+|    126316    | Closed-Completed   | 01/11/2024 | 21/11/2024  |           | Segmentation Fault | Free-Threaded    | 3.13, 3.14               |           |                | 126488, 126504, 126506, 127055, 127104         |       5       | @vstinner                                              |
+|    126341    | Closed-Completed   | 03/11/2024 | 13/11/2024  |           | Abort              | Release          | 3.12, 3.13, 3.14         |           |                | 126759, 126778, 126779                         |       3       | @ritvikpasham, @ZeroIntensity, @vstinner, @sobolevn    |
+|    126366    | Closed-Completed   | 03/11/2024 | 18/04/2025  |           | Abort              | Free-Threaded    | 3.13, 3.14               |           |                | 126369, 126371, 132693                         |       3       | @ZeroIntensity, @Fidget-Spinner, @kumaraditya303       |
+|    126455    | Closed-Completed   | 05/11/2024 | 06/11/2024  |           | Segmentation Fault | Release          | 3.12, 3.13, 3.14         |           |                | 126481, 126486, 126487                         |       3       | @vstinner                                              |
+|    126456    | Closed-Completed   | 05/11/2024 | 13/11/2024  |           | Segmentation Fault | Release          | 3.13, 3.14               |           |                | 126472, 126790                                 |       2       | @vstinner                                              |
+|    126461    | Closed-Completed   | 05/11/2024 | 06/11/2024  |           | Abort              | Debug            | 3.12, 3.13, 3.14         |           |                | 126485, 126495, 126496                         |       3       | @vstinner                                              |
+|    126594    | Closed-Completed   | 08/11/2024 | 24/11/2024  |           | Abort              | Debug            | 3.12, 3.13, 3.14         |           |                | 126754, 127004, 127005                         |       3       | @vstinner, @JelleZijlstra                              |
+|    126595    | Closed-Completed   | 08/11/2024 | 12/11/2024  |           | Abort              | Debug            | 3.12, 3.13, 3.14         |           |                | 126617, 126739, 126740                         |       3       | @picnixz                                               |
+|    126644    | Closed-Not-Planned | 10/11/2024 | 11/01/2025  |           | Abort              | Free-Threaded    | 3.13, 3.14               |           |                | 126696                                         |       1       | @ZeroIntensity                                         |
+|    126654    | Closed-Completed   | 10/11/2024 | 11/11/2024  |           | Segmentation Fault | Release          | 3.13, 3.14               |           |                | 126678, 126681                                 |       2       | @sobolevn                                              |
+|    126876    | Closed-Completed   | 15/11/2024 | 14/12/2024  |           | Abort              | Debug            | 3.12, 3.13, 3.14         |           |                | 126968, 127002, 127003, 127517                 |       4       | @vstinner                                              |
+|    126881    | Closed-Completed   | 15/11/2024 | 29/11/2024  |           | Segmentation Fault | Release          | 3.12, 3.13, 3.14         |           |                | 126901, 126904, 127395                         |       3       | @picnixz, @kumaraditya303                              |
+|    126884    | Open               | 15/11/2024 |             |           | Segmentation Fault | Free-Threaded    | 3.13, 3.14               |           |                |                                                |       0       |                                                        |
+|    126895    | Closed-Completed   | 16/11/2024 | 17/03/2025  |           | Segmentation Fault | Free-Threaded    | 3.13, 3.14               |           |                | 131208                                         |       1       | @tom-pytel                                             |
+|    126907    | Closed-Completed   | 16/11/2024 | 16/12/2024  |           | Segmentation Fault | Free-Threaded    | 3.13, 3.14               |           |                | 126908, 127935                                 |       2       | @ZeroIntensity                                         |
+|    127085    | Closed-Completed   | 21/11/2024 | 16/12/2024  |           | Abort              | Free-Threaded    | 3.13, 3.14               |           |                | 127412, 128019                                 |       2       | @LindaSummer, @freakboy3742                            |
+|    127165    | Closed-Completed   | 22/11/2024 | 01/12/2024  |           | Segmentation Fault | Release          | 3.13, 3.14               |           |                | 127199, 127463                                 |       2       | @ZeroIntensity                                         |
+|    127182    | Closed-Completed   | 23/11/2024 | 25/11/2024  |           | Abort              | Debug            | 3.13, 3.14               |           |                | 127219, 127262, 127263                         |       3       | @sobolevn, @vstinner                                   |
+|    127190    | Closed-Completed   | 23/11/2024 | 28/11/2024  |           | Segmentation Fault | Release          | 3.13, 3.14               |           |                | 127366, 127367, 127368                         |       3       | @vstinner                                              |
+|    127192    | Closed-Not-Planned | 23/11/2024 | 23/11/2024  |           | Segmentation Fault | Free-Threaded    | 3.13, 3.14               |           |                |                                                |       0       |                                                        |
+|    127196    | Closed-Completed   | 23/11/2024 | 09/01/2025  |           | Segmentation Fault | Release          | 3.13, 3.14               |           |                | 127220, 128689                                 |       2       | @sobolevn                                              |
+|    127208    | Closed-Completed   | 24/11/2024 | 29/11/2024  |           | Abort              | Debug            | 3.12, 3.13, 3.14         |           |                | 127400, 127418, 127419                         |       3       | @vstinner                                              |
+|    127234    | Open               | 24/11/2024 |             |           | Abort              | Debug            | 3.13, 3.14               |           |                |                                                |       0       |                                                        |
+|    127235    | Open               | 24/11/2024 |             |           | Abort              | Free-Threaded    | 3.14                     |           |                |                                                |       0       |                                                        |
+|    127316    | Closed-Completed   | 27/11/2024 | 29/11/2024  |           | Abort              | Free-Threaded    | 3.13, 3.14               |           |                | 127399, 127422                                 |       2       | @kumaraditya303                                        |
+|    127603    | Closed-Completed   | 04/12/2024 | 11/12/2024  |           | Abort              | Debug            | 3.12                     |           |                | 127605                                         |       1       | @markshannon                                           |
+|    127836    | Closed-Not-Planned | 11/12/2024 | 23/02/2025  |           | Abort              | Debug            | 3.12                     |           |                |                                                |       0       |                                                        |
+|    127870    | Closed-Completed   | 12/12/2024 | 13/12/2024  |           | Segmentation Fault | Release          | 3.12, 3.13, 3.14         |           |                | 127872, 127917, 127918                         |       3       | @vstinner                                              |
+|    129573    | Open               | 02/02/2025 |             |           | Abort              | Debug            | 3.12, 3.13, 3.14         |           |                | 129574, 130997                                 |       2       | @devdanzin                                             |
+|    129766    | Closed-Completed   | 07/02/2025 | 07/02/2025  |           | Abort              | Debug            | 3.14                     |           |                | 129771                                         |       1       | @sobolevn                                              |
+|    131580    | Closed-Completed   | 22/03/2025 | 25/03/2025  |           | Segmentation Fault | Free-Threaded    | 3.14                     |           |                |                                                |       0       |                                                        |
+|    131998    | Closed-Completed   | 02/04/2025 | 08/04/2025  |           | Segmentation Fault | Release          | 3.13, 3.14               |           |                | 132000, 132262                                 |       2       | @ZeroIntensity, @sobolevn, @vstinner, @markshannon     |
+|    132002    | Closed-Completed   | 02/04/2025 | 02/04/2025  |           | Segmentation Fault | Release          | 3.12, 3.13, 3.14         |           |                | 132003, 132007, 132008                         |       3       | @sobolevn                                              |
+|    132011    | Closed-Completed   | 02/04/2025 | 06/04/2025  |           | Abort              | Debug            | 3.13, 3.14               |           |                | 132018, 132161                                 |       2       | @sobolevn                                              |
+|    132171    | Closed-Completed   | 06/04/2025 | 07/04/2025  |           | Abort              | Debug            | 3.13, 3.14               |           |                | 132173, 132219                                 |       2       | @sobolevn                                              |
+|    132176    | Closed-Completed   | 06/04/2025 | 15/04/2025  |           | Abort              | Debug            | 3.13, 3.14               |           |                | 132212, 132548                                 |       2       | @sobolevn                                              |
+|    132250    | Closed-Completed   | 08/04/2025 | 08/04/2025  |           | Abort              | Debug            | 3.13, 3.14               |           |                | 132251, 132281                                 |       2       | @gaogaotiantian                                        |
+|    132296    | Open               | 09/04/2025 |             |           | Segmentation Fault | Free-Threaded    | 3.14                     |           |                | 132298                                         |       1       | @ZeroIntensity                                         |
+|    132386    | Closed-Completed   | 11/04/2025 | 11/04/2025  |           | Segmentation Fault | Release          | 3.14                     |           |                | 132412                                         |       1       | @tomasr8                                               |
+|    132461    | Open               | 13/04/2025 |             |           | Abort              | Debug            | 3.14                     |           |                | 132462                                         |       1       | @dura0ok                                               |
+|    132551    | Closed-Completed   | 15/04/2025 | 08/05/2025  |           | Segmentation Fault | Free-Threaded    | 3.13, 3.14               |           |                | 132616                                         |       1       | @tom-pytel                                             |
+|    132707    | Closed-Not-Planned | 18/04/2025 | 18/04/2025  |           | Segmentation Fault | Free-Threaded    | 3.14                     |           |                |                                                |       0       |                                                        |
+|    132713    | Closed-Completed   | 19/04/2025 | 23/04/2025  |           | Segmentation Fault | Free-Threaded    | 3.13, 3.14               |           |                | 132801, 132802, 132809, 132811, 132839, 132899 |       6       | @vstinner                                              |
+|    133441    | Open               | 05/05/2025 |             |           | Abort              | Debug            | 3.13                     |           |                | 133446                                         |       1       | @vstinner                                              |
 _Table: Issue number x Kind, Configuration, Python version, Status, number of PRs_
 
 Each issue that resulted from the reported fuzzing effort is detailed
@@ -237,7 +291,9 @@ in some cases be more descriptive than the original titles.
 
 The "Python versions" field reports the tags used in CPython's issue
 tracker, which will under-represent older versions as those tags get
-removed or aren't added as versions leave the maintainance window.
+removed or aren't added as versions leave the maintainance window. To
+complement this field, versions are also collected from the PRs for an
+issue.
 
 The "PRs" field lists all PRs that link to the issue, regardless of
 status (open, merged, closed without merging etc.).
@@ -260,7 +316,7 @@ tkinter.Tk(screenName=None, baseName='', className='\U0010FFFF')
 - Kind: Segmentation Fault
 - Configuration: release
 - Python versions: 3.12, 3.13, 3.14, main
-- Status: open
+- Status: Open
 - PRs (author):
   - None yet
 
@@ -307,8 +363,9 @@ Profiler()._ccall_callback()
 
 - Issue Number: 126220
 - Date filled: 31/10/2024
+- Date closed: 06/11/2024
 - Kind: Segmentation Fault
-- Configuration: release
+- Configuration: Release
 - Python versions: 3.12, 3.13, 3.14, main
 - Status: Closed-Completed
 - PRs (author):
@@ -430,7 +487,7 @@ $ ./python -c "import _interpreters; _interpreters.create('\udc80')"
 - Date closed: 31/10/2024
 - Kind: Abort
 - Configuration: Debug
-- Python versions: 3.13;3.14
+- Python versions: 3.13, 3.14
 - Status: Closed-Completed
 - PRs (author):
   - [126224](https://github.com/python/cpython/pull/126224) (@ZeroIntensity)
@@ -695,7 +752,7 @@ for x in range(5000):
 - Issue Number: 126316
 - Date filed: 01/11/2024
 - Date closed: 21/11/2024
-- Kind: Segfault
+- Kind: Segmentation Fault
 - Configuration: Free-Threaded
 - Python versions: 3.13, 3.14
 - Status: Closed-Completed
@@ -863,7 +920,7 @@ s.shutdown()
 - Date closed: 06/11/2024
 - Kind: Segmentation Fault
 - Configuration: Release
-- Python versions: 3.12;, 3.13, 3.14
+- Python versions: 3.12, 3.13, 3.14
 - Status: Closed-Completed
 - PRs (author):
   - [126481](https://github.com/python/cpython/pull/126481) (@vstinner)
@@ -1901,10 +1958,10 @@ for x in range(200):
 - Date closed:
 - Kind: Abort
 - Configuration: Free-Threaded
-- Python versions:
-- Status: open
+- Python versions: 3.14
+- Status: Open
 - PRs (author):
-  - []() ()
+  - None yet
 
 <details><summary>Backtrace/error message:</summary>
 <p>
@@ -2614,7 +2671,7 @@ ns['__create_fn__']()
 - Kind: Segmentation Fault
 - Configuration: Release
 - Python versions: 3.14
-- Status: Closed
+- Status: Closed-Completed
 - PRs (author):
   - [132412](https://github.com/python/cpython/pull/132412) (@tomasr8)
 

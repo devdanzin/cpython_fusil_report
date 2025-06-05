@@ -154,8 +154,6 @@ Attempting to correlate these observed patterns in issue discovery with specific
 While other fusil modifications, such as experimental JIT fuzzing (December 2024) or the introduction of various CPython configurations to the fuzzing pool (which, according to issue data, largely occurred at the campaign's outset), did not show such distinct correlations with new issue spikes, the enhancements to input diversity and execution models appear to have had a more pronounced impact on discovery rates.
 
 
-
-
 | Issue Number |       Status       | Date filed | Date closed | Days open |        Kind        |   Configuration  | Python versions          | Component | Affected files |                   PRs                          | Number of PRs |                       PR authors                       |
 |--------------|--------------------|------------|-------------|-----------|--------------------|------------------|--------------------------|-----------|----------------|------------------------------------------------|---------------|--------------------------------------------------------|
 |    126219    | Open               | 30/10/2024 |             |           | Segmentation Fault | Release          | 3.12, 3.13, 3.14         |           |                |                                                |       0       |                                                        |
@@ -210,7 +208,6 @@ While other fusil modifications, such as experimental JIT fuzzing (December 2024
 |    132707    | Closed-Not-Planned | 18/04/2025 | 18/04/2025  |           | Segmentation Fault | Free-Threaded    | 3.14                     |           |                |                                                |       0       |                                                        |
 |    132713    | Closed-Completed   | 19/04/2025 | 23/04/2025  |           | Segmentation Fault | Free-Threaded    | 3.13, 3.14               |           |                | 132801, 132802, 132809, 132811, 132839, 132899 |       6       | @vstinner                                              |
 |    133441    | Open               | 05/05/2025 |             |           | Abort              | Debug            | 3.13                     |           |                | 133446                                         |       1       | @vstinner                                              |
-_Table: Issue number x Kind, Configuration, Python version, Status, number of PRs_
 
 Each issue that resulted from the reported fuzzing effort is detailed
 in the **Findings** section in the **Appendix**.
@@ -251,11 +248,30 @@ highlighted that the CPython developers attempt to fix all found issues,
 regardless of relevance, which is a marked difference from some other
 projects fuzzed with fusil.
 
-_Table: number of PRs (including backports) by author and status_
+| GitHub User     | Issues Involved |
+|-----------------|-----------------|
+| vstinner        | 14              |
+| sobolevn        | 12              |
+| ZeroIntensity   | 9               |
+| picnixz         | 4               |
+| markshannon     | 3               |
+| kumaraditya303  | 3               |
+| tom-pytel       | 2               |
+| erlend-aasland  | 1               |
+| skirpichev      | 1               |
+| ritvikpasham    | 1               |
+| Fidget-Spinner  | 1               |
+| JelleZijlstra   | 1               |
+| LindaSummer     | 1               |
+| freakboy3742    | 1               |
+| devdanzin       | 1               |
+| gaogaotiantian  | 1               |
+| tomasr8         | 1               |
+| dura0ok         | 1               |
 
-The developer with the most PRs (XX, YY%) for the issues found with fusil
-was Victor Stinner (@vstinner), followed by ... (X, Y%) and ... (Z, ZZ%).
-In total, X developers created PRs to fix these issues.
+
+A significant number of CPython core developers and contributors engaged with the issues identified by this fuzzing campaign. In total, 18 unique developers were recorded as authoring pull requests to address these findings. Many other Core Developers and contributors helped triage, discuss and fix the issues, but this data isn't recorded in the results. The developer involved in addressing the highest number of distinct issues was Victor Stinner (vstinner), who contributed to fixing 14 of the reported bugs. Nikita Sobolev (sobolevn) was the next most involved, with contributions to 12 different issues. This broad participation underscores the community's collaborative effort in maintaining and improving CPython's robustness.
+
 
 ## Impact
 

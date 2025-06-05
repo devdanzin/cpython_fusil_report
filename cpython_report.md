@@ -316,11 +316,28 @@ projects fuzzed with fusil.
 | dura0ok         | 1               |
 
 
-A significant number of CPython core developers and contributors engaged with the issues identified by this fuzzing campaign. In total, 18 unique developers were recorded as authoring pull requests to address these findings. Many other Core Developers and contributors helped triage, discuss and fix the issues, but this data isn't recorded in the results. The developer involved in addressing the highest number of distinct issues was Victor Stinner (vstinner), who contributed to fixing 14 of the reported bugs. Nikita Sobolev (sobolevn) was the next most involved, with contributions to 12 different issues. This broad participation underscores the community's collaborative effort in maintaining and improving CPython's robustness.
+A significant number of CPython core developers and contributors engaged
+with the issues identified by this fuzzing campaign. In total, 18 unique
+developers were recorded as authoring pull requests to address these
+findings. Many other Core Developers and contributors helped triage,
+discuss and fix the issues, but this data isn't recorded in the results.
+The developer involved in addressing the highest number of distinct issues
+was Victor Stinner (vstinner), who contributed to fixing 14 of the reported
+bugs. Nikita Sobolev (sobolevn) was the next most involved, with
+contributions to 12 different issues. This broad participation underscores
+the community's collaborative effort in improving CPython's robustness.
 
-The 52 reported issues spurred considerable development activity, resulting in a total of 98 distinct pull requests (PRs) aimed at addressing these defects. This corrective effort involved 18 unique developers who were listed as authors on these PRs.
+The 52 reported issues resulted in considerable development activity and a
+total of 98 distinct pull requests (PRs) aimed at addressing these defects.
+This effort involved 18 unique developers who were listed as authors on
+these PRs.
 
-Highlighting the extent of individual contributions, Victor Stinner (vstinner) was associated with 41 of these PRs, representing involvement in approximately 41.8% of the total PRs stemming from this fuzzing campaign. Nikita Sobolev (sobolevn) also played a significant role, with involvement in 26 PRs (approximately 26.5%). Table Y provides a detailed breakdown of PR associations per author.
+Regarding individual contributions, Victor Stinner (vstinner) was
+associated with 41 of these PRs, representing involvement in approximately
+41.8% of the total PRs stemming from this fuzzing campaign. Nikita Sobolev
+(sobolevn) also played a significant role, with involvement in 26 PRs
+(approximately 26.5%). Table Y provides a breakdown of PR associations per
+author.
 
 
 | GitHub User     | PRs Associated With | Involvement Share (of 98 PRs) |
@@ -349,13 +366,36 @@ Highlighting the extent of individual contributions, Victor Stinner (vstinner) w
 
 ## Impact
 
-Feedback from the CPython community, particularly core developers and contributors, on the shared results of this fuzzing campaign was positive. The effort was acknowledged as significant, and the findings were recognized as a valuable contribution to CPython's stability and robustness
+Feedback from the CPython community, particularly core developers and
+contributors, on the shared results of this fuzzing campaign was positive.
+The effort was acknowledged as significant, and the findings were
+recognized as a valuable contribution to CPython's stability and robustness.
 
-A key impact was the discovery and resolution of issue #131998, a release blocker, which highlighted the fuzzer's capability to uncover critical defects. The broader set of issues, including those found in debug builds (often assertion failures) or in less commonly exercised code paths, were generally considered worthwhile. The consensus was that such findings, even if not directly translating to release build crashes, often indicate underlying logic errors or fragile code that benefits from being addressed.
+A key impact was the discovery and resolution of issue #131998, a release
+blocker, which highlighted the fuzzer's capability to uncover critical
+defects. The broader set of issues, including those found in debug builds
+(often assertion failures) or in less commonly exercised code paths, were
+generally considered worthwhile. The consensus was that such findings,
+even if not directly translating to release build crashes, often indicate
+underlying logic errors or fragile code that benefits from being addressed.
 
-Regarding reporting, the CPython development team highly valued the Minimal Reproducible Examples (MREs) provided with bug reports. While initial reports often lacked deep diagnostic analysis of root causes, this was generally accepted by the team. The availability of a concise MRE and a backtrace was deemed sufficient and actionable for core developers to begin their investigation. There was no strong call for more extensive pre-analysis by the reporter before an issue was filed, suggesting that the current level of detail was effective.
+Regarding reporting, the CPython development team highly valued the Minimal
+Reproducible Examples (MREs) provided with bug reports. While initial
+reports lacked deep diagnostic analysis of root causes, this was generally
+accepted by the team. The availability of a concise MRE and a backtrace was
+deemed sufficient and actionable for core developers to begin their
+investigation. There was no strong call for more extensive pre-analysis by
+the reporter before an issue was filed, suggesting that the current level
+of detail was effective.
 
-The volume of issues reported during the campaign was not perceived as disruptive to the normal development workflow, with feedback indicating the pace was manageable. Furthermore, an interest in receiving more high-quality bug reports from future fuzzing efforts was expressed, particularly concerning new CPython features (e.g., the free-threaded build) or fuzzer advancements. The ability of fuzzing to explore a wide surface area of the codebase and uncover obscure edge cases was also recognized as a benefit. The engagement of 18 unique developers in authoring PRs for these issues further demonstrates the community's collaborative approach to addressing these fuzzer-identified defects.
+The volume of issues reported during the campaign was not perceived as
+disruptive to the normal development workflow, with feedback indicating
+the pace was manageable. An interest in receiving more high-quality bug
+reports from future fuzzing efforts was expressed. The ability of fuzzing
+to explore a wide surface area of the codebase and uncover edge cases was
+also recognized as a benefit. The engagement of 18 unique developers in
+authoring PRs for these issues further demonstrates the community's
+collaborative approach to addressing these fuzzer-identified defects.
 
 ## Conclusions
 
@@ -364,7 +404,14 @@ can be fruitful in a project like CPython. Not only a significant number
 of crashes were uncovered, but also important issues were revealed by
 identifying some of these crashes.
 
-The engagement with this fuzzing campaign by the CPython community was notably positive. Feedback from core developers indicated that the findings were valuable, the reporting process (emphasizing MREs) was effective, and the volume of issues was manageable and not disruptive. The collaborative effort of 18 unique developers in authoring 98 pull requests to address these 52 issues underscores the community's commitment to leveraging such results for CPython's improvement, suggesting a strong cultural fit for well-conducted fuzzing initiatives.
+The engagement of the CPython community with this fuzzing campaign was
+notably positive. Feedback from core developers indicated that the findings
+were valuable, the reporting process (emphasizing MREs) was effective, and
+the volume of issues was manageable and not disruptive. The collaborative
+effort of 18 unique developers in authoring 98 pull requests to address
+these 52 issues underscores the community's commitment to leveraging such
+results for CPython's improvement, suggesting a strong cultural fit for
+well-conducted fuzzing initiatives.
 
 The temporal pattern of bug finding may indicate that short periodic
 fuzzing campaings would have a better cost/benefit than a continuous
@@ -389,19 +436,34 @@ contributions made to CPython's robustness.
 
 ### Findings
 
-Each issue detailed below includes several pieces of information to provide context and aid in understanding the defect.
+Each issue detailed below includes several pieces of information to provide
+context and aid in understanding the defect.
 
-Issue titles presented here were sometimes refined for clarity at the time of writing this report and may be more descriptive than the original titles filed in the issue tracker.
+Issue titles presented here were sometimes refined for clarity at the time
+of writing this report and may be more descriptive than the original titles
+filed in the issue tracker.
 
-The "Kind" field categorizes the nature of the crash (e.g., Segmentation Fault, Abort) based on the observed failure. The "Configuration" field specifies the main CPython build type where the issue was primarily observed or reproduced.
+The "Kind" field categorizes the nature of the crash (e.g., Segmentation
+Fault, Abort) based on the observed failure. The "Configuration" field
+specifies the CPython build type where the issue was primarily observed
+or reproduced.
 
-The "Python versions" field primarily reflects the version tags used in CPython's issue tracker. These tags may under-represent older affected versions as tags can be removed or may not be added if versions are outside their maintenance window. To complement this, affected versions are sometimes also inferred from the fix details in associated Pull Requests.
+The "Python versions" field primarily reflects the version tags used in
+CPython's issue tracker. These tags may under-represent older affected
+versions as tags can be removed or may not be added if versions are outside
+their maintenance window. To complement this, affected versions are
+sometimes also inferred from the fix details in associated Pull Requests.
 
-Minimal Reproducible Examples (MREs) are provided to demonstrate each issue. These were typically manually reduced from the original fuzzer-generated code.
+Minimal Reproducible Examples (MREs) are provided to demonstrate each issue.
+These were typically manually reduced from the original fuzzer-generated
+code.
 
-The "PRs (author)" field lists pull requests linked to the issue, regardless of their status (e.g., open, merged, closed without merging), along with the credited author(s).
+The "PRs (author)" field lists pull requests linked to the issue, regardless
+of their status (e.g., open, merged, closed without merging), along with
+the credited author(s).
 
-Backtraces and error messages, collected at the time of the hit, are provided within collapsible sections to offer further diagnostic context.
+Backtraces and error messages, collected at the time of the hit, are
+provided within collapsible sections to offer further diagnostic context.
 
 
 #### 1- [126219](https://github.com/python/cpython/issues/126219) - `tkinter.Tk` segfault with invalid `className`

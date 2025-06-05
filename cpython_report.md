@@ -23,10 +23,8 @@ procedures of the campaign should allow improvements to future efforts.
 
 ### Context on fusil
 
-While fusil is in fact a "multi-agent Python library used to write
-fuzzing programs", in this report the name will be used as shorthand to
-refer to the Python fuzzer written by Stinner and enhanced by Diniz, based
-on the library.
+In this report, 'fusil' refers to the Python fuzzer based on the fusil
+library, originally by Stinner and enhanced for this campaign by Diniz.
 
 Fusil works by generating source files containing random calls using
 random and/or interesting arguments, then monitoring the execution and
@@ -56,7 +54,7 @@ Fuzzing has started in late October 2024 and concluded as of early May
 2025, meaning this report covers a period of approximately 6 months. It
 has been conducted on a free AWS EC2 instance, a free AWS LightSail
 instance (for 3 months), 3 free Oracle Cloud instances (2 x64, 1 ARM), a
-personal desktop computer and a personal laptop.
+personal desktop computer and a personal laptop, all running Linux.
 
 Each fusil instance corresponds to a long-running fuzzer process that
 creates the code, spawns fuzzing processes, manages sessions and collects
@@ -71,15 +69,16 @@ features have been constantly added.
 - Concurrent fuzzing instances: 4 to 10
 - Fusil versions: many different revisions
 - CPython versions: 3.12, 3.13, 3.14, main
-- CPython configurations: debug, release, optimized, GILful, free-threaded,
-JITted, ASAN-enabled
+- CPython configurations: debug, release, optimized, default (GIL-enabled),
+free-threaded, JITted, ASAN-enabled
 
 A hit is defined as a fuzzing session where either the process ends
 abnormally (a segmentation fault, an abort etc.) or a keyword indicating
 abnormal conditions is matched in the output, e.g. "SystemError",
 "Fatal Python error". Many false positives, especially in the beginning
 of the fuzzing campaign, were recorded as hits. These became rarer as
-keywords were tightened and known problematic modules were skipped.
+keywords were tightened and known problematic modules were skipped by
+adding them to filter lists.
 
 After running the fuzzer and collecting hits in the form of long Python
 source files (>15k lines per file) together with the output of their
@@ -108,16 +107,24 @@ presented instead:
 - Fuzzing time: > 25.000 hours (sum of all instances)
 - Fuzzing sessions: > 1.000.000
 - Hits: > 50.000
-- Issues filled: 52 (X valid, Y closed, Z open)
-- Resulting PRs: XX (Y open, Z closed)
+- Issues filled: 52 (X valid, 43 closed, 9 open)
+- Resulting PRs: 98 (Y open, Z closed)
 
 The 52 issues filled correspond roughly to 30% of all the crashes (issues
 with "type-crash" label) and 2% of all issues (including features requests,
 bugs and invalid issues) reported in the CPython issue tracker during the
-period covered by this report.
+period covered by this report. The 52 reported issues led to a significant
+amount of corrective activity, with a total of 98 pull requests (PRs) being
+created to address them.
+
+Analysis of the 43 closed issues for which data was available indicates
+that the median time to close an issue was 5 days, with an average of
+approximately 20 days. This relatively quick turnaround for many issues
+highlights the CPython development community's responsiveness to reported
+defects
 
 Hits and new issues don't seem to appear at a steady pace. Apparently,
-there are long periods of no or nearly no new findings, followed by rapid
+there are long periods of no or nearly no new findinxgs, followed by rapid
 accumulation of new results when new features are added to fusil, or
 when new CPython versions and/or configurations are added to the fuzzing
 pool. Repeated hits usually stop being found when the underlying issue
@@ -125,13 +132,19 @@ is fixed in CPython, hence the high number of hits recorded. In special
 cases, suppressions for specific bugs are added, also stopping repeated
 hits for them.
 
-_Graph: bugs filled by date (day? week? bar graph? with line of rolling average bugs per... 3 or 4 weeks?) annotated with dates of new features/configurations?_
-![issues_by_week.png](issues_by_week.png)
+The temporal pattern of issue discovery and resolution throughout the fuzzing campaign is visualized in Figure X (see `issues_created_closed_per_week_plot.png`). This bar chart displays the number of issues created (blue bars) and closed (red bars) on a weekly basis, spanning from week 44 of 2024 through week 19 of 2025. The X-axis represents the week number, transitioning from 2024 into 2025 (e.g., W52 '24, W01 '25), while the Y-axis quantifies the number of issues, ranging from 0 to 10.
+
+Several distinct phases of activity are observable:
+
+* **Initial Burst (Weeks 44-50, 2024):** The campaign commenced with a significant number of new issues being opened, peaking at 9 issues in the first week (W44 '24). This initial surge gradually declined over the subsequent weeks. Issue closures began more modestly, with 2 issues closed in week 44, ramping up to a peak of 6 issues closed in week 48.
+* **Mid-Campaign Lull (Week 51, 2024 - Week 13, 2025):** Following the initial phase, there was a marked decrease in the reporting of new issues. Specifically, no new issues were opened between week 51 of 2024 and week 5 of 2025. A small number of existing issues were closed during this period (e.g., in W51 '24 and W03 '25). A brief resurgence occurred in week 6 of 2025 with two new issues opened. This was followed by another quiet period for new discoveries until week 14.
+* **Second Wave of Discoveries (Weeks 14-16, 2025):** A renewed period of activity was observed starting week 14 of 2025, with a total of 12 new issues opened over these three weeks. Issue closures also saw an uptick during this timeframe.
+* **Later Period (Weeks 17-19, 2025):** The final weeks covered by the graph show minimal to no new issue creation, with some ongoing closure activity.
 
 The temporal pattern of issue creation shows that the highest number of
 issues were found when CPython was in a "fusil-naive" state, where no
 fuzzing with this tool had happened for a decade. This corresponds to the
-356 issues found from October 31 to December 12 2024.
+35 issues found from October 31 to December 12 2024.
 
 _Analyze dates of new features/configurations and correlate with number of issues found._
 
@@ -194,17 +207,31 @@ _Table: Issue number x Kind, Configuration, Python version, Status, number of PR
 Each issue that resulted from the reported fuzzing effort is detailed
 in the **Findings** section in the **Appendix**.
 
-_Table: number of issues by kind?_
+| Kind                 | Number of Issues |
+|----------------------|------------------|
+| Segfault/Crash       | 23               |
+| Abort/AssertionError | 22               |
+| SystemError          | 2                |
+| Fatal Python Error   | 2                |
+| Unknown              | 3                |
+| **Total**            | **52**           |
 
 Even though abort issues only affect debug builds directly, in many cases
 they point to causes that would also create problems in release builds.
 Segfault issues sound more serious, but some were very shallow crashes in
 seldom used corners of CPython's standard librady.
 
-_Table: number of issues by configuration?_
+| Configuration   | Number of Issues |
+|-----------------|------------------|
+| Debug           | 19               |
+| Free-Threaded   | 18               |
+| Release         | 14               |
+| JIT             | 1                |
+| **Total**       | **52**           |
 
-The high number of issues resulting in aborts makes debug builds the most
-fruitful configuration, followed by free-threaded builds. ...
+The high number of issues resulting in aborts and the fact that most
+segfaults also work on them make debug builds the most fruitful
+configuration, followed by free-threaded builds.
 
 _Table or graph?: issues by estimated relevance/severity?_
 

@@ -146,7 +146,15 @@ issues were found when CPython was in a "fusil-naive" state, where no
 fuzzing with this tool had happened for a decade. This corresponds to the
 35 issues found from October 31 to December 12 2024.
 
-_Analyze dates of new features/configurations and correlate with number of issues found._
+Attempting to correlate these observed patterns in issue discovery with specific developments in the fusil fuzzer or the fuzzing campaign's setup offers some plausible insights, although a detailed history of fusil's feature enhancements prior to November 2024 is not fully captured in the available commit logs. Nevertheless, two periods of increased issue yield appear to align with notable changes:
+
+1.  The **initial high rate of issue discovery** (peaking between week 44 and week 48 of 2024) corresponds with the commencement of the fuzzing campaign against a relatively "fusil-naive" CPython. Additionally, work on enabling and stabilizing threaded execution within fusil occurred around late November 2024 (e.g., commits `fd6fddea` and `146a1654`), a feature noted in prior context as effective in finding new crashes. This confluence of factors likely contributed to the significant number of defects uncovered early in the campaign.
+2.  A **subsequent resurgence in issue reporting during weeks 14-16 of 2025** (early to mid-April) aligns closely with a series of enhancements to fusil's input generation capabilities. Specifically, commits from early April 2025 introduced support for "weird_classes" (subclasses of core types with unusual behavior, `commit 80696090`), "tricky typing values" (`commit 64451923`), "new weird instances" (`commit 01e7fccc`), and basic support for Numpy arrays as inputs (`commit aefb7644`). The timing suggests these new input types and object generation strategies were effective in exercising different code paths and uncovering a fresh set of defects.
+
+While other fusil modifications, such as experimental JIT fuzzing (December 2024) or the introduction of various CPython configurations to the fuzzing pool (which, according to issue data, largely occurred at the campaign's outset), did not show such distinct correlations with new issue spikes, the enhancements to input diversity and execution models appear to have had a more pronounced impact on discovery rates.
+
+
+
 
 | Issue Number |       Status       | Date filed | Date closed | Days open |        Kind        |   Configuration  | Python versions          | Component | Affected files |                   PRs                          | Number of PRs |                       PR authors                       |
 |--------------|--------------------|------------|-------------|-----------|--------------------|------------------|--------------------------|-----------|----------------|------------------------------------------------|---------------|--------------------------------------------------------|

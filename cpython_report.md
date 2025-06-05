@@ -121,10 +121,10 @@ Analysis of the 43 closed issues for which data was available indicates
 that the median time to close an issue was 5 days, with an average of
 approximately 20 days. This relatively quick turnaround for many issues
 highlights the CPython development community's responsiveness to reported
-defects
+defects.
 
 Hits and new issues don't seem to appear at a steady pace. Apparently,
-there are long periods of no or nearly no new findinxgs, followed by rapid
+there are long periods of no or nearly no new findings, followed by rapid
 accumulation of new results when new features are added to fusil, or
 when new CPython versions and/or configurations are added to the fuzzing
 pool. Repeated hits usually stop being found when the underlying issue
@@ -132,26 +132,72 @@ is fixed in CPython, hence the high number of hits recorded. In special
 cases, suppressions for specific bugs are added, also stopping repeated
 hits for them.
 
-The temporal pattern of issue discovery and resolution throughout the fuzzing campaign is visualized in Figure X (see `issues_created_closed_per_week_plot.png`). This bar chart displays the number of issues created (blue bars) and closed (red bars) on a weekly basis, spanning from week 44 of 2024 through week 19 of 2025. The X-axis represents the week number, transitioning from 2024 into 2025 (e.g., W52 '24, W01 '25), while the Y-axis quantifies the number of issues, ranging from 0 to 10.
+The pattern of issue discovery and resolution throughout the fuzzing
+campaign is visualized in Figure X (see `issues_created_closed_per_week_plot.png`).
+This bar chart displays the number of issues created (blue bars) and
+closed (red bars) on a weekly basis, spanning from week 44 of 2024 
+through week 19 of 2025. The X-axis represents the week number,
+transitioning from 2024 into 2025 (e.g., W52 '24, W01 '25), while the
+Y-axis quantifies the number of issues, ranging from 0 to 10.
 
-Several distinct phases of activity are observable:
+Several distinct phases of activity are observable.
 
-* **Initial Burst (Weeks 44-50, 2024):** The campaign commenced with a significant number of new issues being opened, peaking at 9 issues in the first week (W44 '24). This initial surge gradually declined over the subsequent weeks. Issue closures began more modestly, with 2 issues closed in week 44, ramping up to a peak of 6 issues closed in week 48.
-* **Mid-Campaign Lull (Week 51, 2024 - Week 13, 2025):** Following the initial phase, there was a marked decrease in the reporting of new issues. Specifically, no new issues were opened between week 51 of 2024 and week 5 of 2025. A small number of existing issues were closed during this period (e.g., in W51 '24 and W03 '25). A brief resurgence occurred in week 6 of 2025 with two new issues opened. This was followed by another quiet period for new discoveries until week 14.
-* **Second Wave of Discoveries (Weeks 14-16, 2025):** A renewed period of activity was observed starting week 14 of 2025, with a total of 12 new issues opened over these three weeks. Issue closures also saw an uptick during this timeframe.
-* **Later Period (Weeks 17-19, 2025):** The final weeks covered by the graph show minimal to no new issue creation, with some ongoing closure activity.
+An initial burst of activity occurred during weeks 44 to 50, 2024,
+peaking at 9 issues being opened in the first week (W44 '24). This
+initial surge gradually declined over the subsequent weeks. Issue
+closures began with 2 issues closed in week 44, ramping up to a peak
+of 6 issues closed in week 48.
+
+A mid-campaign lull occurred from week 51, 2024, to week 13, 2025,
+characterized by a marked decrease in new issue reporting. No new issues
+were opened between week 51 of 2024 and week 5 of 2025. A small number of
+existing issues were closed during this period (e.g., in W51 '24 and
+W03 '25). In week 6 of 2025 two new issues were opened. This was followed
+by another quiet period for new discoveries until week 14.
+
+A second wave of discoveries during weeks 14-16, 2025 was observed,
+with a total of 12 new issues opened over these three weeks. Issue closures
+also saw an uptick during this timeframe.
+
+In the later period of the campaign during weeks 17-19, 2025 there was
+minimal to no new issue creation, with some ongoing closure activity.
 
 The temporal pattern of issue creation shows that the highest number of
 issues were found when CPython was in a "fusil-naive" state, where no
 fuzzing with this tool had happened for a decade. This corresponds to the
 35 issues found from October 31 to December 12 2024.
 
-Attempting to correlate these observed patterns in issue discovery with specific developments in the fusil fuzzer or the fuzzing campaign's setup offers some plausible insights, although a detailed history of fusil's feature enhancements prior to November 2024 is not fully captured in the available commit logs. Nevertheless, two periods of increased issue yield appear to align with notable changes:
+Attempting to correlate these observed patterns in issue discovery with
+specific developments in the fusil fuzzer or the fuzzing campaign's setup
+offers some plausible insights, although a detailed history of fusil's
+feature enhancements prior to November 2024 is not fully captured in the
+available commit logs. Nevertheless, two periods of increased issue yield
+appear to align with notable changes.
 
-1.  The **initial high rate of issue discovery** (peaking between week 44 and week 48 of 2024) corresponds with the commencement of the fuzzing campaign against a relatively "fusil-naive" CPython. Additionally, work on enabling and stabilizing threaded execution within fusil occurred around late November 2024 (e.g., commits `fd6fddea` and `146a1654`), a feature noted in prior context as effective in finding new crashes. This confluence of factors likely contributed to the significant number of defects uncovered early in the campaign.
-2.  A **subsequent resurgence in issue reporting during weeks 14-16 of 2025** (early to mid-April) aligns closely with a series of enhancements to fusil's input generation capabilities. Specifically, commits from early April 2025 introduced support for "weird_classes" (subclasses of core types with unusual behavior, `commit 80696090`), "tricky typing values" (`commit 64451923`), "new weird instances" (`commit 01e7fccc`), and basic support for Numpy arrays as inputs (`commit aefb7644`). The timing suggests these new input types and object generation strategies were effective in exercising different code paths and uncovering a fresh set of defects.
+The initial high rate of issue discovery (peaking between week 44 and week
+48 of 2024) corresponds with the commencement of the fuzzing campaign
+against a relatively "fusil-naive" CPython. Additionally, work on enabling
+and stabilizing threaded execution within fusil occurred around late
+November 2024 (e.g., commits `fd6fddea` and `146a1654`), a feature noted
+in prior context as effective in finding new crashes. Both factors likely
+contributed to the significant number of defects uncovered early in the campaign.
 
-While other fusil modifications, such as experimental JIT fuzzing (December 2024) or the introduction of various CPython configurations to the fuzzing pool (which, according to issue data, largely occurred at the campaign's outset), did not show such distinct correlations with new issue spikes, the enhancements to input diversity and execution models appear to have had a more pronounced impact on discovery rates.
+A subsequent resurgence in issue reporting during weeks 14-16 of 2025
+(early to mid-April) aligns closely with a series of enhancements to
+fusil's input generation capabilities. Specifically, commits from early
+April 2025 introduced support for "weird_classes" (subclasses of core types
+with unusual behavior, `commit 80696090`), "tricky typing values"
+(`commit 64451923`), "new weird instances" (`commit 01e7fccc`), and basic
+support for Numpy arrays as inputs (`commit aefb7644`). The timing suggests
+these new input types and object generation strategies were effective in
+exercising different code paths and uncovering a fresh set of defects.
+
+While other fusil modifications, such as experimental JIT fuzzing (December
+2024) or the introduction of various CPython configurations to the
+fuzzing pool (which, according to issue data, largely occurred at the
+campaign's outset), did not show such distinct correlations with new
+issue spikes, the enhancements to input diversity and execution models
+appear to have had a more pronounced impact on discovery rates.
 
 
 | Issue Number |       Status       | Date filed | Date closed | Days open |        Kind        |   Configuration  | Python versions          | Component | Affected files |                   PRs                          | Number of PRs |                       PR authors                       |

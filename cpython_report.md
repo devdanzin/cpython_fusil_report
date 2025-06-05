@@ -76,16 +76,21 @@ A hit is defined as a fuzzing session where either the process ends
 abnormally (a segmentation fault, an abort etc.) or a keyword indicating
 abnormal conditions is matched in the output, e.g. "SystemError",
 "Fatal Python error". Many false positives, especially in the beginning
-of the fuzzing campaign, were recorded as hits. These became rarer as
-keywords were tightened and known problematic modules were skipped by
-adding them to filter lists.
+of the fuzzing campaign, were recorded as hits. These false positives
+became rarer as keywords were tightened and problematic modules were
+added to suppression lists. For example, the keyword "assert" was excluded
+due to its frequent appearance in standard traceback outputs, and modules
+known to cause benign issues, such as signal, were also suppressed.
 
 After running the fuzzer and collecting hits in the form of long Python
 source files (>15k lines per file) together with the output of their
 execution, each hit is manually classified as new or duplicate. Manual
 reduction of new hits and collection of corresponding backtraces is then
 usually performed. In a few instances, there was usage of automatic test
-case reduction tools like creduce and shrinkray.
+case reduction tools like creduce and shrinkray. Shrinkray has issues
+processing the very large scripts produced by fusil, but becomes helpful
+once significant initial reduction has taken place. Creduce is able to
+process files of any size and allowed reduction of some complex hits.
 
 Preliminary results were sometimes shared with CPython Core Developers in
 the community Python Discord #internals-and-peps channel, where many
@@ -107,8 +112,8 @@ presented instead:
 - Fuzzing time: > 25.000 hours (sum of all instances)
 - Fuzzing sessions: > 1.000.000
 - Hits: > 50.000
-- Issues filled: 52 (X valid, 43 closed, 9 open)
-- Resulting PRs: 98 (Y open, Z closed)
+- Issues filled: 52 *43 closed, 9 open)
+- Resulting PRs: 98
 
 The 52 issues filled correspond roughly to 30% of all the crashes (issues
 with "type-crash" label) and 2% of all issues (including features requests,
@@ -123,8 +128,8 @@ approximately 20 days. This relatively quick turnaround for many issues
 highlights the CPython development community's responsiveness to reported
 defects.
 
-Hits and new issues don't seem to appear at a steady pace. Apparently,
-there are long periods of no or nearly no new findings, followed by rapid
+Hits and new issues did not appear at a steady pace. Instead, the campaign
+exhibited long periods with minimal new findings, followed by rapid
 accumulation of new results when new features are added to fusil, or
 when new CPython versions and/or configurations are added to the fuzzing
 pool. Repeated hits usually stop being found when the underlying issue
@@ -364,6 +369,40 @@ author.
 | **Total Associations** | **118**      |                               |
 
 
+## Limitations
+
+The way fusil operates makes it a poor choice for exercising some
+kinds of APIs and code. It cannot, for example, generate highly
+complex, stateful objects (though work in that direction is possible).
+It also cannot generate (potentially invalid) data in special formats
+to test parsers and similar features. Consequently, its generative
+capabilities may provide less depth in exploring complex component
+states compared to fuzzers specifically designed with intricate state
+models.
+
+Although fusil was enhanced with new "interesting" objects and values,
+the set of such inputs is not exhaustive and is curated based on common
+problematic patterns. Novel or highly domain-specific problematic inputs
+for certain CPython APIs might not be generated.
+
+Fusil, in its configuration for this campaign, primarily targets
+crash-like failures (segmentation faults, aborts) and explicitly defined
+error conditions (e.g., SystemError). It is less suited for detecting other
+classes of defects such as subtle logical errors that don't result in
+immediate crashes, race conditions not leading to memory corruption
+(though free-threaded build testing helps), or certain types of resource
+leaks not causing immediate instability.
+
+In the reported campaign, some CPython modules received little or no
+fuzzing coverage due to the high rate of false positives (e.g. logging,
+due to keywords like "critical" being present) or even due to them
+being prone to uninteresting crashes (e.g. ctypes).
+
+While MREs were generated for all reported issues, some initial hits,
+particularly those involving threading or complex interactions,
+occasionally presented challenges in consistent reproduction prior
+to extensive manual reduction.
+
 ## Impact
 
 Feedback from the CPython community, particularly core developers and
@@ -429,6 +468,10 @@ Fuzzing CPython with fusil has proved it to be a valuable tool for
 identifying and reducing software defects in that project. This means that
 the primary goal of the fuzzing campaign was achieved, with relevant
 contributions made to CPython's robustness.
+
+
+## Future work and recommendations
+
 
 
 -------------

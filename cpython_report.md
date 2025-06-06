@@ -1,5 +1,13 @@
 # Fuzzing CPython with fusil
 
+## Executive Summary
+
+This report summarizes a 6-month fuzzing campaign using fusil on CPython
+(Oct 2024–May 2025), which uncovered 52 unique crash-related issues (30%
+of all "type-crash" issues in the period). These led to 98 PRs from 18
+contributors, including a release blocker. The results affirm fusil's
+value and suggest directions for future automated testing.
+
 ## Introduction
 
 This report presents the issues found by fuzzing
@@ -125,8 +133,7 @@ created to address them.
 Analysis of the 43 closed issues for which data was available indicates
 that the median time to close an issue was 5 days, with an average of
 approximately 20 days. This relatively quick turnaround for many issues
-highlights the CPython development community's responsiveness to reported
-defects.
+indicates a prompt response from the CPython community.
 
 Hits and new issues did not appear at a steady pace. Instead, the campaign
 exhibited long periods with minimal new findings, followed by rapid
@@ -433,8 +440,7 @@ the pace was manageable. An interest in receiving more high-quality bug
 reports from future fuzzing efforts was expressed. The ability of fuzzing
 to explore a wide surface area of the codebase and uncover edge cases was
 also recognized as a benefit. The engagement of 18 unique developers in
-authoring PRs for these issues further demonstrates the community's
-collaborative approach to addressing these fuzzer-identified defects.
+authoring PRs for these issues further reflects broad developer engagement.
 
 ## Conclusions
 
@@ -453,7 +459,7 @@ results for CPython's improvement, suggesting a strong cultural fit for
 well-conducted fuzzing initiatives.
 
 The temporal pattern of bug finding may indicate that short periodic
-fuzzing campaings would have a better cost/benefit than a continuous
+fuzzing campaigns would have a better cost/benefit than a continuous
 effort like the one presented here. New features in fusil can justify such
 a campaign, while the pace of accumulation of new issues in CPython doesn't
 seem to necessitate continuous monitoring.
@@ -472,7 +478,84 @@ contributions made to CPython's robustness.
 
 ## Future work and recommendations
 
+This fuzzing campaign provides a foundation for future efforts to
+enhance CPython's robustness and extend fusil's capabilities. Ths
+section presents interesting leads for future work and provides
+recommendations for improvement.
 
+### Enhancing Fuzzer Capabilities and Techniques
+
+Building upon fusil's current architecture, several enhancements may
+improve effectivenes in defect discovery. 
+
+Leveraging and refining fusil's "deep diving" technique, which allows it
+to fuzz objects returned by previous fuzzing calls or accessed via
+attributes, might prove important. Further development of this recursive
+exploration method can improve the exploration of complex stateful
+interactions.
+
+Targeted JIT fuzzing should be pursued by developing specific code
+generation patterns focused on exercising and stressing CPython's
+Just-In-Time (JIT) compiler.
+
+Object mangling capabilities within fusil also warrant revisiting and
+enhancement, as more sophisticated techniques for altering object
+attributes and internal state remain a potentially fruitful, though
+currently unproven, method for uncovering defects.
+
+To streamline the analysis of findings, developing tooling to automate the
+cross-version testing of Minimal Reproducible Examples (MREs) would
+be beneficial, automating the currently manual task of determining the range
+of affected CPython versions.
+
+### Broadening Fuzzing Scope and Environments
+
+Applying fusil to new execution contexts and targets can uncover different
+classes of bugs.
+
+Exploration into subinterpreter fuzzing, running fuzzer-generated code
+within CPython subinterpreters, could reveal defects related to interpreter
+isolation and resource sharing.
+
+For the free-threaded build, employing Thread Sanitizer (TSAN) in
+conjunction with fusil would aid in detecting data races and other
+concurrency-related bugs not necessarily causing immediate crashes.
+
+The application of fusil should also continue and expand to other Python
+implementations and C/Rust extensions. Its success in finding approximately
+20 crashers in PyPy and various issues in C/Rust extensions like Polars,
+NumPy, and SciPy demonstrates its utility beyond CPython.
+
+### Advancing Fuzzing Methodology and Automation
+
+Refining the overall fuzzing process and leveraging community knowledge can
+lead to greater efficiency and effectiveness.
+
+Systematic campaign analysis, through controlled experiments re-running
+fuzzing campaigns against "fusil-naive" CPython versions with different
+fusil features enabled or disabled, would provide valuable data.
+Methodically recording resource usage, defect discovery rates, and MRE
+complexity in these experiments can help understand feature impact and
+optimize future campaigns.
+
+Further enhancing campaign automation, covering aspects from fuzzer
+deployment and monitoring to hit collection, preliminary triage, and
+reporting, is also recommended.
+
+Engaging with the CPython and broader fuzzing communities to actively
+solicit input on novel fuzzing techniques or input generation strategies
+that align with fusil's generative approach will also be valuable.
+
+### Further Recommendations
+
+Consideration should be given to developing a stateful corpus from
+"interesting" objects or short operational sequences discovered during
+"deep diving"; these could seed future runs to more efficiently reach
+complex states.
+
+Exploring the integration of lightweight coverage feedback for post-campaign
+analysis could also help identify under-fuzzed areas and inform generator
+improvements.
 
 -------------
 ## Appendix

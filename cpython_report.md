@@ -6,7 +6,9 @@ This report summarizes a 6-month fuzzing campaign using fusil on CPython
 (Oct 2024–May 2025), which uncovered 52 unique crash-related issues (30%
 of all "type-crash" issues in the period). These led to 98 PRs from 18
 contributors, including a release blocker. The results affirm fusil's
-value and suggest directions for future automated testing.
+value and suggests directions for future fuzzing, including periodic
+campaigns and the expansion of fuzzing to new environments like
+subinterpreters.
 
 ## 1. Introduction and goals
 
@@ -130,7 +132,7 @@ presented instead:
 - Fuzzing time: > 25.000 hours (sum of all instances)
 - Fuzzing sessions: > 1.000.000
 - Hits: > 50.000
-- Issues filled: 52 *43 closed, 9 open)
+- Issues filled: 52 (43 closed, 9 open)
 - Resulting PRs: 98
 
 The 52 issues filled correspond roughly to 30% of all the crashes (issues
@@ -460,7 +462,8 @@ the pace was manageable. An interest in receiving more high-quality bug
 reports from future fuzzing efforts was expressed. The ability of fuzzing
 to explore a wide surface area of the codebase and uncover edge cases was
 also recognized as a benefit. The engagement of 18 unique developers in
-authoring PRs for these issues further reflects broad developer engagement.
+authoring PRs for these issues further demonstrates the breadth of
+developer involvement.
 
 ## 6. Conclusions and recommendations
 
@@ -501,27 +504,20 @@ contributions made to CPython's robustness.
 ### 6.2. Strategic recommendations
 
 This fuzzing campaign provides a foundation for future efforts to
-enhance CPython's robustness and extend fusil's capabilities. Ths
+enhance CPython's robustness and extend fusil's capabilities. This
 section presents interesting leads for future work and provides
 recommendations for improvement.
 
-Building upon fusil's current architecture, several enhancements may
-improve effectivenes in defect discovery. Applying fusil to new execution
-contexts and targets can uncover different classes of bugs. Further
-enhancing campaign automation, covering aspects from fuzzer deployment
-and monitoring to hit collection, preliminary triage, and reporting, is
-also recommended.
-
-Refining the overall fuzzing process and leveraging community knowledge can
-lead to greater efficiency and effectiveness. For that, engaging with the
-CPython and broader fuzzing communities to actively solicit input on novel
-fuzzing techniques or input generation strategies that align with fusil's
-generative approach will also be valuable.
-
-The application of fusil should also continue and expand to other Python
-implementations and C/Rust extensions. Its success in finding approximately
-20 crashers in PyPy and various issues in C/Rust extensions like Polars,
-NumPy, and SciPy demonstrates its utility beyond CPython.
+Future work should focus on three strategic areas. First, enhancing
+fuzzer capabilities is critical and involves refining techniques like
+"deep diving", besides improving automation from testing to reporting.
+Second, broadening the fuzzing scope by applying fusil to new CPython
+execution contexts like subinterpreters, as well as to other Python
+implementations and C/Rust extensions where it has already proven
+effective, will maximize its impact. Finally, advancing the fuzzing
+methodology by engaging with the community for new techniques and
+performing systematic analysis of campaign effectiveness will ensure
+long-term efficiency and relevance.
 
 ### 6.3. Suggested fuzzing enhancements
 
@@ -570,6 +566,12 @@ complex states.
 Exploring the integration of lightweight coverage feedback for post-campaign
 analysis could also help identify under-fuzzed areas and inform generator
 improvements.
+
+Refining the overall fuzzing process and leveraging community knowledge can
+lead to greater efficiency and effectiveness. For that, engaging with the
+CPython and broader fuzzing communities to actively solicit input on novel
+fuzzing techniques or input generation strategies that align with fusil's
+generative approach will also be valuable.
 
 -------------
 ## 7. Appendix

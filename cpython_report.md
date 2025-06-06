@@ -8,15 +8,13 @@ of all "type-crash" issues in the period). These led to 98 PRs from 18
 contributors, including a release blocker. The results affirm fusil's
 value and suggest directions for future automated testing.
 
-## Introduction
+## 1. Introduction and goals
 
 This report presents the issues found by fuzzing
 [CPython](https://github.com/python/cpython) with
 [fusil](https://github.com/devdanzin/fusil), a tool created by
 [Victor Stinner](https://github.com/vstinner) and updated and used by
 [Daniel Diniz](https://github.com/devdanzin) for this fuzzing campaign.
-
-### Goals
 
 The primary goal of this fuzzing campaign was to uncover defects, improve
 stability, and enhance the overall robustness of CPython, particularly
@@ -29,10 +27,12 @@ quantitatively and qualitatively, issue-finding patterns, and relevance to
 the CPython project. Complementarily, an assessment of the format and
 procedures of the campaign should allow improvements to future efforts.
 
-### Context on fusil
+## 2. Context on fusil
 
 In this report, 'fusil' refers to the Python fuzzer based on the fusil
 library, originally by Stinner and enhanced for this campaign by Diniz.
+
+### 2.1 About fusil
 
 Fusil works by generating source files containing random calls using
 random and/or interesting arguments, then monitoring the execution and
@@ -48,6 +48,8 @@ Out of these issues, 4 were considered release blockers at the time. There
 was then a hiatus in fusil development from 2015 (version 1.5, published
 by Stinner) to 2024.
 
+### 2.2 Enhancements for this campaign
+
 Since Stinner's last version, new features have been added to fusil by
 Diniz. These features include running the generated code in parallel
 threads, testing class instances in addition to classes and functions,
@@ -56,7 +58,9 @@ found new crashes. Other new features, such as running the code
 asynchronously or mangling objects by replacing some of their attributes,
 haven't found any issues.
 
-## Fuzzing environment and procedures
+## 3. Fuzzing environment and procedures
+
+### 3.1. Environment
 
 Fuzzing has started in late October 2024 and concluded as of early May
 2025, meaning this report covers a period of approximately 6 months. It
@@ -80,6 +84,8 @@ features have been constantly added.
 - CPython configurations: debug, release, optimized, default (GIL-enabled),
 free-threaded, JITted, ASAN-enabled
 
+### 3.2. Hits and reduction
+
 A hit is defined as a fuzzing session where either the process ends
 abnormally (a segmentation fault, an abort etc.) or a keyword indicating
 abnormal conditions is matched in the output, e.g. "SystemError",
@@ -100,6 +106,8 @@ processing the very large scripts produced by fusil, but becomes helpful
 once significant initial reduction has taken place. Creduce is able to
 process files of any size and allowed reduction of some complex hits.
 
+### 3.3. Reporting
+
 Preliminary results were sometimes shared with CPython Core Developers in
 the community Python Discord #internals-and-peps channel, where many
 developers helped triage the issues, with special mentions of Peter Bierma
@@ -111,7 +119,9 @@ contain a diagnostic or pointed to deeper causes, except when those were
 provided by Core Developers, as most cases were beyond the capabilities
 of the bug reporter (Diniz) to investigate.
 
-## Results
+## 4. Results
+
+### 4.1. Findings overview
 
 There was no detailed record keeping regarding fuzzing effort and hits, so
 the following estimates of resources used, hits and issues found are
@@ -129,6 +139,8 @@ bugs and invalid issues) reported in the CPython issue tracker during the
 period covered by this report. The 52 reported issues led to a significant
 amount of corrective activity, with a total of 98 pull requests (PRs) being
 created to address them.
+
+### 4.2. Temporal patterns
 
 Analysis of the 43 closed issues for which data was available indicates
 that the median time to close an issue was 5 days, with an average of
@@ -174,6 +186,8 @@ also saw an uptick during this timeframe.
 In the later period of the campaign during weeks 17-19, 2025 there was
 minimal to no new issue creation, with some ongoing closure activity.
 
+### 4.3. Temporal correlations
+
 The temporal pattern of issue creation shows that the highest number of
 issues were found when CPython was in a "fusil-naive" state, where no
 fuzzing with this tool had happened for a decade. This corresponds to the
@@ -211,6 +225,7 @@ campaign's outset), did not show such distinct correlations with new
 issue spikes, the enhancements to input diversity and execution models
 appear to have had a more pronounced impact on discovery rates.
 
+4.4. Summary table of findings
 
 | Issue Number |       Status       | Date filed | Date closed | Days open |        Kind        |   Configuration  | Python versions          | Component | Affected files |                   PRs                          | Number of PRs |                       PR authors                       |
 |--------------|--------------------|------------|-------------|-----------|--------------------|------------------|--------------------------|-----------|----------------|------------------------------------------------|---------------|--------------------------------------------------------|
@@ -270,6 +285,8 @@ appear to have had a more pronounced impact on discovery rates.
 Each issue that resulted from the reported fuzzing effort is detailed
 in the **Findings** section in the **Appendix**.
 
+### 4.5. Findings statistics
+
 | Kind                 | Number of Issues |
 |----------------------|------------------|
 | Segfault/Crash       | 23               |
@@ -295,16 +312,6 @@ seldom used corners of CPython's standard librady.
 The high number of issues resulting in aborts and the fact that most
 segfaults also work on them make debug builds the most fruitful
 configuration, followed by free-threaded builds.
-
-_Table or graph?: issues by estimated relevance/severity?_
-
-The relevance/severity of crashes found was estimated with assistance from
-CPython Core Developers? The tally displays how diverse fusil findings
-are in terms of value to the project: some issues are trivial, others point
-to deep bugs that could affect a large number of users. It should be
-highlighted that the CPython developers attempt to fix all found issues,
-regardless of relevance, which is a marked difference from some other
-projects fuzzed with fusil.
 
 | GitHub User     | Issues Involved |
 |-----------------|-----------------|
@@ -376,7 +383,20 @@ author.
 | **Total Associations** | **118**      |                               |
 
 
-## Limitations
+_Table or graph?: issues by estimated relevance/severity?_
+Decide whether to keep this, ask for help, do a categorization with help
+from AI, etc.
+The relevance/severity of crashes found was estimated with assistance from
+CPython Core Developers? The tally displays how diverse fusil findings
+are in terms of value to the project: some issues are trivial, others point
+to deep bugs that could affect a large number of users. It should be
+highlighted that the CPython developers attempt to fix all found issues,
+regardless of relevance, which is a marked difference from some other
+projects fuzzed with fusil.
+
+## 5. Analysis
+
+## 5.1. Limitations
 
 The way fusil operates makes it a poor choice for exercising some
 kinds of APIs and code. It cannot, for example, generate highly
@@ -410,7 +430,7 @@ particularly those involving threading or complex interactions,
 occasionally presented challenges in consistent reproduction prior
 to extensive manual reduction.
 
-## Impact
+## 5.2 Developer feedbak and impact
 
 Feedback from the CPython community, particularly core developers and
 contributors, on the shared results of this fuzzing campaign was positive.
@@ -442,7 +462,9 @@ to explore a wide surface area of the codebase and uncover edge cases was
 also recognized as a benefit. The engagement of 18 unique developers in
 authoring PRs for these issues further reflects broad developer engagement.
 
-## Conclusions
+## 6. Conclusions and recommendations
+
+### 6.1. Summary of key outcomes
 
 The results indicate that running a fuzzing tool with fusil's features
 can be fruitful in a project like CPython. Not only a significant number
@@ -476,17 +498,37 @@ the primary goal of the fuzzing campaign was achieved, with relevant
 contributions made to CPython's robustness.
 
 
-## Future work and recommendations
+### 6.2. Strategic recommendations
 
 This fuzzing campaign provides a foundation for future efforts to
 enhance CPython's robustness and extend fusil's capabilities. Ths
 section presents interesting leads for future work and provides
 recommendations for improvement.
 
-### Enhancing Fuzzer Capabilities and Techniques
-
 Building upon fusil's current architecture, several enhancements may
-improve effectivenes in defect discovery. 
+improve effectivenes in defect discovery. Applying fusil to new execution
+contexts and targets can uncover different classes of bugs. Further
+enhancing campaign automation, covering aspects from fuzzer deployment
+and monitoring to hit collection, preliminary triage, and reporting, is
+also recommended.
+
+Refining the overall fuzzing process and leveraging community knowledge can
+lead to greater efficiency and effectiveness. For that, engaging with the
+CPython and broader fuzzing communities to actively solicit input on novel
+fuzzing techniques or input generation strategies that align with fusil's
+generative approach will also be valuable.
+
+The application of fusil should also continue and expand to other Python
+implementations and C/Rust extensions. Its success in finding approximately
+20 crashers in PyPy and various issues in C/Rust extensions like Polars,
+NumPy, and SciPy demonstrates its utility beyond CPython.
+
+### 6.3. Suggested fuzzing enhancements
+
+To streamline the analysis of findings, developing tooling to automate the
+cross-version testing of Minimal Reproducible Examples (MREs) would
+be beneficial, automating the currently manual task of determining the range
+of affected CPython versions.
 
 Leveraging and refining fusil's "deep diving" technique, which allows it
 to fuzz objects returned by previous fuzzing calls or accessed via
@@ -503,16 +545,6 @@ enhancement, as more sophisticated techniques for altering object
 attributes and internal state remain a potentially fruitful, though
 currently unproven, method for uncovering defects.
 
-To streamline the analysis of findings, developing tooling to automate the
-cross-version testing of Minimal Reproducible Examples (MREs) would
-be beneficial, automating the currently manual task of determining the range
-of affected CPython versions.
-
-### Broadening Fuzzing Scope and Environments
-
-Applying fusil to new execution contexts and targets can uncover different
-classes of bugs.
-
 Exploration into subinterpreter fuzzing, running fuzzer-generated code
 within CPython subinterpreters, could reveal defects related to interpreter
 isolation and resource sharing.
@@ -521,15 +553,7 @@ For the free-threaded build, employing Thread Sanitizer (TSAN) in
 conjunction with fusil would aid in detecting data races and other
 concurrency-related bugs not necessarily causing immediate crashes.
 
-The application of fusil should also continue and expand to other Python
-implementations and C/Rust extensions. Its success in finding approximately
-20 crashers in PyPy and various issues in C/Rust extensions like Polars,
-NumPy, and SciPy demonstrates its utility beyond CPython.
-
-### Advancing Fuzzing Methodology and Automation
-
-Refining the overall fuzzing process and leveraging community knowledge can
-lead to greater efficiency and effectiveness.
+### 6.4. Potential research directions
 
 Systematic campaign analysis, through controlled experiments re-running
 fuzzing campaigns against "fusil-naive" CPython versions with different
@@ -537,16 +561,6 @@ fusil features enabled or disabled, would provide valuable data.
 Methodically recording resource usage, defect discovery rates, and MRE
 complexity in these experiments can help understand feature impact and
 optimize future campaigns.
-
-Further enhancing campaign automation, covering aspects from fuzzer
-deployment and monitoring to hit collection, preliminary triage, and
-reporting, is also recommended.
-
-Engaging with the CPython and broader fuzzing communities to actively
-solicit input on novel fuzzing techniques or input generation strategies
-that align with fusil's generative approach will also be valuable.
-
-### Further Recommendations
 
 Consideration should be given to developing a stateful corpus from
 "interesting" objects or short operational sequences discovered during
@@ -558,9 +572,9 @@ analysis could also help identify under-fuzzed areas and inform generator
 improvements.
 
 -------------
-## Appendix
+## 7. Appendix
 
-### Findings
+### 7.1. About the presentation of findings
 
 Each issue detailed below includes several pieces of information to provide
 context and aid in understanding the defect.
@@ -591,6 +605,7 @@ the credited author(s).
 Backtraces and error messages, collected at the time of the hit, are
 provided within collapsible sections to offer further diagnostic context.
 
+### 7.2. Findings
 
 #### 1- [126219](https://github.com/python/cpython/issues/126219) - `tkinter.Tk` segfault with invalid `className`
 
